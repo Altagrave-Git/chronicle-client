@@ -5,6 +5,10 @@ import './header.scss';
 
 const headerNav = [
   {
+    label: "Home",
+    path: "/"
+  },
+  {
     label: "Portfolio",
     path: "/portfolio"
   },
@@ -12,10 +16,6 @@ const headerNav = [
     label: "Dev Blog",
     path: "/blog"
   },
-  {
-    label: "About",
-    path: "/about"
-  }
 ];
 
 const Header = () => {
