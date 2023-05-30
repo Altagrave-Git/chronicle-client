@@ -1,0 +1,22 @@
+@use '../../App.scss' as *;
+
+.login-redirect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4rem auto;
+
+  > svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  > h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+    color: #fffe;
+    margin-bottom: 1rem;
+  }
+}
