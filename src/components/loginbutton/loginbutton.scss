@@ -1,0 +1,45 @@
+@use '../../App.scss' as *;
+
+// <button class="echo-login" onClick={() => AuthAPI.login()}>
+//  <svg />
+//  <span>Log in with Echo</span>
+// </button>
+
+.echo-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 0.3rem 0.3rem 0;
+  background-color: #113311;
+  border-radius: 0.5rem;
+  border: 1px solid #afa1;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  svg {
+    width: 1.4rem;
+    height: 1.4rem;
+    margin: 0 0.75rem;
+  }
+
+  span {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+    color: #fffe;
+    background-color: #afa2;
+    border-radius: 0.4rem;
+    border: none;
+    padding: 0.5rem 1rem;
+  }
+
+  &:hover {
+    background-color: #afa5;
+    transform: scale(1.05);
+
+    span {
+      background-color: #afa5;
+      color: #fff;
+    }
+  }
+}
