@@ -4,7 +4,7 @@ import Header from './components/header/header';
 import HomeView from './pages/home/home';
 import PortfolioView from './pages/portfolio/portfolio';
 import BlogView from './pages/blog/blog';
-import AboutView from './pages/about/about';
+import LoginView from './pages/login/login';
 import { useState, useEffect } from 'react';
 import { Octokit } from "@octokit/core";
 
@@ -27,8 +27,6 @@ const App = () => {
 
   console.log(gitData);
 
-
-
   return (
     <BrowserRouter>
       <Header />
@@ -36,6 +34,7 @@ const App = () => {
         <Route path="/" element={<HomeView gitData={gitData} />} />
         <Route path="/portfolio" element={<PortfolioView gitData={gitData} />} />
         <Route path="/blog" element={<BlogView gitData={gitData} />} />
+        <Route path="/login" element={<LoginView />} />
       </Routes>
     </BrowserRouter>
   );
