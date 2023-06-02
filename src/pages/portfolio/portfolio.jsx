@@ -2,20 +2,26 @@ import { useState, useEffect } from 'react';
 import ProjectCard from "../../components/projectcard/projectcard";
 import ProjectDetail from "../../components/projectdetail/projectdetail";
 import './portfolio.scss';
+import FormButton from '../../components/formbutton/formbutton';
+import FormModal from '../../forms/formmodal';
 
-const PortfolioView = () => {
+const PortfolioView = ({ admin }) => {
   const [portfolioData, setPortfolioData] = useState([]);
   const [projectDetail, setProjectDetail] = useState({});
   const [activeIndex, setActiveIndex] = useState(0);
+  const [formModal, setFormModal] = useState();
 
   // Retrieve project data from Chronicle API
   useEffect(() => {
     fetch(import.meta.env.VITE_CHRONICLE_URL + '/projects/')
       .then(response => response.json())
-      .then(data => setPortfolioData(data));
+      .then(data => {
+        setPortfolioData(data);
+        if (portfolioData.length) {console.log(portfolioData)}
+        else {console.log("No saved projects")}
+      })
+      .catch(error => console.log(error));
   }, []);
-
-  console.log(portfolioData)
 
   // Rotate active index state backwards
   const handlePrev = () => {
@@ -74,6 +80,12 @@ const PortfolioView = () => {
   return (
     <main>
       <section className="portfolio fixed active">
+        { admin &&
+        <FormButton setFormModal={setFormModal} formType={"project"} formModal={formModal} />
+        }
+        { formModal &&
+        <FormModal formModal={formModal} setFormModal={setFormModal} />
+        }
         <div className="portfolio">
           <div className="prev-container"></div>
           <div className="active-container"></div>
