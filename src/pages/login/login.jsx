@@ -3,16 +3,20 @@ import { useEffect } from 'react';
 import LoginButton from '../../components/loginbutton/loginbutton';
 import { ReactComponent as EchoIcon } from '../../icons/echo.svg';
 import AuthAPI from '../../api/api';
+import { useNavigate } from 'react-router-dom';
 
-const LoginView = () => {
+const LoginView = ({ token, setUser, setAdmin }) => {
+  const navigate = useNavigate()
+
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
     if (code) {
       AuthAPI.login(code)
         .then((data) => {
-          console.log('Success:', data);
-          // window.location.href = '/';
+          setUser({data});
+          setAdmin(data.is_superuser);
+          navigate("/");
         })
         .catch((err) => {
           console.log(err);
@@ -20,7 +24,6 @@ const LoginView = () => {
       );
     }
   }, [window.location.search]);
-
 
   return (
     <main>
@@ -32,7 +35,7 @@ const LoginView = () => {
         </>
         :
         <>
-        <LoginButton />
+        <LoginButton token={token} />
         </>
         }
       </div>
