@@ -5,21 +5,20 @@
 //  <span>Log in with Echo</span>
 // </button>
 
-.echo-login {
+.echo-login,
+.echo-logout {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.3rem 0.3rem 0.3rem 0;
-  background-color: #113311;
+  padding: 0.3rem 0.3rem 0.3rem 0.3rem;
   border-radius: 0.5rem;
-  border: 1px solid #afa1;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
   svg {
     width: 1.4rem;
     height: 1.4rem;
-    margin: 0 0.75rem;
+    margin: 0 0.45rem 0 0.75rem;
   }
 
   span {
@@ -27,19 +26,50 @@
     font-weight: 600;
     font-family: 'Roboto', sans-serif;
     color: #fffe;
-    background-color: #afa2;
     border-radius: 0.4rem;
     border: none;
     padding: 0.5rem 1rem;
   }
 
   &:hover {
-    background-color: #afa5;
     transform: scale(1.05);
 
     span {
-      background-color: #afa5;
       color: #fff;
+    }
+  }
+}
+
+.echo-login {
+  border: 1px solid #afa1;
+  background-color: #113311;
+
+  span {
+    background-color: #afa2;
+  }
+
+  &:hover {
+    background-color: #afa5;
+
+    span {
+      background-color: #afa5;
+    }
+  }
+}
+
+.echo-logout {
+  border: 1px solid #ffaaaa11;
+  background-color: #881111;
+
+  span {
+    background-color: #ffaaaa22;
+  }
+
+  &:hover {
+    background-color: #ffaaaa77;
+
+    span {
+      background-color: rgba(255, 170, 170, 0.333);
     }
   }
 }
