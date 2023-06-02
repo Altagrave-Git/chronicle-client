@@ -7,12 +7,12 @@ section.portfolio {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  
   @include desktop {
     width: 35%;
     max-width: 400px;
     top: 4rem;
-    height: calc(100vh - 4rem);
+    height: calc(100vh - 8rem);
   }
 
   @include tablet {
@@ -26,12 +26,38 @@ section.portfolio {
       height: calc(100vh - 4rem);
     }
   }
+  
+  .btn-container {
+    position: relative;
+    width: 100%;
+    
+    // btn-container-{formType}
+    &.btn-container-project {
+      padding-left: calc(100% - 2rem);
+    }
+
+    // btn-add-${formType}
+    .btn-add {
+      position: fixed;
+      top: 4.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: 1.5rem;
+      border-radius: 0.5rem;
+      background-color: #81e161;
+      border-color: #91f161;
+      color: #222;
+      text-shadow: 0 0 1px #0000;
+      font-weight: 600;
+    }
+
+  }
 }
 
 aside.portfolio {
   width: 65%;
   max-width: 920px;
-
+  
   @include tablet {
     display: none;
 
@@ -62,3 +88,5 @@ aside.portfolio {
     filter: brightness(0.4);
   }
 }
+
+// ADMIN CONTROLS
