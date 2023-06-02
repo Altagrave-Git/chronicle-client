@@ -1,0 +1,43 @@
+@use '../../App.scss' as *;
+
+.user-panel {
+  @include flex(center, center);
+  animation: anime 3s 1 cubic-bezier(0.645, 0.045, 0.355, 1);
+  position: fixed;
+  background-color: #1f1f1f;
+  top: -4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 2rem;
+  border-radius: 3rem;
+
+  &__avatar {
+    border-radius: 50%;
+    height: 4rem;
+    margin: 0 1rem 0 0;
+  }
+
+  &__username {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: $yellow2;
+  }
+}
+
+@keyframes anime {
+  0% {
+    transform: translate(-50%, 0);
+  }
+  25% {
+    transform: translate(-50%, 8rem);
+  }
+  50% {
+    transform: translate(-50% 8rem);
+  }
+  75% {
+    transform: translate(-50%, 8rem);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
