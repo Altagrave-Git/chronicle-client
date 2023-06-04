@@ -1,7 +1,9 @@
 import './forms.scss';
 import ProjectForm from './projectform';
+import ImageForm from './imageform';
 
-const FormModal = ({ formModal, setFormModal }) => {
+const FormModal = ({ formModal, setFormModal, portfolioData, activeIndex, token }) => {
+
   return (
   <div className="form-modal-container">
     <div className="form-modal">
@@ -10,7 +12,11 @@ const FormModal = ({ formModal, setFormModal }) => {
       </div>
 
       { formModal == "project" &&
-        <ProjectForm />
+        <ProjectForm token={token} setFormModal={setFormModal} />
+      }
+      {
+        formModal == 'image' &&
+        <ImageForm token={token} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} />
       }
     </div>
   </div>
