@@ -10,7 +10,7 @@ const FormButton = ({ setFormModal, formModal, formType }) => {
   return (
   <div className={containerClass}>
     <button className={buttonClass} onClick={() => activate()}>
-      +
+      + {formType}
     </button>
   </div>
   )
