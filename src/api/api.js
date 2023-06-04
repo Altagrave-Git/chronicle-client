@@ -90,13 +90,13 @@ class BaseAuthAPI {
     return response;
   }
 
-  introspect = async () => {
+  introspect = async (token) => {
     const response = await fetch(this.baseUrl + 'intro/', {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer wJ6jP5s61m11aI5wiExltqh4w1D7E2'
+        'Authorization': 'Bearer ' + token
       }
     })
       .then(response => {
@@ -113,35 +113,58 @@ class BaseAuthAPI {
   }
 }
 
-export const AuthAPI = new BaseAuthAPI();
-
-
 class BaseContentAPI {
   constructor() {
     this.baseUrl = import.meta.env.VITE_CHRONICLE_URL + '/projects/';
   }
 
-  project = async ({...params}) => {
-    const response = await fetch(this.baseUrl,
-      new URLSearchParams(params), {
+  project = async (token, {...form}) => {
+    const response = await fetch(this.baseUrl, {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-      }
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({...form})
     })
       .then(response => {
         return response.json();
       })
       .then(data => {
-        console.log(data);
+        return data;
       })
       .catch(error => {
         console.log(error);
       }
     );
+    return response;
+  }
+
+  image = async (token, id, form) => {
+    const response = await fetch(this.baseUrl + `${id}/images/`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+      body: form
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        return data;
+      })
+      .catch(error => {
+        console.log(error);
+      }
+    );
+    return response;
   }
 }
+
+const AuthAPI = new BaseAuthAPI();
 
 export const ContentAPI = new BaseContentAPI();
 
