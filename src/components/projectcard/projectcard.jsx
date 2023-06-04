@@ -1,8 +1,10 @@
 import './projectcard.scss'
+import FormButton from '../formbutton/formbutton';
 
 const ProjectCard = ({ project, ordering, click, handleActive=null }) => {
   const { name, category, description, site, repo, images, apps } = project;
-  const baseUrl = 'http://127.0.0.1:8000';
+  const baseUrl = import.meta.env.VITE_CHRONICLE_URL;
+  const defaultImage = import.meta.env.VITE_DEFAULT_IMG;
 
   return (
     <div onClick={ordering === 'active-card' ? () => {
@@ -10,7 +12,11 @@ const ProjectCard = ({ project, ordering, click, handleActive=null }) => {
       handleActive();
     } : () => click(project)} className={'project-card' + ' ' + ordering}>
       <div className="project-card__image">
-        <img src={baseUrl + images[0].image} alt={images[0].project} />
+        <img src={ images.length ?
+            baseUrl + images[0].image
+            :
+            defaultImage
+          } alt={"project image"} />
       </div>
       <div className="project-card__header">
         <h2 className="project-card__title">{name}</h2>
