@@ -2,8 +2,10 @@ import React from "react";
 import './home.scss';
 import GitStream from "../../components/gitstream/gitstream";
 import Skills from "../../components/skills/skills";
+import AuthAPI from "../../api/api";
 
-const HomeView = ({gitData}) => {
+const HomeView = ({token, gitData}) => {
+  const introspect = () => AuthAPI.introspect(token);
 
   return (
     <main className='home container'>
@@ -16,6 +18,7 @@ const HomeView = ({gitData}) => {
       </section>
       <section className="placeholder"></section>
       <aside className="home">
+        <button onClick={introspect}>Introspect</button>
         <Skills />
         <GitStream gitData={gitData} />
       </aside>
