@@ -44,13 +44,15 @@ const App = () => {
       .catch(error => console.log(error));
   }, [user]);
 
+  console.log(token);
+
   return (
     <BrowserRouter>
       <Header />
       <UserPanel user={user} />
       <Routes>
-        <Route path="/" element={<HomeView gitData={gitData} />} />
-        <Route path="/portfolio" element={<PortfolioView admin={admin} />} />
+        <Route path="/" element={<HomeView token={token} gitData={gitData} />} />
+        <Route path="/portfolio" element={<PortfolioView token={token} admin={admin} />} />
         <Route path="/blog" element={<BlogView />} />
         <Route path="/login" element={<LoginView token={token} setUser={setUser} setAdmin={setAdmin} />} />
       </Routes>
