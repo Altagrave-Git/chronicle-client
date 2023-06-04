@@ -5,20 +5,30 @@ import './portfolio.scss';
 import FormButton from '../../components/formbutton/formbutton';
 import FormModal from '../../forms/formmodal';
 
-const PortfolioView = ({ admin }) => {
+const PortfolioView = ({ admin, token }) => {
   const [portfolioData, setPortfolioData] = useState([]);
   const [projectDetail, setProjectDetail] = useState({});
   const [activeIndex, setActiveIndex] = useState(0);
   const [formModal, setFormModal] = useState();
 
-  // Retrieve project data from Chronicle API
+  // Retrieve and set project data from Chronicle API
   useEffect(() => {
     fetch(import.meta.env.VITE_CHRONICLE_URL + '/projects/')
       .then(response => response.json())
       .then(data => {
-        setPortfolioData(data);
-        if (portfolioData.length) {console.log(portfolioData)}
-        else {console.log("No saved projects")}
+        if (data.length >= 5) {
+          setPortfolioData(data);
+        } else if (data.length) {
+          const cloneData = [];
+          const mult = Math.ceil(5 / data.length);
+          for (let i = 0; mult > i; i++) {
+            data.forEach(item => {
+              cloneData.push(item);
+            });
+          }
+          setPortfolioData(cloneData);
+        }
+        console.log(data)
       })
       .catch(error => console.log(error));
   }, []);
@@ -45,7 +55,7 @@ const PortfolioView = ({ admin }) => {
     window.scrollTo(0, 0);
   }
 
-  // Set project detail (aside) to active
+  // (Mobile) Switch to project details page
   const handleActive = () => {
     if (document.querySelector('section.active')) {
       document.querySelector('section.portfolio').classList.remove('active');
@@ -64,16 +74,23 @@ const PortfolioView = ({ admin }) => {
 
   useEffect(() => {
     if (portfolioData.length > 0) {
+      const beforePrev = document.querySelector('.before-prev-container');
       const prev = document.querySelector('.prev-container');
       const active = document.querySelector('.active-container');
       const next = document.querySelector('.next-container');
+      const afterNext = document.querySelector('.after-next-container');
+
+      const beforePrevCard = document.querySelector('.before-prev-card');
       const prevCard = document.querySelector('.prev-card');
       const activeCard = document.querySelector('.active-card');
       const nextCard = document.querySelector('.next-card');
+      const afterNextCard = document.querySelector('.after-next-card');
   
+      beforePrev.appendChild(beforePrevCard);
       prev.appendChild(prevCard);
       active.appendChild(activeCard);
       next.appendChild(nextCard);
+      afterNext.appendChild(afterNextCard);
     }
   }, [activeIndex, portfolioData])
 
@@ -84,22 +101,30 @@ const PortfolioView = ({ admin }) => {
         <FormButton setFormModal={setFormModal} formType={"project"} formModal={formModal} />
         }
         { formModal &&
-        <FormModal formModal={formModal} setFormModal={setFormModal} />
+        <FormModal formModal={formModal} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} token={token} />
         }
         <div className="portfolio">
+          <div className='before-prev-container'></div>
           <div className="prev-container"></div>
-          <div className="active-container"></div>
+          <div className="active-container">
+            {admin && portfolioData.length && <FormButton setFormModal={setFormModal} formType={"image"} formModal={formModal} />}
+          </div>
           <div className="next-container"></div>
+          <div className="after-next-container"></div>
           {portfolioData &&
             portfolioData.map((project, index) => {
               if (index === activeIndex) {
                 return <ProjectCard key={index} project={project} click={setProjectDetail} handleActive={handleActive} ordering="active-card" />
-              } else if (index === activeIndex - 1 || (activeIndex === 0 && index === portfolioData.length - 1)) {
+              } else if (index === activeIndex - 1 || activeIndex === 0 && index === portfolioData.length - 1) {
                 return <ProjectCard key={index} project={project} click={handlePrev} ordering="prev-card" />
-              } else if (index === activeIndex + 1 || (activeIndex === portfolioData.length - 1 && index === 0)) {
+              } else if (index === activeIndex - 2 || activeIndex === 1 && index === portfolioData.length - 1 || activeIndex === 0 && index === portfolioData.length - 2) {
+                return <ProjectCard key={index} project={project} click={handlePrev} ordering="before-prev-card" />
+              } else if (index === activeIndex + 1 || activeIndex === portfolioData.length - 1 && index === 0) {
                 return <ProjectCard key={index} project={project} click={handleNext} ordering="next-card" />
+              } else if (index === activeIndex + 2 || activeIndex === portfolioData.length - 1 && index === 1 || activeIndex === portfolioData.length - 2 && index === 0) {
+                return <ProjectCard key={index} project={project} click={handleNext} ordering="after-next-card" />
               } else {
-                return <ProjectCard key={index} project={project} click={() => {return}} />
+                return <ProjectCard key={index} project={project} click={() => {return}} ordering='' />
               }
             })
           }
