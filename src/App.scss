@@ -98,7 +98,7 @@ main {
   width: 100%;
   max-width: 1440px;
   min-height: 100vh;
-  padding: 8rem 0 0 0;
+  padding: 4rem 0 0 0;
   margin: auto;
 
   display: flex;
@@ -107,7 +107,7 @@ main {
 
   @include tablet {
     flex-direction: column;
-    padding: 4rem 0 0 0;
+    padding: 4rem 0;
   }
 }
 
