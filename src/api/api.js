@@ -118,15 +118,14 @@ class BaseContentAPI {
     this.baseUrl = import.meta.env.VITE_CHRONICLE_URL + '/projects/';
   }
 
-  project = async (token, {...form}) => {
+  project = async (token, form) => {
     const response = await fetch(this.baseUrl, {
       method: 'POST',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify({...form})
+      body: form
     })
       .then(response => {
         return response.json();
