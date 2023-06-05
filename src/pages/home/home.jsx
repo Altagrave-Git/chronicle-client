@@ -5,7 +5,7 @@ import Skills from "../../components/skills/skills";
 import AuthAPI from "../../api/api";
 
 const HomeView = ({token, gitData}) => {
-  const introspect = () => AuthAPI.introspect(token);
+  // const introspect = () => AuthAPI.introspect(token);
 
   return (
     <main className='home container'>
@@ -18,7 +18,6 @@ const HomeView = ({token, gitData}) => {
       </section>
       <section className="placeholder"></section>
       <aside className="home">
-        <button onClick={introspect}>Introspect</button>
         <Skills />
         <GitStream gitData={gitData} />
       </aside>
