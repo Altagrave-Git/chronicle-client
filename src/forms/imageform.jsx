@@ -1,6 +1,5 @@
 import './forms.scss';
-import { useState, useEffect } from 'react';
-import getCookie from '../api/cookie';
+import { useState } from 'react';
 import { ContentAPI } from '../api/api';
 
 const ImageForm = ({token, portfolioData, activeIndex}) => {
@@ -9,8 +8,6 @@ const ImageForm = ({token, portfolioData, activeIndex}) => {
   const [type, setType] =  useState(null);
 
   console.log([project, image, type]);
-
-  const csrftoken = getCookie('csrftoken');
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -38,7 +35,6 @@ const ImageForm = ({token, portfolioData, activeIndex}) => {
         }
       }}>
         <option value=''>--select type--</option>
-        <option value="thumbnail">Thumbnail</option>
         <option value="desktop-display">Desktop</option>
         <option value="mobile-display">Mobile</option>
         <option value="logo">Logo</option>
