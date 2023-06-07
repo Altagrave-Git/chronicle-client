@@ -1,4 +1,4 @@
-const FormButton = ({ setFormModal, formModal, formType }) => {
+const FormButton = ({ setFormModal, formType }) => {
 
   const containerClass = `btn-container btn-container-${formType}`
   const buttonClass = `btn-add btn-add-${formType}`
