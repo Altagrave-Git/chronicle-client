@@ -35,7 +35,7 @@ const TechIcon = ({ tech }) => {
     { name: "Django", icon: <DjangoLogo /> },
     { name: "Rest API", icon: <RestLogo /> },
     { name: "PostgreSQL", icon: <PostgresLogo /> },
-    { name: "AuthO", icon: <AuthLogo /> },
+    { name: "Auth0", icon: <AuthLogo /> },
     { name: "SQLite", icon: <SqliteLogo /> },
     { name: "Git", icon: <GitLogo /> },
     { name: "GitHub", icon: <GithubLogo /> },
@@ -49,7 +49,7 @@ const TechIcon = ({ tech }) => {
     { name: "Ubuntu", icon: <UbuntuLogo /> },
   ];
 
-  const techIcon = techIcons.find((icon) => icon.name == tech);
+  const techIcon = techIcons.find((icon) => icon.name.toLowerCase() == tech.toLowerCase());
 
   return (
     <>
