@@ -2,8 +2,9 @@ import './projectdetail.scss'
 import { ReactComponent as GithubLogo } from "../../icons/github.svg";
 import { ReactComponent as SiteLogo } from "../../icons/website.svg";
 import TechIcon from '../techicon/techicon';
+import FormButton from '../formbutton/formbutton';
 
-const ProjectDetail = ({ project, handleActive }) => {
+const ProjectDetail = ({ project, handleActive, admin, setFormModal }) => {
 
   return (
   <>
@@ -20,15 +21,15 @@ const ProjectDetail = ({ project, handleActive }) => {
           </div>
           <div className="project-detail__links">
             { project.site &&
-            <a href={project.site} className="project-detail__link website">
+            <a href={project.site} target="_blank" className="project-detail__link website">
               <SiteLogo />
-              Website
+              <div>View Website</div>
             </a>
             }
             { project.repo &&
-            <a href={project.repo} className="project-detail__link github">
+            <a href={project.repo} target="_blank" className="project-detail__link github">
               <GithubLogo />
-              Github
+              <div>Source Code</div>
             </a>
             }
           </div>
@@ -39,7 +40,9 @@ const ProjectDetail = ({ project, handleActive }) => {
           </div>
           { project.tech &&
             <div className="project-detail__section">
-              <h4>Technologies</h4>
+              <h4>Technologies
+              { admin && <FormButton setFormModal={setFormModal} formType={"tech"} /> }
+              </h4>
               <div className="project-detail__tech">
                   {project.tech.map((tech, index) => {
                     return (
@@ -78,26 +81,6 @@ const ProjectDetail = ({ project, handleActive }) => {
               })
             }     
           </div>
-        </div>
-        <div className="project-detail__apps">
-            {project.apps &&
-              project.apps.map((app, index) => {
-                return (
-                  <div key={index} className="project-detail__app">
-                    <h4>{app.name}</h4>
-                    <p>{app.description}</p>
-                    <div className="project-detail__app-images">
-                      { app.images &&
-                        app.images.map((image, index) => {
-                        return (
-                          <img key={index} src={image} alt={app.name} />
-                        )
-                      })}
-                    </div>
-                  </div>
-                )
-              })
-            }
         </div>
       </div>
     }
