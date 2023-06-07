@@ -106,15 +106,13 @@ const PortfolioView = ({ admin, token }) => {
         <div className="portfolio">
           <div className='before-prev-container'></div>
           <div className="prev-container"></div>
-          <div className="active-container">
-            {admin && portfolioData.length && <FormButton setFormModal={setFormModal} formType={"image"} formModal={formModal} />}
-          </div>
+          <div className="active-container"></div>
           <div className="next-container"></div>
           <div className="after-next-container"></div>
           {portfolioData &&
             portfolioData.map((project, index) => {
               if (index === activeIndex) {
-                return <ProjectCard key={index} project={project} click={setProjectDetail} handleActive={handleActive} ordering="active-card" />
+                return <ProjectCard key={index} project={project} click={setProjectDetail} handleActive={handleActive} setFormModal={setFormModal} admin={admin} ordering="active-card" />
               } else if (index === activeIndex - 1 || activeIndex === 0 && index === portfolioData.length - 1) {
                 return <ProjectCard key={index} project={project} click={handlePrev} ordering="prev-card" />
               } else if (index === activeIndex - 2 || activeIndex === 1 && index === portfolioData.length - 1 || activeIndex === 0 && index === portfolioData.length - 2) {
@@ -132,7 +130,7 @@ const PortfolioView = ({ admin, token }) => {
       </section>
       <section className="portfolio placeholder"></section>
       <aside className="portfolio">
-          <ProjectDetail project={projectDetail} handleActive={handleActive} />
+          <ProjectDetail project={projectDetail} handleActive={handleActive} admin={admin} setFormModal={setFormModal} />
       </aside>
     </main>
   )
