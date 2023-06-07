@@ -33,46 +33,6 @@ section.portfolio.fixed {
     max-height: 100%;
     overflow: hidden;
   }
-  
-  .btn-container {
-    position: relative;
-    width: 100%;
-
-    &.btn-container-image {
-      display: flex;
-      justify-content: center;
-    }
-    
-    // btn-container-{formType}
-    &.btn-container-project {
-      padding-left: calc(100% - 2rem);
-    }
-
-    // btn-add-${formType}
-    .btn-add {
-      position: fixed;
-      font-size: 1rem;
-      border-radius: 0.5rem;
-      background-color: #81e161;
-      border-color: #91f161;
-      color: #222;
-      text-shadow: 0 0 1px #0000;
-      font-weight: 600;
-      padding: 0.5rem 0.5rem;
-    }
-
-    .btn-add-project {
-      top: 4.5rem;
-    }
-
-    .btn-add-image {
-      top: 50vh;
-
-      @include desktop {
-        top: calc(50vh - 2rem);
-      }
-    }
-  }
 }
 
 aside.portfolio {
@@ -117,3 +77,34 @@ aside.portfolio {
 }
 
 // ADMIN CONTROLS
+.btn-container {
+  position: relative;
+  width: 100%;
+
+  &.btn-container-image {
+    display: flex;
+    justify-content: center;
+  }
+  
+  // btn-container-{formType}
+  &.btn-container-project {
+    padding-left: calc(100% - 2rem);
+  }
+
+  // btn-add-${formType}
+  .btn-add {
+    position: fixed;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    background-color: #81e161;
+    border-color: #91f161;
+    color: #222;
+    text-shadow: 0 0 1px #0000;
+    font-weight: 600;
+    padding: 0.5rem 0.5rem;
+  }
+
+  .btn-add-project {
+    top: 4.5rem;
+  }
+}
