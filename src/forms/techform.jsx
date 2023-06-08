@@ -17,7 +17,6 @@ const TechForm = ({ token, portfolioData, activeIndex }) => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       const [used, unused] = [[],[]];
       data.used.forEach((item, index) => {
         used.push(item.tech);
@@ -80,7 +79,7 @@ const TechForm = ({ token, portfolioData, activeIndex }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Technologies</h1>
+      <h1 className="title-2">Technologies</h1>
       <div className="tech-options">
         <div className="tech-unused-container">
           <label htmlFor="unused">Unused:</label>
