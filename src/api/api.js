@@ -140,6 +140,28 @@ class BaseContentAPI {
     return response;
   }
 
+  editProject = async (token, form, id) => {
+    const response = await fetch(this.baseUrl + `${id}/`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: form
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        return data;
+      })
+      .catch(error => {
+        console.log(error);
+      }
+    );
+    return response;
+  }
+
   image = async (token, id, form) => {
     const response = await fetch(this.baseUrl + `${id}/images/`, {
       method: 'POST',
@@ -165,6 +187,46 @@ class BaseContentAPI {
   tech = async(token, id, form) => {
     const response = await fetch(this.baseUrl + `${id}/tech/`, {
       method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(form)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        return data;
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  section = async(token, id, form) => {
+    const response = await fetch(this.baseUrl + `${id}/sections/`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(form)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        return data;
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  editSection = async(token, pid, sid, form) => {
+    const response = await fetch(this.baseUrl + `${pid}/sections/${sid}/`, {
+      method: 'PUT',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
