@@ -12,7 +12,6 @@ const ProjectCard = ({ project, ordering, click, handleActive=null, setFormModal
       handleActive();
     } : () => click(project)} className={'project-card' + ' ' + ordering}>
       <div className="project-card__image">
-      {admin && <FormButton setFormModal={setFormModal} formType={"image"} />}
         <img src={ image.length ?
             baseUrl + image
             :
