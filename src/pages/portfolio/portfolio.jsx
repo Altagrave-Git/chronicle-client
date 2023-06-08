@@ -96,10 +96,19 @@ const PortfolioView = ({ admin, token }) => {
 
   return (
     <main>
+      { admin && !formModal &&
+      <div className="admin-nav">
+        <div>
+          <FormButton setFormModal={setFormModal} formType={"project"} />
+        </div>
+        <div>
+          <FormButton setFormModal={setFormModal} formType={"image"} />
+          <FormButton setFormModal={setFormModal} formType={"tech"} />
+          <FormButton setFormModal={setFormModal} formType={"section"} />
+        </div>
+      </div>
+      }
       <section className="portfolio fixed active">
-        { admin &&
-        <FormButton setFormModal={setFormModal} formType={"project"} formModal={formModal} />
-        }
         { formModal &&
         <FormModal formModal={formModal} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} token={token} />
         }
