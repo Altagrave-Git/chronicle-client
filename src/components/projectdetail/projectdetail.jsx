@@ -40,9 +40,7 @@ const ProjectDetail = ({ project, handleActive, admin, setFormModal }) => {
           </div>
           { project.tech &&
             <div className="project-detail__section">
-              <h4>Technologies
-              { admin && <FormButton setFormModal={setFormModal} formType={"tech"} /> }
-              </h4>
+              <h4>Technologies</h4>
               <div className="project-detail__tech">
                   {project.tech.map((tech, index) => {
                     return (
