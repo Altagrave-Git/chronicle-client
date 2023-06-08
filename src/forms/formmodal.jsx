@@ -2,6 +2,7 @@ import './forms.scss';
 import ProjectForm from './projectform';
 import ImageForm from './imageform';
 import TechForm from './techform';
+import SectionForm from './sectionform';
 
 const FormModal = ({ formModal, setFormModal, portfolioData, activeIndex, token, project }) => {
 
@@ -13,7 +14,7 @@ const FormModal = ({ formModal, setFormModal, portfolioData, activeIndex, token,
       </div>
 
       { formModal == "project" &&
-        <ProjectForm token={token} setFormModal={setFormModal} />
+        <ProjectForm token={token} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} />
       }
       {
         formModal == "image" &&
@@ -21,6 +22,9 @@ const FormModal = ({ formModal, setFormModal, portfolioData, activeIndex, token,
       }
       { formModal == "tech" &&
         <TechForm token={token} portfolioData={portfolioData} activeIndex={activeIndex} />
+      }
+      { formModal == "section" &&
+        <SectionForm token={token} portfolioData={portfolioData} activeIndex={activeIndex} />
       }
     </div>
   </div>
