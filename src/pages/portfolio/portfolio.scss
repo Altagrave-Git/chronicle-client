@@ -77,34 +77,23 @@ aside.portfolio {
 }
 
 // ADMIN CONTROLS
-.btn-container {
-  position: relative;
+.admin-nav {
+  display: flex;
+  position: fixed;
+  z-index: 100;
+  justify-content: space-between;
   width: 100%;
+  max-width: 1440px;
+  background-color: #f445;
 
-  &.btn-container-image {
+  div {
     display: flex;
-    justify-content: center;
-  }
-  
-  // btn-container-{formType}
-  &.btn-container-project {
-    padding-left: calc(100% - 2rem);
-  }
 
-  // btn-add-${formType}
-  .btn-add {
-    position: fixed;
-    font-size: 1rem;
-    border-radius: 0.5rem;
-    background-color: #81e161;
-    border-color: #91f161;
-    color: #222;
-    text-shadow: 0 0 1px #0000;
-    font-weight: 600;
-    padding: 0.5rem 0.5rem;
-  }
-
-  .btn-add-project {
-    top: 4.5rem;
+    .btn-add {
+      margin: 0.5rem;
+      padding: 0.2rem 0.3rem;
+      background-color: #ffe150aa;
+      border-color: #ffe150aa;
+    }
   }
 }
