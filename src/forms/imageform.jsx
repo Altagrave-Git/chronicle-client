@@ -7,8 +7,6 @@ const ImageForm = ({token, portfolioData, activeIndex}) => {
   const [image, setImage] = useState(null);
   const [type, setType] =  useState(null);
 
-  console.log([project, image, type]);
-
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -24,7 +22,7 @@ const ImageForm = ({token, portfolioData, activeIndex}) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1 className="title">Add Image</h1>
+      <h1 className="title-2">Add Image</h1>
       <input className="form-text" type="file" accept='image/*' name='image' onChange={e => setImage(e.target.files[0])} />
       <label className="form-text" htmlFor="imagetypes" >Image type:</label>
       <select className="form-text" name="type" id="imagetypes" onChange={e => {
