@@ -47,32 +47,7 @@ aside.portfolio {
       width: 100%;
       max-width: auto;
       top: 4rem;
-      height: calc(100vh - 4rem);
     }
-  }
-}
-
-.project-card {
-  display: none;
-  border-radius: 8px;
-  background-color: #444;
-  padding-bottom: 1rem;
-  overflow: hidden;
-
-  &.active-card {
-    display: block;
-  }
-
-  &.next-card {
-    display: block;
-    transform: scale(0.8);
-    filter: brightness(0.4);
-  }
-
-  &.prev-card {
-    display: block;
-    transform: scale(0.8);
-    filter: brightness(0.4);
   }
 }
 
