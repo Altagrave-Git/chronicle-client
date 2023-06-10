@@ -3,6 +3,7 @@ import ProjectForm from './projectform';
 import ImageForm from './imageform';
 import TechForm from './techform';
 import SectionForm from './sectionform';
+import SnippetForm from './snippetform';
 
 const FormModal = ({ formModal, setFormModal, portfolioData, activeIndex, token, project }) => {
 
@@ -25,6 +26,9 @@ const FormModal = ({ formModal, setFormModal, portfolioData, activeIndex, token,
       }
       { formModal == "section" &&
         <SectionForm token={token} portfolioData={portfolioData} activeIndex={activeIndex} />
+      }
+      { formModal == "snippet" &&
+        <SnippetForm token={token} portfolioData={portfolioData} activeIndex={activeIndex} />
       }
     </div>
   </div>
