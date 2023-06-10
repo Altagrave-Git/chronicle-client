@@ -8,6 +8,7 @@ const SectionForm = ({token, portfolioData, activeIndex}) => {
   const [type, setType] = useState('text'); // text, list, table, other
   const [order, setOrder] = useState(0); // int
   const [mode, setMode] = useState(0);
+  const [verify, setVerify] = useState(false);
 
   useEffect(() => {
     setOrder(portfolioData[activeIndex].sections.length + 1);
@@ -85,12 +86,25 @@ const SectionForm = ({token, portfolioData, activeIndex}) => {
       .catch(error => console.log(error));
   }
 
+  const handleDelete = () => {
+    if (verify) {
+      const pid = portfolioData[activeIndex].id;
+      const sid = portfolioData[activeIndex].sections[mode - 1].id;
+
+      ContentAPI.deleteSection(token, pid, sid)
+      .then(() => location.reload())
+      .catch(error => console.log(error));
+    } else {
+      setVerify(true);
+    }
+  }
+
   return (
     <form onSubmit={ mode == 0 ? handleSubmit : handleEdit }>
       <div className="form-title-container">
         <input type="button" id="form-left" onClick={() => switchModeLeft()} />
         { mode ?
-        <h1 className="title-2">Edit {portfolioData[activeIndex].sections[mode - 1].title}</h1>
+        <h1 className="title-2">{`Edit ${portfolioData[activeIndex].sections[mode - 1].title}`}</h1>
         :
         <h1 className="title-2">Add Section</h1>
         }
@@ -99,31 +113,45 @@ const SectionForm = ({token, portfolioData, activeIndex}) => {
       <input type="text" name="title" className="form-text" placeholder="Section title" value={title} onChange={e => setTitle(e.target.value)} autoComplete="false" />
       <textarea name="description" className="form-text" placeholder="Section content"  cols="30" rows="8" required={false} value={description} onChange={e => setDescription(e.target.value)}></textarea>
 
-    <div className="section-type-container">
-      <div className="section-type">
-        <label htmlFor="section-type-text">Text</label>
-        <input type="radio" name="type" id="section-type-text" className="section-type-btn" value={"text"} onClick={e => setType(e.target.value)} defaultChecked />
+      <div className="section-type-container">
+        <div className="section-type">
+          <label htmlFor="section-type-text">Text</label>
+          <input type="radio" name="type" id="section-type-text" className="section-type-btn" value={"text"} onClick={e => setType(e.target.value)} defaultChecked />
+        </div>
+        <div className="section-type">
+          <label htmlFor="section-type-list">List</label>
+          <input type="radio" name="type" id="section-type-list" className="section-type-btn" value={"list"} onClick={e => setType(e.target.value)} />
+        </div>
+        <div className="section-type">
+          <label htmlFor="section-type-table">Table</label>
+          <input type="radio" name="type" id="section-type-table" className="section-type-btn" value={"table"} onClick={e => setType(e.target.value)} />
+        </div>
+        <div className="section-type">
+          <label htmlFor="section-type-other">Other</label>
+          <input type="radio" name="type" id="section-type-other" className="section-type-btn" value={"other"} onClick={e => setType(e.target.value)} />
+        </div>
       </div>
-      <div className="section-type">
-        <label htmlFor="section-type-list">List</label>
-        <input type="radio" name="type" id="section-type-list" className="section-type-btn" value={"list"} onClick={e => setType(e.target.value)} />
+      <div className="submit-container">
+        { mode > 0 &&
+          <input type="button" className="form-submit" id="delete" value="Delete" onClick={() => handleDelete()} />
+        }
+        { title.length && description.length && type.length ?
+          <button type="submit" className="form-submit">Save</button>
+          :
+          <button type="submit" className="form-submit" disabled>Save</button>
+        }
       </div>
-      <div className="section-type">
-        <label htmlFor="section-type-table">Table</label>
-        <input type="radio" name="type" id="section-type-table" className="section-type-btn" value={"table"} onClick={e => setType(e.target.value)} />
+      { verify &&
+      <div className="verify-delete-container">
+        <div className="verify-delete">
+          <h3>Are you sure you want to delete this section?</h3>
+          <div className="verify-delete-btns">
+            <input type="button" className="verify-delete-yes" value="Yes" onClick={() => handleDelete()} />
+            <input type="button" className="verify-delete-no" value="No" onClick={() => setVerify(false)} />
+          </div>
+        </div>
       </div>
-      <div className="section-type">
-        <label htmlFor="section-type-other">Other</label>
-        <input type="radio" name="type" id="section-type-other" className="section-type-btn" value={"other"} onClick={e => setType(e.target.value)} />
-      </div>
-    </div>
-
-      { title.length && description.length && type.length ?
-        <button type="submit" className="form-submit">Submit</button>
-        :
-        <button type="submit" className="form-submit" disabled>Submit</button>
       }
-      
     </form>
   )
 }
