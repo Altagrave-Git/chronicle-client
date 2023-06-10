@@ -75,21 +75,13 @@
 
       input#form-right {
         border-color: transparent transparent transparent gold;
-        border-width: 1rem 0 1rem 1rem;
+        border-width: 1.1rem 0 1.1rem 1.1rem;
       }
 
       input#form-left {
         border-color: transparent gold transparent transparent;
-        border-width: 1rem 1rem 1rem 0;
+        border-width: 1.1rem 1.1rem 1.1rem 0;
       }
-
-      // RIGHT
-      // border-color: transparent transparent transparent #efd15055;
-      // border-width: 20px 0 20px 20px;
-
-      // LEFT
-      // border-color: transparent #efd15055 transparent transparent;
-      // border-width: 20px 20px 20px 0;
 
       h1 {
         margin: 0 1rem;
@@ -105,12 +97,63 @@
       font-size: 12px;
     }
 
+    .submit-container {
+      display: flex;
+      align-items: center;
+    }
+
     .form-submit {
       padding: 8px 30px;
       margin: 0.5rem 0;
       width: fit-content;
       font-size: 16px;
       border-radius: 1rem;
+
+      &#delete {
+        background-color: #cc0000;
+        border-color: #cc0000;
+        margin-right: 2rem;
+      }
+    }
+  }
+}
+
+.verify-delete-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: #000b;
+  z-index: 2000;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .verify-delete {
+    padding: 40px;
+    background-color: #fff2;
+    border-radius: 20px;
+
+    .verify-delete-btns {
+      display: flex;
+      justify-content: center;
+
+      input {
+        margin: 20px 10px 0;
+        width: 80px;
+        padding: 5px 20px;
+        border-radius: 10px;
+        font-size: 16px;
+
+        &.verify-delete-yes {
+          background-color: #88e150;
+        }
+
+        &.verify-delete-no {
+          background-color: #cc0000;
+        }
+      }
     }
   }
 }
