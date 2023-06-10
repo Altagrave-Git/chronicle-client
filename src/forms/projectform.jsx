@@ -10,6 +10,7 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
   const [repo, setRepo] = useState('');
   const [image, setImage] = useState(null);
   const [mode, setMode] = useState(false);
+  const [verify, setVerify] = useState(false);
 
   useEffect(() => {
     if (mode == true) {
@@ -62,6 +63,16 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
       .catch(error => console.log(error));
   }
 
+  const handleDelete = () => {
+    if (verify) {
+      ContentAPI.deleteProject(token, portfolioData[activeIndex].id)
+      .then(() => location.reload())
+      .catch(error => console.log(error));
+    } else {
+      setVerify(true);
+    }
+  }
+
   // switch between POST and PUT
   const switchMode = () => {
     if (mode == false) {
@@ -88,12 +99,27 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
       <input type="url" name="site" className="form-text" placeholder="Website" required={false} value={site} onChange={e => setSite(e.target.value)} />
       <input type="url" name="repo" className="form-text" placeholder="Repository" required={false} value={repo} onChange={e => setRepo(e.target.value)} />
       <input className="form-text" type="file" accept='image/*' name='image' onChange={e => setImage(e.target.files[0])} />
-      { name.length && category.length && description.length ?
-        <button type="submit" className="form-submit">Submit</button>
-        :
-        <button type="submit" className="form-submit" disabled>Submit</button>
+      <div className="submit-container">
+      { mode &&
+        <input type="button" className="form-submit" id="delete" value="Delete" onClick={() => handleDelete()} />
       }
-      
+      { name.length && category.length && description.length ?
+        <button type="submit" className="form-submit" id="submit">Submit</button>
+        :
+        <button type="submit" className="form-submit" id="submit" disabled>Submit</button>
+      }
+      </div>
+      { verify &&
+      <div className="verify-delete-container">
+        <div className="verify-delete">
+          <h3>Are you sure you want to delete this project?</h3>
+          <div className="verify-delete-btns">
+            <input type="button" className="verify-delete-yes" value="Yes" onClick={() => handleDelete()} />
+            <input type="button" className="verify-delete-no" value="No" onClick={() => setVerify(false)} />
+          </div>
+        </div>
+      </div>
+      }
     </form>
   )
 }
