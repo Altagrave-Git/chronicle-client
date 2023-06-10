@@ -13,7 +13,8 @@ const PortfolioView = ({ admin, token }) => {
 
   // Retrieve and set project data from Chronicle API
   useEffect(() => {
-    fetch(import.meta.env.VITE_CHRONICLE_URL + '/projects/')
+    const url = import.meta.env.VITE_CHRONICLE_URL;
+    fetch(url + '/projects/')
       .then(response => response.json())
       .then(data => {
         if (data.length >= 5) {
@@ -33,8 +34,43 @@ const PortfolioView = ({ admin, token }) => {
       .catch(error => console.log(error));
   }, []);
 
+  // Swipe event for project carousel
+  useEffect(() => {
+    const carousel = document.querySelector("div.portfolio");
+
+    carousel.addEventListener("touchstart", function (e) {
+
+    });
+
+    carousel.addEventListener("touchend", function (e) {
+
+    })
+  }, [])
+
   // Rotate active index state backwards
   const handlePrev = () => {
+    const height = document.querySelector(".active-container").clientHeight;
+    const timing = { duration: 200, iterations: 1 }
+    const cards = document.querySelectorAll(".project-card");
+    let scaleS, scaleE;
+
+    for (let card of cards) {
+      if (card.className.includes(" prev-card")) {
+        [scaleS, scaleE] = [0.8, 1];
+      } else if (card.className.includes("active-card")) {
+        [scaleS, scaleE] = [1, 0.8];
+      } else {
+        [scaleS, scaleE] = [0.8, 0.8];
+      }
+
+      let animation = [
+        { transform: `translateY(-${height}px) scale(${scaleS})` },
+        { transform: `translateY(0) scale(${scaleE})` }
+      ]
+
+      card.animate(animation, timing);
+    }
+
     if (activeIndex === 0) {
       setActiveIndex(portfolioData.length - 1);
     } else {
@@ -45,6 +81,28 @@ const PortfolioView = ({ admin, token }) => {
 
   // Rotate active index state forwards
   const handleNext = () => {
+    const height = document.querySelector(".active-container").clientHeight;
+    const timing = { duration: 200, iterations: 1 }
+    const cards = document.querySelectorAll(".project-card");
+    let scaleS, scaleE;
+
+    for (let card of cards) {
+      if (card.className.includes(" next-card")) {
+        [scaleS, scaleE] = [0.8, 1];
+      } else if (card.className.includes("active-card")) {
+        [scaleS, scaleE] = [1, 0.8];
+      } else {
+        [scaleS, scaleE] = [0.8, 0.8];
+      }
+
+      let animation = [
+        { transform: `translateY(${height}px) scale(${scaleS})` },
+        { transform: `translateY(0) scale(${scaleE})` }
+      ]
+
+      card.animate(animation, timing);
+    }
+
     if (activeIndex === portfolioData.length - 1) {
       setActiveIndex(0);
       setProjectDetail(portfolioData[0]);
@@ -105,6 +163,7 @@ const PortfolioView = ({ admin, token }) => {
           <FormButton setFormModal={setFormModal} formType={"image"} />
           <FormButton setFormModal={setFormModal} formType={"tech"} />
           <FormButton setFormModal={setFormModal} formType={"section"} />
+          <FormButton setFormModal={setFormModal} formType={"snippet"} />
         </div>
       </div>
       }
