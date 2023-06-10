@@ -10,7 +10,7 @@ import { Octokit } from "@octokit/core";
 import AuthAPI from './api/api';
 import UserPanel from './components/userpanel/userpanel';
 
-const apiToken = import.meta.env.VITE_GITHUB_TOKEN;
+const apiToken = import.meta.env.GITHUB_TOKEN;
 const octokit = new Octokit({ auth: apiToken }, { userAgent: 'Altagrave-Git' });
 
 const App = () => {
