@@ -28,6 +28,13 @@ const Header = () => {
     const path = location.pathname;
     const index = headerNav.findIndex(nav => nav.path === path);
     setActive(index);
+
+    try {
+      document.querySelector("head>title").innerText = `${headerNav[index].label} | Damon Turcotte`;
+    } catch {
+      document.querySelector("head>title").innerText = `${path.split("/")[1][0].toUpperCase() + path.split("/")[1].slice(1).toLowerCase()} | Damon Turcotte`;
+    }
+
   }, [location]);
 
   return (
