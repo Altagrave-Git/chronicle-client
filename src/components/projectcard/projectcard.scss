@@ -1,15 +1,56 @@
 .project-card {
+  display: none;
+  border-radius: 10px;
+  background-color: #ffffff22;
+  overflow: hidden;
+
   &__image {
     max-width: 100%;
-    background-size: cover;
+    aspect-ratio: 16/9;
+    height: fit-content;
+    border-radius: 10px;
+    margin: 10px;
+    overflow: hidden;
     background-position: center;
     background-repeat: no-repeat;
 
     img {
-      width: 100%;
+      max-width: 100%;
       aspect-ratio: 16/9;
       object-fit: cover;
       object-position: top;
+    }
+  }
+
+  &__header {
+    margin: 10px;
+  }
+
+  &__title {
+    font-weight: 700;
+  }
+
+  &__category {
+    font-weight: 600;
+  }
+
+  &.active-card {
+    display: block;
+  }
+
+
+
+  &.prev-card,
+  &.next-card,
+  &.before-prev-card,
+  &.after-next-card {
+    display: block;
+    transform: scale(0.8);
+    filter: brightness(0.4);
+
+    &:hover {
+      cursor: pointer;
+      filter: brightness(0.7);
     }
   }
 }
