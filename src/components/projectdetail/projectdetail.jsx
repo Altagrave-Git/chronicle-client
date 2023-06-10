@@ -6,6 +6,8 @@ import FormButton from '../formbutton/formbutton';
 
 const ProjectDetail = ({ project, handleActive, admin, setFormModal }) => {
 
+  const baseUrl = import.meta.env.VITE_CHRONICLE_URL;
+
   return (
   <>
     { project &&
@@ -60,6 +62,7 @@ const ProjectDetail = ({ project, handleActive, admin, setFormModal }) => {
                   <div key={index} className="project-detail__section">
                     <h4>{section.title}</h4>
                     {section.type === 'text' &&
+
                       <p>{section.description}</p>
                     }
                     { section.type === 'list' &&
