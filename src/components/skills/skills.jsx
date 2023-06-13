@@ -88,7 +88,7 @@ const Skills = () => {
           </div>
         </div>
         <div className="dev-ops">
-          <h3>DevOps</h3>
+          <h3>Operations</h3>
           <div className="icon-container">
             <ul>
               <li className="icon">
