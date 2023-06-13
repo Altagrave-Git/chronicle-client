@@ -44,8 +44,6 @@ const App = () => {
       .catch(error => console.log(error));
   }, [user]);
 
-  console.log(token);
-
   return (
     <BrowserRouter>
       <Header />
