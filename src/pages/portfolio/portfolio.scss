@@ -52,6 +52,37 @@ aside.portfolio {
 }
 
 // ADMIN CONTROLS
+.admin-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0.8rem;
+  right: 0;
+  z-index: 9999;
+  height: 2.5rem;
+  width: 2.5rem;
+
+  @include tablet {
+    right: 1rem;
+  }
+
+  .admin-button {
+    height: 0;
+    background-color: transparent;
+    border-style: solid;
+  
+    border-color: transparent transparent goldenrod transparent;
+    border-width: 0 16px 16px 16px;
+
+    &.show {
+      border-color: goldenrod transparent transparent transparent;
+      border-width: 16px 16px 0 16px;
+    }
+  }
+}
+
+
 .admin-nav {
   display: flex;
   position: fixed;
@@ -60,6 +91,10 @@ aside.portfolio {
   width: 100%;
   max-width: 1440px;
   background-color: #f445;
+
+  &.hidden {
+    display: none;
+  }
 
   div {
     display: flex;
