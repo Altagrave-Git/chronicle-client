@@ -42,7 +42,7 @@ const SectionForm = ({token, portfolioData, activeIndex}) => {
   }
 
   const switchModeRight = () => {
-    const sections = portfolioData[activeIndex].sections
+    const sections = portfolioData[activeIndex].sections;
     if (sections.length > mode) {
       setMode(mode + 1);
     } else {
@@ -104,7 +104,7 @@ const SectionForm = ({token, portfolioData, activeIndex}) => {
       <div className="form-title-container">
         <input type="button" id="form-left" onClick={() => switchModeLeft()} />
         { mode ?
-        <h1 className="title-2">{`Edit ${portfolioData[activeIndex].sections[mode - 1].title}`}</h1>
+        <h1 className="title-2">Edit Section</h1>
         :
         <h1 className="title-2">Add Section</h1>
         }
