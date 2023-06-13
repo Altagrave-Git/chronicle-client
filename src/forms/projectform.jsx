@@ -98,7 +98,10 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
       <textarea name="description" className="form-text" placeholder="Project Description"  cols="30" rows="8" required={false} value={description} onChange={e => setDescription(e.target.value)}></textarea>
       <input type="url" name="site" className="form-text" placeholder="Website" required={false} value={site} onChange={e => setSite(e.target.value)} />
       <input type="url" name="repo" className="form-text" placeholder="Repository" required={false} value={repo} onChange={e => setRepo(e.target.value)} />
-      <input className="form-text" type="file" accept='image/*' name='image' onChange={e => setImage(e.target.files[0])} />
+      <div className="form-image-container">
+        <label htmlFor="project-image">Image:</label>
+        <input type="file" accept='image/*' name='image' id="project-image" onChange={e => setImage(e.target.files[0])} />
+      </div>
       <div className="submit-container">
       { mode &&
         <input type="button" className="form-submit" id="delete" value="Delete" onClick={() => handleDelete()} />
