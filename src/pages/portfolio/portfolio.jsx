@@ -152,20 +152,39 @@ const PortfolioView = ({ admin, token }) => {
     }
   }, [activeIndex, portfolioData])
 
+  const toggleAdmin = () => {
+    const adminNav = document.querySelector(".admin-nav");
+    const adminButton = document.querySelector(".admin-button");
+
+    if (adminNav.classList.contains("hidden")) {
+      adminNav.className = "admin-nav";
+      adminButton.className = "admin-button";
+    } else {
+      adminNav.className = "admin-nav hidden";
+      adminButton.className = "admin-button show";
+    }
+  }
+
   return (
     <main>
       { admin && !formModal &&
-      <div className="admin-nav">
-        <div>
-          <FormButton setFormModal={setFormModal} formType={"project"} />
+      <>
+        <div className="admin-button-container">
+          <input type="button" value="" className="admin-button" onClick={() => toggleAdmin()} />
         </div>
-        <div>
-          <FormButton setFormModal={setFormModal} formType={"image"} />
-          <FormButton setFormModal={setFormModal} formType={"tech"} />
-          <FormButton setFormModal={setFormModal} formType={"section"} />
-          <FormButton setFormModal={setFormModal} formType={"snippet"} />
+        <div className="admin-nav">
+          <div>
+            <FormButton setFormModal={setFormModal} formType={"project"} />
+          </div>
+          <div>
+            <FormButton setFormModal={setFormModal} formType={"image"} />
+            <FormButton setFormModal={setFormModal} formType={"video"} />
+            <FormButton setFormModal={setFormModal} formType={"tech"} />
+            <FormButton setFormModal={setFormModal} formType={"section"} />
+            <FormButton setFormModal={setFormModal} formType={"snippet"} />
+          </div>
         </div>
-      </div>
+      </>
       }
       <section className="portfolio fixed active">
         { formModal &&
