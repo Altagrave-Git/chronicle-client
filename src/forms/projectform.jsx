@@ -9,6 +9,7 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
   const [site, setSite] = useState('');
   const [repo, setRepo] = useState('');
   const [image, setImage] = useState(null);
+  const [logo, setLogo] = useState(null);
   const [mode, setMode] = useState(false);
   const [verify, setVerify] = useState(false);
 
@@ -38,6 +39,7 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
     formData.append("site", site);
     formData.append("repo", repo);
     formData.append("image", image);
+    formData.append('logo', logo);
 
     ContentAPI.project(token, formData)
       .then(res => console.log(res))
@@ -55,6 +57,9 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
     formData.append("repo", repo);
     if (image != null) {
       formData.append("image", image);
+    }
+    if (logo != null) {
+      formData.append("logo", logo);
     }
     const id = portfolioData[activeIndex].id;
 
@@ -101,6 +106,10 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
       <div className="form-image-container">
         <label htmlFor="project-image">Image:</label>
         <input type="file" accept='image/*' name='image' id="project-image" onChange={e => setImage(e.target.files[0])} />
+      </div>
+      <div className="form-image-container">
+        <label htmlFor="project-logo">Logo:</label>
+        <input type="file" accept='image/*' name='logo' id="project-logo" onChange={e => setLogo(e.target.files[0])} />
       </div>
       <div className="submit-container">
       { mode &&
