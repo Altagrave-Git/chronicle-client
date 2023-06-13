@@ -265,6 +265,28 @@ class BaseContentAPI {
     return response;
   }
 
+  video = async (token, id, form) => {
+    const response = await fetch(this.baseUrl + `${id}/videos/`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+      body: form
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        return data;
+      })
+      .catch(error => {
+        console.log(error);
+      }
+    );
+    return response;
+  }
+
   tech = async(token, id, form) => {
     const response = await fetch(this.baseUrl + `${id}/tech/`, {
       method: 'POST',
@@ -294,6 +316,45 @@ class BaseContentAPI {
         'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify(form)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        return data;
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  editSnippet = async(token, pid, sid, form) => {
+    const response = await fetch(this.baseUrl + `${pid}/code/${sid}/`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(form)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        return data;
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  deleteSnippet = async(token, pid, sid) => {
+    const response = await fetch(this.baseUrl + `${pid}/code/${sid}/`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
     })
       .then(response => {
         return response.json();
