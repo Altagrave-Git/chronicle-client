@@ -29,7 +29,6 @@ const PortfolioView = ({ admin, token }) => {
           }
           setPortfolioData(cloneData);
         }
-        console.log(data)
       })
       .catch(error => console.log(error));
   }, []);
