@@ -1,4 +1,5 @@
 import './projectdetail.scss'
+import { useEffect } from 'react';
 import { ReactComponent as GithubLogo } from "../../icons/github.svg";
 import { ReactComponent as SiteLogo } from "../../icons/website.svg";
 import TechIcon from '../techicon/techicon';
@@ -6,6 +7,12 @@ import FormButton from '../formbutton/formbutton';
 
 const ProjectDetail = ({ project, handleActive, admin, setFormModal }) => {
   const baseUrl = import.meta.env.VITE_CHRONICLE_URL;
+
+  useEffect(() => {
+    if (project) {
+      document.querySelector(".project-detail").style.backgroundImage = `url(${baseUrl + project.logo})`;
+    }
+  }, [project])
 
   return (
   <>
