@@ -5,7 +5,6 @@ import TechIcon from '../techicon/techicon';
 import FormButton from '../formbutton/formbutton';
 
 const ProjectDetail = ({ project, handleActive, admin, setFormModal }) => {
-
   const baseUrl = import.meta.env.VITE_CHRONICLE_URL;
 
   return (
@@ -54,6 +53,19 @@ const ProjectDetail = ({ project, handleActive, admin, setFormModal }) => {
                   })}
               </div>
             </div>
+          }
+          { project.videos &&
+            project.videos.map((item, index) => {
+              return (
+                <div key={index}>
+                  <h6 className="subtitle-2">{item.title}</h6>
+                  <video width="280" height="210" controls>
+                    <source src={baseUrl + item.video} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              )
+            })
           }
           <div className="project-detail__sections">
             {
