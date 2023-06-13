@@ -4,9 +4,24 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-height: calc(100vh - 5rem);
   overflow-x: hidden;
   padding-bottom: 4rem;
   padding-top: 1rem;
+  background-color: #0f0f0ff0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-blend-mode: overlay;
+  background-size: 30rem;
+
+  @include tablet {
+    background-size: 25rem;
+    min-height: calc(100vh - 9rem);
+  }
+
+  @include mobile {
+    background-size: 20rem;
+  }
 
   .btn-back {
     display: flex;
@@ -198,6 +213,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     margin-bottom: 1rem;
+    cursor: default;
 
     &-item {
       display: flex;
