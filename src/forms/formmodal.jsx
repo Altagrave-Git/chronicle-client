@@ -1,6 +1,7 @@
 import './forms.scss';
 import ProjectForm from './projectform';
 import ImageForm from './imageform';
+import VideoForm from './videoform';
 import TechForm from './techform';
 import SectionForm from './sectionform';
 import SnippetForm from './snippetform';
@@ -20,6 +21,10 @@ const FormModal = ({ formModal, setFormModal, portfolioData, activeIndex, token,
       {
         formModal == "image" &&
         <ImageForm token={token} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} />
+      }
+      {
+        formModal == "video" &&
+        <VideoForm token={token} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} />
       }
       { formModal == "tech" &&
         <TechForm token={token} portfolioData={portfolioData} activeIndex={activeIndex} />
