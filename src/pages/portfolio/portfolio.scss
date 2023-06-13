@@ -85,12 +85,18 @@ aside.portfolio {
 
 .admin-nav {
   display: flex;
+  align-items: center;
   position: fixed;
   z-index: 100;
+  bottom: 0;
   justify-content: space-between;
   width: 100%;
   max-width: 1440px;
-  background-color: #f445;
+  background-color: #0f0f0f;
+  box-shadow: 0 0 1px 1px #fff2;
+  height: 4rem;
+  padding: 0 15px;
+  border-radius: 10px 10px 0 0;
 
   &.hidden {
     display: none;
@@ -101,9 +107,12 @@ aside.portfolio {
 
     .btn-add {
       margin: 0.5rem;
-      padding: 0.2rem 0.3rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 10px;
       background-color: #ffe150aa;
       border-color: #ffe150aa;
+      height: fit-content;
+      font-size: 1rem;
     }
   }
 }
