@@ -38,8 +38,13 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
     formData.append("description", description);
     formData.append("site", site);
     formData.append("repo", repo);
-    formData.append("image", image);
-    formData.append('logo', logo);
+    if (image != null) {
+      formData.append("image", image);
+    }
+    if (logo != null) {
+      formData.append('logo', logo);
+    }
+
 
     ContentAPI.project(token, formData)
       .then(res => console.log(res))
