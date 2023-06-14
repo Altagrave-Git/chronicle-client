@@ -57,14 +57,27 @@ aside.portfolio {
   justify-content: center;
   align-items: center;
   position: fixed;
-  top: 0.8rem;
-  right: 0;
+  bottom: 4rem;
+  left: 50%;
   z-index: 9999;
   height: 2.5rem;
   width: 2.5rem;
+  transform: translate(-50%, 0);
+  transition: transform 0.1s linear 0s;
+  background-color: #2228;
+  border: 1px solid #333;
+  border-radius: 10px 10px 0 0;
+  border-bottom-width: 0;
+  padding: 0 30px;
 
   @include tablet {
-    right: 1rem;
+    bottom: 50%;
+    left: 8rem;
+    transform: translate(0, 50%);
+    padding: 30px 15px 30px 15px;
+    border-radius: 0 10px 10px 0;
+    border-bottom-width: 1px;
+    border-left-width: 0;
   }
 
   .admin-button {
@@ -72,12 +85,30 @@ aside.portfolio {
     background-color: transparent;
     border-style: solid;
   
-    border-color: transparent transparent goldenrod transparent;
-    border-width: 0 16px 16px 16px;
+    border-color: #ffe150aa transparent transparent transparent;
+    border-width: 16px 16px 0 16px;
 
-    &.show {
-      border-color: goldenrod transparent transparent transparent;
-      border-width: 16px 16px 0 16px;
+    @include tablet {
+      border-color: transparent #ffe150aa transparent transparent;
+      border-width: 16px 16px 16px 0;
+    }
+  }
+  &.show {
+    transform: translate(-50%, 4rem);
+
+    @include tablet {
+      bottom: 50%;
+      transform: translate(-8rem, 50%);
+    }
+
+    .admin-button {
+      border-color: transparent transparent #ffe150aa transparent;
+      border-width: 0 16px 16px 16px;
+
+      @include tablet {
+        border-color: transparent transparent transparent #ffe150aa;
+        border-width: 16px 0 16px 16px;       
+      }
     }
   }
 }
@@ -92,14 +123,39 @@ aside.portfolio {
   justify-content: space-between;
   width: 100%;
   max-width: 1440px;
-  background-color: #0f0f0f;
-  box-shadow: 0 0 1px 1px #fff2;
+  background-color: #2225;
+  border: 1px solid #333;
   height: 4rem;
   padding: 0 15px;
   border-radius: 10px 10px 0 0;
+  transition: transform 0.1s linear 0s;
+
+  @include tablet {
+    flex-direction: column;
+    height: auto;
+    width: 8rem;
+    bottom: 50%;
+    padding: 15px 0px;
+    transform: translate(0, 50%);
+
+    border-radius: 0 10px 10px 0;
+  }
+
+  .admin-button-list {
+    display: flex;
+
+    @include tablet {
+      flex-direction: column;
+    }
+  }
 
   &.hidden {
-    display: none;
+    transform: translate(0, 4rem);
+
+    @include tablet {
+      bottom: 50%;
+      transform: translate(-8rem, 50%);
+    }
   }
 
   div {
@@ -113,6 +169,11 @@ aside.portfolio {
       border-color: #ffe150aa;
       height: fit-content;
       font-size: 1rem;
+      width: 6rem;
+
+      @include tablet {
+        margin: 0.5rem 0;
+      }
     }
   }
 }
