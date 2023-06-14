@@ -153,14 +153,14 @@ const PortfolioView = ({ admin, token }) => {
 
   const toggleAdmin = () => {
     const adminNav = document.querySelector(".admin-nav");
-    const adminButton = document.querySelector(".admin-button");
+    const adminButton = document.querySelector(".admin-button-container");
 
     if (adminNav.classList.contains("hidden")) {
       adminNav.className = "admin-nav";
-      adminButton.className = "admin-button";
+      adminButton.className = "admin-button-container";
     } else {
       adminNav.className = "admin-nav hidden";
-      adminButton.className = "admin-button show";
+      adminButton.className = "admin-button-container show";
     }
   }
 
@@ -168,19 +168,19 @@ const PortfolioView = ({ admin, token }) => {
     <main>
       { admin && !formModal &&
       <>
-        <div className="admin-button-container">
+        <div className="admin-button-container show">
           <input type="button" value="" className="admin-button" onClick={() => toggleAdmin()} />
         </div>
-        <div className="admin-nav">
+        <div className="admin-nav hidden">
           <div>
-            <FormButton setFormModal={setFormModal} formType={"project"} />
+            <FormButton setFormModal={setFormModal} formType={"project"} portfolioData={portfolioData} />
           </div>
-          <div>
-            <FormButton setFormModal={setFormModal} formType={"image"} />
-            <FormButton setFormModal={setFormModal} formType={"video"} />
-            <FormButton setFormModal={setFormModal} formType={"tech"} />
-            <FormButton setFormModal={setFormModal} formType={"section"} />
-            <FormButton setFormModal={setFormModal} formType={"snippet"} />
+          <div className="admin-button-list">
+            <FormButton setFormModal={setFormModal} formType={"image"} portfolioData={portfolioData} />
+            <FormButton setFormModal={setFormModal} formType={"video"} portfolioData={portfolioData} />
+            <FormButton setFormModal={setFormModal} formType={"tech"} portfolioData={portfolioData} />
+            <FormButton setFormModal={setFormModal} formType={"section"} portfolioData={portfolioData} />
+            <FormButton setFormModal={setFormModal} formType={"snippet"} portfolioData={portfolioData} />
           </div>
         </div>
       </>
