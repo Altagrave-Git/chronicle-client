@@ -2,6 +2,60 @@
 
 .home {
   .bio {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 8rem);
+    justify-content: space-between;
+    padding: 3rem 1.5rem;
+
+    .bio-top {
+      .job {
+        margin-bottom: 0.25rem;
+      }
+    }
+
+    .bio-bottom {
+      display: flex;
+      flex-direction: column;
+
+      .bio-contact {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.1rem;
+        font-weight: 500;
+        
+        a {
+          color: $yellow2;
+          margin: 0.25rem 0;
+          width: fit-content;
+        }
+      }
+
+      .bio-links {
+        display: flex;
+        margin: 2rem 0 0;
+
+        .social-link {
+          margin: 0 1.5rem 0 0;
+
+          svg {
+            height: 2.25rem;
+            width: 2.25rem;
+  
+            .fill-path {
+              fill: #e1e1e1;
+            }
+  
+            &:hover {
+              .fill-path {
+                fill: #c0c0c0;
+              }
+            }
+          }
+        }
+      }
+    }
+
     .title {
       color: $white2;
       font-weight: 600;
@@ -19,9 +73,24 @@
     }
 
     p {
-      color: $white3;
+      color: $white2;
       font-weight: 500;
       font-size: 1.1rem;
+    }
+
+    .social-link {
+      color: $yellow2;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+
+      img {
+        border-radius: 50%;
+        height: 3rem;
+        margin-right: 10px;
+      }
     }
   }
 }
