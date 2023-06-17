@@ -23,12 +23,19 @@ const Skills = () => {
 
   return (
     <div className="skills">
-      <h1>Skills</h1>
       <div className="skills-container">
         <div className="front-end">
           <h3>Front End</h3>
+          <ul className="skills-list">
+            <li>DOM Manipulation</li>
+            <li>CRUD / AJAX</li>
+            <li>Responsive Design</li>
+            <li>CSS / JS Animation</li>
+            <li>Event handling</li>
+            <li>API Integration</li>
+          </ul>
           <div className="icon-container">
-            <ul>
+            <ul className="icon-list">
               <li className="icon">
                 <HtmlLogo />
                 HTML
@@ -58,8 +65,16 @@ const Skills = () => {
         </div>
         <div className="back-end">
           <h3>Back End</h3>
+          <ul className="skills-list">
+            <li>Server-side Rendering</li>
+            <li>Authentication</li>
+            <li>Request Handling</li>
+            <li>Relational Databases</li>
+            <li>API Development</li>
+            <li>Data Structures & Algorithms</li>
+          </ul>
           <div className="icon-container">
-            <ul>
+            <ul className="icon-list">
               <li className="icon">
                 <PythonLogo />
                 Python
@@ -88,9 +103,15 @@ const Skills = () => {
           </div>
         </div>
         <div className="dev-ops">
-          <h3>Operations</h3>
+          <h3>Dev Ops</h3>
+          <ul className="skills-list">
+            <li>Version Control</li>
+            <li>CI/CD Pipelines</li>
+            <li>Reverse Proxy Routing</li>
+            <li>Environment Management</li>
+          </ul>
           <div className="icon-container">
-            <ul>
+            <ul className="icon-list">
               <li className="icon">
                 <GitLogo className="git-logo" />
                 Git
