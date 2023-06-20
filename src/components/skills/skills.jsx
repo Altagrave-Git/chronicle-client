@@ -18,6 +18,7 @@ import { ReactComponent as GunicornLogo } from "../../icons/gunicorn.svg";
 import { ReactComponent as LinuxLogo } from "../../icons/linux.svg";
 import { ReactComponent as BashLogo } from "../../icons/bash.svg";
 import { ReactComponent as AnacondaLogo } from "../../icons/anaconda.svg";
+import { ReactComponent as DRFLogo } from "../../icons/restframework.svg";
 
 const Skills = () => {
 
@@ -28,11 +29,13 @@ const Skills = () => {
           <h3>Front End</h3>
           <ul className="skills-list">
             <li>DOM Manipulation</li>
-            <li>CRUD / AJAX</li>
             <li>Responsive Design</li>
-            <li>CSS / JS Animation</li>
-            <li>Event handling</li>
+            <li>CRUD / AJAX</li>
+            <li>Client-side Routing</li>
+            <li>Dynamic Rendering</li>
+            <li>State Management</li>
             <li>API Integration</li>
+            <li>Component-based Arch.</li>
           </ul>
           <div className="icon-container">
             <ul className="icon-list">
@@ -66,12 +69,14 @@ const Skills = () => {
         <div className="back-end">
           <h3>Back End</h3>
           <ul className="skills-list">
-            <li>Server-side Rendering</li>
             <li>Authentication</li>
+            <li>Routing & Mapping</li>
             <li>Request Handling</li>
-            <li>Relational Databases</li>
+            <li>Serialization</li>
+            <li>Database Manipulation</li>
             <li>API Development</li>
-            <li>Data Structures & Algorithms</li>
+            <li>Server-side Rendering</li>
+            <li>Service-oriented Arch.</li>
           </ul>
           <div className="icon-container">
             <ul className="icon-list">
