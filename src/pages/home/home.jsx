@@ -2,15 +2,41 @@ import React from "react";
 import './home.scss';
 import GitStream from "../../components/gitstream/gitstream";
 import Skills from "../../components/skills/skills";
-import AuthAPI from "../../api/api";
+import MessageForm from "../../forms/messageform";
 import { ReactComponent as Linkedin } from '../../icons/linkedin.svg';
 import { ReactComponent as Twitter } from '../../icons/twitter.svg';
 import { ReactComponent as Github } from '../../icons/github.svg';
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const HomeView = ({token, gitData}) => {
 
+  useEffect(() => {
+
+    const messageUI = () => {
+      const footer = document.querySelector("footer");
+      const main = document.querySelector("main");
+      const bio = document.querySelector(".bio.fixed");
+
+      if (window.scrollY > footer.offsetTop - window.innerHeight && window.innerWidth >= 992) {
+        bio.style.position = "absolute";
+        bio.style.top = `${main.clientHeight - bio.clientHeight}px`;
+      } else {
+        bio.removeAttribute("style");
+      }
+    }
+
+    window.removeEventListener('scroll', () => messageUI());
+
+    window.removeEventListener('resize', () => messageUI());
+
+    window.addEventListener('scroll', () => messageUI());
+
+    window.addEventListener('resize', () => messageUI());
+  }, [])
+
   return (
+    <>
     <main className='home container'>
 
       <section className="bio fixed">
@@ -64,8 +90,12 @@ const HomeView = ({token, gitData}) => {
         <Skills />
         <GitStream gitData={gitData} />
       </aside>
-
     </main>
+
+    <footer className="home-footer">
+      <MessageForm />
+    </footer>
+  </>
   )
 };
 
