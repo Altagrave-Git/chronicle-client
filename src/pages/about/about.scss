@@ -1,0 +1,14 @@
+@use "../../App.scss" as *;
+
+div.about {
+  width: 100%;
+  max-width: 992px;
+  margin: 0 auto;
+  min-height: calc(100dvh);
+  padding: 4rem 0 0;
+
+  @include tablet {
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+}
