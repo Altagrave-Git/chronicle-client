@@ -10,6 +10,7 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
   const [repo, setRepo] = useState('');
   const [image, setImage] = useState(null);
   const [logo, setLogo] = useState(null);
+  const [order, setOrder] = useState(0);
   const [mode, setMode] = useState(false);
   const [verify, setVerify] = useState(false);
 
@@ -20,12 +21,14 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
       setDescription(portfolioData[activeIndex].description);
       setSite(portfolioData[activeIndex].site);
       setRepo(portfolioData[activeIndex].repo);
+      setOrder(0);
     } else {
       setName('');
       setCategory('');
       setDescription('');
       setSite('');
       setRepo('');
+      setOrder(0);
     }
   }, [mode])
 
@@ -43,6 +46,9 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
     }
     if (logo != null) {
       formData.append('logo', logo);
+    }
+    if (order > 0) {
+      formData.append('order', order);
     }
 
 
@@ -65,6 +71,9 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
     }
     if (logo != null) {
       formData.append("logo", logo);
+    }
+    if (order > 0) {
+      formData.append('order', order);
     }
     const id = portfolioData[activeIndex].id;
 
@@ -115,6 +124,10 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
       <div className="form-image-container">
         <label htmlFor="project-logo">Logo:</label>
         <input type="file" accept='image/*' name='logo' id="project-logo" onChange={e => setLogo(e.target.files[0])} />
+      </div>
+      <div className="inline-form-text">
+        <label htmlFor="order">Order:</label>
+        <input className="form-text" type="number" name="order" id="order" value={order} onChange={e => setOrder(e.target.value)} />
       </div>
       <div className="submit-container">
       { mode &&
