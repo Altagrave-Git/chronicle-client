@@ -168,10 +168,10 @@ const PortfolioView = ({ admin, token }) => {
     <main>
       { admin && !formModal &&
       <>
-        <div className="admin-button-container show">
+        <div className="admin-button-container">
           <input type="button" value="" className="admin-button" onClick={() => toggleAdmin()} />
         </div>
-        <div className="admin-nav hidden">
+        <div className="admin-nav">
           <div>
             <FormButton setFormModal={setFormModal} formType={"project"} portfolioData={portfolioData} />
           </div>
