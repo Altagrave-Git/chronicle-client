@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import { Octokit } from "@octokit/core";
 import AuthAPI from './api/api';
 import UserPanel from './components/userpanel/userpanel';
+import AboutView from './pages/about/about';
 
 const apiToken = import.meta.env.GITHUB_TOKEN;
 const octokit = new Octokit({ auth: apiToken }, { userAgent: 'Altagrave-Git' });
@@ -51,6 +52,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomeView token={token} gitData={gitData} />} />
         <Route path="/portfolio" element={<PortfolioView token={token} admin={admin} />} />
+        <Route path="/about" element={<AboutView />} />
         <Route path="/blog" element={<BlogView />} />
         <Route path="/login" element={<LoginView token={token} setUser={setUser} setAdmin={setAdmin} />} />
       </Routes>
