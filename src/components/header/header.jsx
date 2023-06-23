@@ -13,8 +13,8 @@ const headerNav = [
     path: "/portfolio"
   },
   {
-    label: "Dev Blog",
-    path: "/blog"
+    label: "About",
+    path: "/about"
   },
 ];
 
