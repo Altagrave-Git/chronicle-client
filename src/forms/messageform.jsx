@@ -64,7 +64,7 @@ const MessageForm = () => {
         </div>
       </div>
       <form className="message-form" onSubmit={handleSubmit}>
-        <h2>Contact Form</h2>
+        <h2>Send a Message</h2>
 
         <div className="contact-form-info">
           <input className="form-text" type="text" name="name" id="name" value={sender} onChange={e => setSender(e.target.value)} placeholder="Enter your name" />
