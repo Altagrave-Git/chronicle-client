@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './home.scss';
 import GitStream from "../../components/gitstream/gitstream";
 import Skills from "../../components/skills/skills";
@@ -7,7 +7,7 @@ import { ReactComponent as Linkedin } from '../../icons/linkedin.svg';
 import { ReactComponent as Twitter } from '../../icons/twitter.svg';
 import { ReactComponent as Github } from '../../icons/github.svg';
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 
 const HomeView = ({token, gitData}) => {
 
@@ -26,13 +26,13 @@ const HomeView = ({token, gitData}) => {
       }
     }
 
-    window.removeEventListener('scroll', () => messageUI());
+    window.addEventListener('scroll', messageUI);
+    window.addEventListener('resize', messageUI);
 
-    window.removeEventListener('resize', () => messageUI());
-
-    window.addEventListener('scroll', () => messageUI());
-
-    window.addEventListener('resize', () => messageUI());
+    return () => {
+      window.removeEventListener('scroll', messageUI);
+      window.removeEventListener('resize', messageUI);
+    }
   }, [])
 
   return (
