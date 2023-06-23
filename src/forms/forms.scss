@@ -384,3 +384,20 @@ form {
     }
   }
 }
+
+.inline-form-text {
+  display: flex;
+  width: 400px;
+  max-width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+
+  label {
+    width: fit-content;
+    margin-right: 1rem;
+  }
+
+  .form-text {
+    width: fit-content;
+  }
+}
