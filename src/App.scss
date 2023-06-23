@@ -83,6 +83,8 @@ html {
   @include mobile {
     font-size: 80%;
   }
+
+  overflow-wrap: break-word;
 }
 
 body {
