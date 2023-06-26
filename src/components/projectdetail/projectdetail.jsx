@@ -123,7 +123,11 @@ const ProjectDetail = ({ project, handleActive, admin, setFormModal }) => {
                               <source src={baseUrl + item.video} type="video/mp4" />
                               Your browser does not support the video tag.
                             </video>
-                            <h3 className="subtitle-2">{item.title}</h3>
+
+                            <div className="video-info">
+                              <h3 className="subtitle-2">{item.title}</h3>
+                              <p>{item.description}</p>
+                            </div>
                           </div>
                         )
                       })
