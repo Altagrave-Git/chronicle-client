@@ -14,7 +14,8 @@
     justify-content: stretch;
     max-width: 1440px;
     width: 100%;
-    height: calc(100% - 8rem);
+    top: 0;
+    height: 100lvh;
     z-index: -1;
 
     @include tablet {
@@ -361,22 +362,22 @@
     width: 100%;
     justify-content: space-between;
 
-    @include tablet {
-      flex-direction: column;
-    }
-
     video {
-      width: 90%;
-
-      @include tablet {
-        width: 100%;
-      }
+      min-width: 260px;
     }
   }
 
   .video-card {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
+    background-color: #fff1;
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+
+    .video-info {
+      padding: 0.8rem 1rem;
+    }
   }
 }
