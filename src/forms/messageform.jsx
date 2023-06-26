@@ -13,7 +13,7 @@ const MessageForm = () => {
     const modal = document.querySelector(".message-success-overlay");
     if (success === 1) {
       modal.classList.remove("hide");
-    } else {
+    } else if (!modal.classList.contains("hide")) {
       modal.classList.add("hide");
     }
   }, [success])
@@ -57,14 +57,14 @@ const MessageForm = () => {
 
   return (
     <div className="message-form-container">
-      <div className="message-success-overlay">
+      <div className="message-success-overlay hide">
         <div className="message-success-modal">
           <h3>Your message has been sent</h3>
           <input type="button" value="Dismiss" onClick={() => setSuccess(0)} />
         </div>
       </div>
       <form className="message-form" onSubmit={handleSubmit}>
-        <h2>Send a Message</h2>
+        <h2>Contact Form</h2>
 
         <div className="contact-form-info">
           <input className="form-text" type="text" name="name" id="name" value={sender} onChange={e => setSender(e.target.value)} placeholder="Enter your name" />
