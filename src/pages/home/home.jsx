@@ -44,10 +44,10 @@ const HomeView = ({token, gitData}) => {
           <div className="bio-top">
             <h1 className="title">Damon Turcotte</h1>
             <p>
-              Self-taught <span className="job">web developer</span> deploying full-stack web applications out of Lethbridge, Alberta. I love developing custom software from the ground up, and I'm always ready for any opportunity to build on my skillset.
+              Self-taught <span className="job">web developer</span> deploying full-stack web applications out of Lethbridge, Alberta. I love developing custom software from the ground up.
             </p>
             <p>
-              Everything here - <Link to="/portfolio" className="link-red">portfolio</Link> included - from interfaces and databases to algorithms and APIs - was built with custom code and is part of an integrated network of applications I'm working to expand.
+              Everything here - <Link to="/portfolio" className="link-red">portfolio</Link> included - was built with custom code and is part of an integrated network of applications I'm working to expand.
             </p>
           </div>
 
