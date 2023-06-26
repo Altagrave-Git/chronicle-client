@@ -88,11 +88,11 @@
     }
 
     .job {
-      color: $yellow2;
+      color: $red2;
     }
 
     .link-red {
-      color: $red2;
+      color: $yellow2;
     }
 
     .social-link {
@@ -116,7 +116,7 @@ aside.home {
   padding: 2rem 1.5rem 3rem;
 
   @include tablet {
-    padding: 2rem 1.5rem 0;
+    padding: 0.5rem 1.5rem 0;
   }
 }
 
@@ -130,9 +130,13 @@ p {
   }
 }
 
+::placeholder {
+  color: #aaa;
+}
+
 .home-footer {
   width: calc(100% - 3rem);
-  background-color: #ffffff0d;
+  background-color: #ffffff0a;
   border-radius: 20px 20px 0 0;
   max-width: calc(1440px - 3rem);
   margin: auto;
@@ -141,7 +145,23 @@ p {
   @include tablet {
     max-width: calc(600px - 3rem);
     width: calc(100% - 3rem);
-    padding: 1.5rem 1.5rem 5rem;
+    padding: 0rem 1.5rem 5rem;
+  }
+
+  input,
+  textarea {
+    background-color: #444;
+    border: none;
+    color: #e1e1e1;
+    font-weight: 500;
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px #444 inset !important;
+      -webkit-text-fill-color: #e1e1e1 !important;
+    }
   }
 
   > div {
