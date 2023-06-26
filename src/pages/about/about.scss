@@ -5,10 +5,111 @@ div.about {
   max-width: 992px;
   margin: 0 auto;
   min-height: calc(100dvh);
-  padding: 4rem 0 0;
+  padding: 3rem 4rem 2rem;
+  text-align: center;
+  background-color: #ffffff18;
+  box-shadow: 0 0 30px 0px #8885;
+
+  @include tablet {
+    background-color: unset;
+    box-shadow: unset;
+  }
 
   @include tablet {
     margin: 0 auto;
-    padding: 4rem 0;
+    padding: 4rem 0 6rem;
   }
+
+  .about-img {
+    display: block;
+    border-radius: 50%;
+    height: 10rem;
+    margin: 4rem auto 2rem;
+    box-shadow: inset 0 0 20px 20px black;
+  }
+
+  h2 {
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: $yellow2;
+    text-shadow: 0 0 2px $red2;
+  }
+
+  h3 {
+    font-weight: 500;
+    color: $white2;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-weight: 500;
+    color: $white2;
+    font-size: 1.075rem;
+    text-align: left;
+    padding: 0 1rem;
+  }
+
+  a {
+    color: $yellow;
+  }
+
+  .slider-component {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    padding: 0 1rem;
+    align-items: center;
+  }
+
+  .image-slider-container {
+    width: 100%;
+  }
+
+  .image-slider {
+    width: 500px;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .game-images {
+    display: flex;
+    transition: transform 0.2s linear;
+    width: max-content;
+
+
+    img {
+      width: 500px;
+      max-width: calc(100vw - 2rem);
+    }
+  }
+
+  .game-buttons-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .game-buttons {
+    position: absolute;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    transform: translateY(-2.5rem);
+    padding: 0.5rem 0;
+    border-radius: 20px 20px 0 0;
+    
+    input {
+      height: 1.4rem;
+      width: 1.4rem;
+      accent-color: #2f9a9f;
+      margin: 0 1rem;
+    }
+  }
+}
+
+.italic-p {
+  font-size: 1.2rem;
 }
