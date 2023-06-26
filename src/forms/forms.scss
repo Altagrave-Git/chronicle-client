@@ -202,6 +202,7 @@ form {
     input {
       height: 1.2rem;
       width: 1.2rem;
+      accent-color: #c52a4a;
     }
   }
 
@@ -287,6 +288,18 @@ form {
       padding: 1rem 1rem 1rem;
     }
 
+    h2 {
+      color: $yellow2;
+      text-shadow: 0 0 0 $red2;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      background-color: #ffffff0c;
+      border-radius: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 1.4rem;
+    }
+
     .form-text {
       border-radius: 5px;
 
@@ -311,6 +324,11 @@ form {
       .radio {
         display: flex;
         align-items: center;
+
+        &:hover,
+        *:hover {
+          cursor: pointer;
+        }
       }
 
       @include mobile {
@@ -323,6 +341,20 @@ form {
 
       @include mobile {
         margin: 0 3px;
+      }
+    }
+
+    .form-submit {
+      border: 2px outset #fff5;
+      background-color: #006400;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:active {
+        border-style: inset;
+        background-color: #005400;
       }
     }
   }
