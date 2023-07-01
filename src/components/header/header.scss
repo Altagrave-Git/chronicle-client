@@ -14,7 +14,7 @@
   .container {
     @include flex(center, space-between);
 
-    svg {
+    #logo-home-link > svg {
       height: 3rem;
       fill: $white;
       stroke: $white;
@@ -53,9 +53,9 @@
       font-weight: 600;
       height: 4rem;
       background-color: $black;
-      
-      @include desktop {
-        margin-right: 1.5rem;
+
+      @include tablet {
+        margin-right: 0;
       }
 
       li {
@@ -98,6 +98,93 @@
         top: unset;
         background-color: $black;
         box-shadow: $box-shadow;
+      }
+    }
+  }
+}
+
+.header-menu {
+  display: flex;
+  align-items: center;
+
+  &-btn {
+    display: flex;
+    padding: 0 2rem;
+    height: 4rem;
+    align-items: center;
+
+    @include tablet {
+      position: fixed;
+      right: 0;
+    }
+
+    @include mobile {
+      padding: 0 1.5rem;
+    }
+
+    &-bullet {
+      background-color: #ce3f2c;
+      height: 8px;
+      width: 8px;
+      border-radius: 50%;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      .header-menu-btn-bullet {
+        background-color: #a93150;
+      }
+    }
+  }
+
+}
+
+.header-dropdown {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+  .header-dropdown-container {
+    position: relative;
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+    justify-content: right;
+    padding: 0 1.5rem;
+    
+  }
+  
+  &-menu {
+    position: fixed;
+    top: 4rem;
+    background-color: #151515;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    border: 2px solid #232323;
+    border-top-width: 0;
+    border-radius: 0 0 15px 15px;
+    transition: transform 0.15s linear;
+    z-index: 10;
+
+    &.hide {
+      transform: translateY(-100%);
+    }
+
+    .inbox-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.8rem 0;
+      margin: 0 0 0.5rem;
+      border-radius: 10px;
+      color: $white;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #fff2;
       }
     }
   }
