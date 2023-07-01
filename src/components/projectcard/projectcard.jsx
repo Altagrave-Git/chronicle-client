@@ -7,22 +7,26 @@ const ProjectCard = ({ project, ordering, click, handleActive=null, setFormModal
   const defaultImage = import.meta.env.VITE_DEFAULT_IMG;
 
   return (
-    <div onClick={ordering === 'active-card' ? () => {
-      click(project);
-      handleActive();
-    } : () => click(project)} className={'project-card' + ' ' + ordering}>
-      <div className="project-card__image">
-        <img src={ image.length ?
-            baseUrl + image
-            :
-            defaultImage
-          } alt={"project image"} />
+    <>
+    { project && project.id &&
+      <div onClick={ordering === 'active-card' ? () => {
+        click(project);
+        handleActive();
+      } : () => click(project)} className={'project-card' + ' ' + ordering}>
+        <div className="project-card__image">
+          <img src={ image.length ?
+              baseUrl + image
+              :
+              defaultImage
+            } alt={"project image"} />
+        </div>
+        <div className="project-card__header">
+          <h2 className="project-card__title">{name}</h2>
+          <h3 className="project-card__category">{category}</h3>
+        </div>
       </div>
-      <div className="project-card__header">
-        <h2 className="project-card__title">{name}</h2>
-        <h3 className="project-card__category">{category}</h3>
-      </div>
-    </div>
+    }
+    </>
   )
 }
 
