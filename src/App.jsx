@@ -3,13 +3,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/header/header';
 import HomeView from './pages/home/home';
 import PortfolioView from './pages/portfolio/portfolio';
-import BlogView from './pages/blog/blog';
 import LoginView from './pages/login/login';
 import { useState, useEffect } from 'react';
 import { Octokit } from "@octokit/core";
 import AuthAPI from './api/api';
 import UserPanel from './components/userpanel/userpanel';
 import AboutView from './pages/about/about';
+import InboxView from './pages/inbox/inbox';
 
 const apiToken = import.meta.env.GITHUB_TOKEN;
 const octokit = new Octokit({ auth: apiToken }, { userAgent: 'Altagrave-Git' });
@@ -47,14 +47,14 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header token={token} admin={admin} />
       <UserPanel user={user} />
       <Routes>
         <Route path="/" element={<HomeView token={token} gitData={gitData} />} />
         <Route path="/portfolio" element={<PortfolioView token={token} admin={admin} />} />
         <Route path="/about" element={<AboutView />} />
-        <Route path="/blog" element={<BlogView />} />
-        <Route path="/login" element={<LoginView token={token} setUser={setUser} setAdmin={setAdmin} />} />
+        <Route path="/inbox" element={<InboxView token={token} admin={admin} />} />
+        <Route path="/login" element={<LoginView token={token} setUser={setUser} setAdmin={setAdmin} setToken={setToken} />} />
       </Routes>
     </BrowserRouter>
   );
