@@ -5,14 +5,10 @@ import { ContentAPI } from '../api/api';
 const SectionForm = ({token, portfolioData, activeIndex}) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [type, setType] = useState('text'); // text, list, table, other
-  const [order, setOrder] = useState(0); // int
+  const [type, setType] = useState('text');
+  const [order, setOrder] = useState(0);
   const [mode, setMode] = useState(0);
   const [verify, setVerify] = useState(false);
-
-  useEffect(() => {
-    setOrder(portfolioData[activeIndex].sections.length + 1);
-  }, [])
 
   useEffect(() => {
     const sections = portfolioData[activeIndex].sections;
@@ -20,13 +16,17 @@ const SectionForm = ({token, portfolioData, activeIndex}) => {
       setTitle(sections[mode - 1].title);
       setDescription(sections[mode - 1].description);
       setType(sections[mode - 1].type);
-      setOrder(sections[mode - 1].order);
+      try {
+        setOrder(sections[mode - 1].order)
+      } catch {
+        setOrder(0);
+      }
       document.querySelector(`#section-type-${sections[mode - 1].type}`).click();
     } else {
       setTitle('');
       setDescription('');
       setType('text');
-      setOrder(portfolioData[activeIndex].sections.length + 1);
+      setOrder(0);
       document.querySelector('#section-type-text').click();
     }
   }, [mode])
@@ -59,7 +59,9 @@ const SectionForm = ({token, portfolioData, activeIndex}) => {
       title: title,
       description: description,
       type: type,
-      order: order,
+    }
+    if (order > 0) {
+      form["order"] = order;
     }
 
     ContentAPI.section(token, id, form)
@@ -78,7 +80,9 @@ const SectionForm = ({token, portfolioData, activeIndex}) => {
       title: title,
       description: description,
       type: type,
-      order: order,
+    }
+    if (order > 0) {
+      form["order"] = order;
     }
 
     ContentAPI.editSection(token, pid, sid, form)
@@ -111,7 +115,11 @@ const SectionForm = ({token, portfolioData, activeIndex}) => {
         <input type="button" id="form-right" onClick={() => switchModeRight()} />
       </div>
       <input type="text" name="title" className="form-text" placeholder="Section title" value={title} onChange={e => setTitle(e.target.value)} autoComplete="false" />
-      <textarea name="description" className="form-text" placeholder="Section content"  cols="30" rows="8" required={false} value={description} onChange={e => setDescription(e.target.value)}></textarea>
+      <textarea name="description" className="form-text" placeholder="Section content"  cols="30" rows="8" required={false} value={description} onChange={e => setDescription(e.target.value)} />
+      <div className="inline-form-text">
+        <label htmlFor="order">Order:</label>
+        <input className="form-text" type="number" name="order" id="order" value={order} onChange={e => setOrder(e.target.value)} />
+      </div>
 
       <div className="section-type-container">
         <div className="section-type">
