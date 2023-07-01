@@ -60,7 +60,7 @@ const MessageForm = () => {
       <div className="message-success-overlay hide">
         <div className="message-success-modal">
           <h3>Your message has been sent</h3>
-          <input type="button" value="Dismiss" onClick={() => setSuccess(0)} />
+          <input type="button" value="Close" onClick={() => setSuccess(0)} />
         </div>
       </div>
       <form className="message-form" onSubmit={handleSubmit}>
