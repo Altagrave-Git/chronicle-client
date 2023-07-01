@@ -22,6 +22,7 @@ import { ReactComponent as SiteLogo } from "../../icons/website.svg";
 import { ReactComponent as JinjaLogo } from "../../icons/jinja.svg";
 import { ReactComponent as UbuntuLogo } from "../../icons/ubuntu.svg";
 import { ReactComponent as OpenidLogo } from "../../icons/openid.svg";
+import { ReactComponent as ViteLogo } from "../../icons/vite.svg";
 
 const TechIcon = ({ tech }) => {
   const techIcons = [
@@ -50,6 +51,8 @@ const TechIcon = ({ tech }) => {
     { name: "Ubuntu", icon: <UbuntuLogo /> },
     { name: "OpenID", icon: <OpenidLogo /> },
     { name: "OpenID Connect", icon: <OpenidLogo /> },
+    { name: "Vite", icon: <ViteLogo /> },
+    { name: "Django Rest Framework", icon: <RestLogo /> }
   ];
 
   const techIcon = techIcons.find((icon) => icon.name.toLowerCase() == tech.toLowerCase());
