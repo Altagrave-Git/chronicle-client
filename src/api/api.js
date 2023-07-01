@@ -367,8 +367,46 @@ class BaseContentAPI {
   }
 }
 
+class BaseMailAPI {
+  constructor() {
+    this.baseUrl = import.meta.env.VITE_CHRONICLE_URL + '/messages/';
+  }
+
+  get = async (token) => {
+    const response = await fetch(this.baseUrl, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    })
+      .then(res => { return res.json() })
+      .then(data => { return data })
+      .catch(err => console.log(err));
+    return response;
+  }
+
+  post = async (form) => {
+    const response = await fetch(this.baseUrl, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(form)
+    })
+      .then(res => {return res.json()})
+      .then(data => {return data})
+      .catch(err => console.log(err));
+    return response;
+  }
+}
+
 const AuthAPI = new BaseAuthAPI();
 
 export const ContentAPI = new BaseContentAPI();
+
+export const MailAPI = new BaseMailAPI();
 
 export default AuthAPI;
