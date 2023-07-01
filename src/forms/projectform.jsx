@@ -21,7 +21,11 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
       setDescription(portfolioData[activeIndex].description);
       setSite(portfolioData[activeIndex].site);
       setRepo(portfolioData[activeIndex].repo);
-      setOrder(0);
+      try {
+        setOrder(portfolioData[activeIndex].order);
+      } catch {
+        setOrder(0);
+      }
     } else {
       setName('');
       setCategory('');
@@ -41,14 +45,12 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
     formData.append("description", description);
     formData.append("site", site);
     formData.append("repo", repo);
+    formData.append("order", order);
     if (image != null) {
       formData.append("image", image);
     }
     if (logo != null) {
       formData.append('logo', logo);
-    }
-    if (order > 0) {
-      formData.append('order', order);
     }
 
 
@@ -66,14 +68,12 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
     formData.append("description", description);
     formData.append("site", site);
     formData.append("repo", repo);
+    formData.append("order", order);
     if (image != null) {
       formData.append("image", image);
     }
     if (logo != null) {
       formData.append("logo", logo);
-    }
-    if (order > 0) {
-      formData.append('order', order);
     }
     const id = portfolioData[activeIndex].id;
 
@@ -117,6 +117,10 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
       <textarea name="description" className="form-text" placeholder="Project Description"  cols="30" rows="8" required={false} value={description} onChange={e => setDescription(e.target.value)}></textarea>
       <input type="url" name="site" className="form-text" placeholder="Website" required={false} value={site} onChange={e => setSite(e.target.value)} />
       <input type="url" name="repo" className="form-text" placeholder="Repository" required={false} value={repo} onChange={e => setRepo(e.target.value)} />
+      <div className="inline-form-text">
+        <label htmlFor="order">Order:</label>
+        <input className="form-text" type="number" name="order" id="order" value={order} onChange={e => setOrder(e.target.value)} />
+      </div>
       <div className="form-image-container">
         <label htmlFor="project-image">Image:</label>
         <input type="file" accept='image/*' name='image' id="project-image" onChange={e => setImage(e.target.files[0])} />
@@ -124,10 +128,6 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
       <div className="form-image-container">
         <label htmlFor="project-logo">Logo:</label>
         <input type="file" accept='image/*' name='logo' id="project-logo" onChange={e => setLogo(e.target.files[0])} />
-      </div>
-      <div className="inline-form-text">
-        <label htmlFor="order">Order:</label>
-        <input className="form-text" type="number" name="order" id="order" value={order} onChange={e => setOrder(e.target.value)} />
       </div>
       <div className="submit-container">
       { mode &&
