@@ -37,10 +37,23 @@ const ProjectDetail = ({ project, handleActive, admin, setFormModal }) => {
             <h3 className="project-detail__category">{project.category}</h3>
           </div>
           <div className="project-detail__links">
-            { project.site &&
+            { project.site && project.site.split("/")[2] != "turcotte.tech" && project.site.split("/")[2] != "www.turcotte.tech" &&
             <a href={project.site} target="_blank" className="project-detail__link website">
               <SiteLogo />
               <div>View Website</div>
+            </a>
+            }
+            { project.site && (project.site.split("/")[2] == "turcotte.tech" || project.site.split("/")[2] == "www.turcotte.tech") &&
+            <a onClick={() => {
+              let popUp = document.querySelector(".this-site-link");
+              if (popUp.classList.contains("hide")) {
+                popUp.className = "this-site-link";
+                setTimeout(() => {popUp.classList.add("hide")}, 1000);
+              }
+            }} className="project-detail__link website">
+              <SiteLogo />
+              <div>View Website</div>
+              <h6 className="this-site-link hide">ಠ_ಠ</h6>
             </a>
             }
             { project.repo &&
