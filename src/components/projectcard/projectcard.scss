@@ -13,9 +13,10 @@
     overflow: hidden;
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
 
     img {
-      max-width: 100%;
+      width: 100%;
       aspect-ratio: 16/9;
       object-fit: cover;
       object-position: top;
@@ -24,14 +25,21 @@
 
   &__header {
     margin: 10px;
+
+    > * {
+      white-space: pre;
+      text-overflow: ellipsis;
+    }
   }
 
   &__title {
     font-weight: 700;
+    font-size: 1.4rem;
   }
 
   &__category {
     font-weight: 600;
+    font-size: 1rem;
   }
 
   &.active-card {
