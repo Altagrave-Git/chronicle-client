@@ -88,6 +88,10 @@
     @include mobile {
       flex-direction: row;
     }
+
+    > * {
+      cursor: pointer;
+    }
   }
 
   &__header{
@@ -192,6 +196,7 @@
 
   &__description {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 
     font-size: 1.1rem;
@@ -258,14 +263,15 @@
 
       &:hover {
         span {
-          position: fixed;
-          display:block;
+          position: absolute;
+          display: flex;
+          width: max-content;
           font-size: 1.2rem;
           font-weight: 700;
           color: $yellow;
           background-color: #990033;
           padding: 0.3rem 0.5rem;
-          transform: translateY(-100%);
+          transform: translateY(-125%);
           border-radius: 10px;
         }
       }
@@ -285,7 +291,7 @@
     font-size: 1rem;
     font-weight: 400;
     margin-bottom: 1rem;
-    background-color: #444;
+    background-color: #ffffff18;
     padding: 1rem;
     border-radius: 8px;
     overflow-x: scroll;
@@ -380,4 +386,25 @@
       padding: 0.8rem 1rem;
     }
   }
+}
+
+.this-site-link {
+  display: flex;
+  position: fixed;
+  transform: translateX(-50%);
+  top: 50%;
+  left: 50%;
+  font-size: 5rem;
+  font-weight: 600;
+  background-color: #4f0f1f;
+  padding: 0.2rem 1.5rem;
+  border-radius: 2rem;
+
+  &.hide {
+    display: none;
+  }
+}
+
+.highlight {
+  background-color: #00000000 !important;
 }
