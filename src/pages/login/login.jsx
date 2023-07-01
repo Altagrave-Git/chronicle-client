@@ -1,11 +1,10 @@
 import './login.scss';
 import { useEffect } from 'react';
-import LoginButton from '../../components/loginbutton/loginbutton';
 import { ReactComponent as EchoIcon } from '../../icons/echo.svg';
 import AuthAPI from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 
-const LoginView = ({ token, setUser, setAdmin }) => {
+const LoginView = ({ token, setUser, setAdmin, setToken }) => {
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -22,6 +21,20 @@ const LoginView = ({ token, setUser, setAdmin }) => {
           console.log(err);
         }
       );
+    } else {
+      if (token) {
+
+        AuthAPI.logout(token)
+          .then(() => {
+            setAdmin(false);
+            setUser({});
+            setToken();
+            navigate("/")
+          }
+            );
+      } else {
+        navigate("/");
+      }
     }
   }, [window.location.search]);
 
@@ -35,7 +48,7 @@ const LoginView = ({ token, setUser, setAdmin }) => {
         </>
         :
         <>
-        <LoginButton token={token} />
+        <h1>Logging out...</h1>
         </>
         }
       </div>
