@@ -1,7 +1,7 @@
 import AuthAPI from "../../api/api";
 import { ReactComponent as EchoIcon } from '../../icons/echo.svg';
 import './loginbutton.scss';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const LoginButton = ({token}) => {
   const navigate = useNavigate();
@@ -9,9 +9,9 @@ const LoginButton = ({token}) => {
   return (
     <>
     { token ?
-    <button className="echo-logout" onClick={() => {AuthAPI.logout(token).then(navigate('/'))}}>
+    <Link className="echo-logout" to={"/login"}>
       <span>Sign out</span>
-    </button>
+    </Link>
     :
     <button className="echo-login" onClick={() => AuthAPI.authorize()}>
       <EchoIcon />
