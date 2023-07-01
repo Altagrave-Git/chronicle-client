@@ -12,16 +12,14 @@ const ProjectDetail = ({ project, handleActive, admin, setFormModal }) => {
   const baseUrl = import.meta.env.VITE_CHRONICLE_URL;
 
   useEffect(() => {
-    if (project) {
+    if (project && project.id) {
       document.querySelector(".project-detail-background").style.backgroundImage = `url(${baseUrl + project.logo})`;
     }
   }, [project])
 
-  console.log(project);
-
   return (
   <>
-    { project &&
+    { project && project.id &&
     <>
       <div className="project-detail-background-container">
         <div className="project-detail-background"></div>
