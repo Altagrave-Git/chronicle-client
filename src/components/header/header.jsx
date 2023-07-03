@@ -20,12 +20,13 @@ const headerNav = [
   },
 ];
 
-const Header = ({token, admin}) => {
+const Header = ({token, admin, newMail}) => {
   const location = useLocation();
   const headerRef = React.useRef(null);
   const [active, setActive] = React.useState(0);
 
   React.useEffect(() => {
+    window.scrollTo(0, 0);
     const path = location.pathname;
     const index = headerNav.findIndex(nav => nav.path === path);
     setActive(index);
@@ -78,7 +79,11 @@ const Header = ({token, admin}) => {
               }
             </ul>
             <div className="header-menu-btn" onClick={() => handleDropdown()}>
+              { newMail ?
+              <div className="header-menu-btn-bullet new"></div>
+              :
               <div className="header-menu-btn-bullet"></div>
+              }
             </div>
           </div>
         </div>
