@@ -1,16 +1,12 @@
 import "./about.scss";
 import hibernation1A from "../../images/hibernation-1a.png";
-import hibernation1B from "../../images/hibernation-1b.png";
 import hibernation2A from "../../images/hibernation-2a.png";
-import hibernation2B from "../../images/hibernation-2b.png";
 import hibernation3A from "../../images/hibernation-3a.png";
-import hibernation3B from "../../images/hibernation-3b.png";
 import hibernation4A from "../../images/hibernation-4a.png";
-import hibernation4B from "../../images/hibernation-4b.png";
 import selfie from "../../images/self.jpg";
 import { useState, useEffect } from "react";
 
-const AboutView = () => {
+const AboutView = ({bgslide}) => {
   const [gameImage, setGameImage] = useState(0);
 
   useEffect(() => {
@@ -19,7 +15,11 @@ const AboutView = () => {
   }, [gameImage])
 
   return (
-    <div className="about">
+    <div className="about" style={{backgroundImage: bgslide}} >
+      <div id={"bgslide"}>
+        <img src={bgslide} alt="background" />
+        <img src={bgslide} alt="background" />
+      </div>
       <img className="about-img" src={selfie} alt="about" />
 
       <h2>Hey, I'm Damon.</h2>
@@ -80,18 +80,14 @@ const AboutView = () => {
       </p>
 
       <p>
-        &nbsp;After another few months of work, everything was finally coming together. I had finally developed a mental model of how to build out applications, end-to-end - excluding IT operations, which would come later, during the headache of deployment - and was equipped with the tools necessary to build them, render them, and intregrate them into a system. I had finally made it.
+        &nbsp;After another few months of work, everything was finally coming together. I had finally developed a mental model of how to build out applications, end-to-end - excluding IT operations, which would come later, during the headache of deployment - and was equipped with the tools necessary to build them, render them, and intregrate them into a system.
       </p>
 
-      <h2>I'm a Web Developer!</h2>
+      <h2>I had finally made it!</h2>
 
-      <h3>
-        And so I began developing Echo Social Network!
-      </h3>
+      <h3>And so I began building Echo Social Network!</h3>
 
-      <h3>
-        (Yes, really. That's what I started with 😅)
-      </h3>
+      <h3>(Yep. That's what I started with 😅)</h3>
     </div>
   )
 }
