@@ -2,20 +2,43 @@ import "./inbox.scss";
 import { useEffect, useState } from "react";
 import { MailAPI } from "../../api/api";
 
-const InboxView = ({token, admin}) => {
+const InboxView = ({token, admin, setNewMail}) => {
   const [messages, setMessages] = useState({});
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const baseUrl = import.meta.env.VITE_CHRONICLE_URL;
 
   useEffect(() => {
     if (admin) {
       MailAPI.get(token)
-      .then(data => setMessages(data));
+        .then(data => {
+          setMessages(data);
+          setActiveIndex(0);
+        });
     } else {
       location.href = import.meta.env.VITE_BASE_URL;
     }
   }, [])
+
+  useEffect(() => {
+    if (admin && activeIndex != null && messages[activeIndex].is_new == true) {
+      const message = messages[activeIndex];
+
+      const newMessages = []
+      for (let item of messages) {
+        newMessages.push(item);
+      }
+
+      MailAPI.read(token, message.id)
+      .then(data => {
+        message.is_new = data.is_new;
+        newMessages[activeIndex] = message;
+        setMessages(newMessages);
+        MailAPI.check(token)
+          .then(data => setNewMail(data));
+      });
+    }
+  }, [activeIndex])
 
   return (
     <main className="inbox">
@@ -24,7 +47,7 @@ const InboxView = ({token, admin}) => {
           { messages && messages.length > 0 &&
             messages.map((message, index) => {
               return (
-                <li onClick={() => setActiveIndex(index)} key={index} className="mail-list-entry">
+                <li onClick={() => setActiveIndex(index)} key={index} className={message.is_new ? "mail-list-entry new" : index == activeIndex ? "mail-list-entry active" : "mail-list-entry"}>
                   <span className="mail-list-sender">{message.sender}</span>
                   <span>{message.date}</span>
                 </li>
