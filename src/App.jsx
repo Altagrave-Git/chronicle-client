@@ -7,9 +7,11 @@ import LoginView from './pages/login/login';
 import { useState, useEffect } from 'react';
 import { Octokit } from "@octokit/core";
 import AuthAPI from './api/api';
+import { MailAPI } from './api/api';
 import UserPanel from './components/userpanel/userpanel';
 import AboutView from './pages/about/about';
 import InboxView from './pages/inbox/inbox';
+import bgslide from "./images/bgslide.png";
 
 const apiToken = import.meta.env.GITHUB_TOKEN;
 const octokit = new Octokit({ auth: apiToken }, { userAgent: 'Altagrave-Git' });
@@ -19,6 +21,8 @@ const App = () => {
   const [user, setUser] = useState({});
   const [admin, setAdmin] = useState(false);
   const [token, setToken] = useState();
+  const [portfolioData, setPortfolioData] = useState([]);
+  const [newMail, setNewMail] = useState(false);
 
   // NOTE: Octokit + Vite requires isomorphic fetch
   useEffect(() => {
@@ -42,18 +46,72 @@ const App = () => {
           setToken(data.access_token);
         }
       })
+      .then(() => {
+        if (token && admin) {
+          MailAPI.check(token)
+            .then(data => setNewMail(data))
+            .catch(() => setNewMail(false));
+        } else {
+          setNewMail(false);
+        } 
+      })
       .catch(error => console.log(error));
   }, [user]);
 
+  // Retrieve and set project data from Chronicle API
+  useEffect(() => {
+    const url = import.meta.env.VITE_CHRONICLE_URL;
+    fetch(url + '/projects/')
+      .then(response => response.json())
+      .then(data => {
+        if (data.length >= 5) {
+          setPortfolioData(data);
+        } else if (data.length) {
+          const cloneData = [];
+          const mult = Math.ceil(5 / data.length);
+          for (let i = 0; mult > i; i++) {
+            data.forEach(item => {
+              cloneData.push(item);
+            });
+          }
+          setPortfolioData(cloneData);
+        }
+      })
+      .catch(error => console.log(error));
+  }, []);
+
+  useEffect(() => {
+    const head = document.querySelector("head");
+    head.innerHTML += `<link rel="prefetch" href="${bgslide}" />`;
+  }, [])
+
+  useEffect(() => {
+    if (portfolioData.length > 0) {
+      const url = import.meta.env.VITE_CHRONICLE_URL;
+      const head = document.querySelector("head");
+      const list = [];
+      for (let project of portfolioData) {
+        if (list.includes(project.image)) {
+          break;
+        } else {
+          list.push(project.image);
+          head.innerHTML += `<link rel="prefetch" href="${url + project.image}" />`;
+        }
+      }
+    }
+  }, [portfolioData])
+
+  console.log(portfolioData);
+
   return (
     <BrowserRouter>
-      <Header token={token} admin={admin} />
+      <Header token={token} admin={admin} newMail={newMail} />
       <UserPanel user={user} />
       <Routes>
-        <Route path="/" element={<HomeView token={token} gitData={gitData} />} />
-        <Route path="/portfolio" element={<PortfolioView token={token} admin={admin} />} />
-        <Route path="/about" element={<AboutView />} />
-        <Route path="/inbox" element={<InboxView token={token} admin={admin} />} />
+        <Route path="/" element={<HomeView token={token} gitData={gitData} setNewMail={setNewMail} admin={admin} />} />
+        <Route path="/portfolio" element={<PortfolioView token={token} admin={admin} portfolioData={portfolioData} />} />
+        <Route path="/about" element={<AboutView bgslide={bgslide} />} />
+        <Route path="/inbox" element={<InboxView token={token} admin={admin} setNewMail={setNewMail} />} />
         <Route path="/login" element={<LoginView token={token} setUser={setUser} setAdmin={setAdmin} setToken={setToken} />} />
       </Routes>
     </BrowserRouter>
