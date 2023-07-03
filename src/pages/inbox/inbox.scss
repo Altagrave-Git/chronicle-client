@@ -1,3 +1,5 @@
+@use "../../App.scss" as *;
+
 .inbox {
   padding: 5rem 1rem 1rem;
 }
@@ -60,4 +62,13 @@
   .message-body {
     padding: 1.5rem;
   }
+}
+
+.mail-list-entry.new {
+  background-color: #fff4;
+}
+
+.mail-list-entry.active {
+  transform: translateX(1rem);
+  border-left: 5px solid #fff4;
 }
