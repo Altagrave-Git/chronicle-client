@@ -9,7 +9,7 @@
     "start": "vite --host 127.0.0.1 --port 3000 --open",
     "dev": "vite --port 3000 --open",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview --port 3000"
   },
   "dependencies": {
     "@octokit/core": "^4.2.1",
