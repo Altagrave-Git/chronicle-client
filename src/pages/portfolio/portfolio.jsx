@@ -5,33 +5,10 @@ import './portfolio.scss';
 import FormButton from '../../components/formbutton/formbutton';
 import FormModal from '../../forms/formmodal';
 
-const PortfolioView = ({ admin, token }) => {
-  const [portfolioData, setPortfolioData] = useState([]);
+const PortfolioView = ({ admin, token, portfolioData }) => {
   const [projectDetail, setProjectDetail] = useState({});
   const [activeIndex, setActiveIndex] = useState(0);
   const [formModal, setFormModal] = useState();
-
-  // Retrieve and set project data from Chronicle API
-  useEffect(() => {
-    const url = import.meta.env.VITE_CHRONICLE_URL;
-    fetch(url + '/projects/')
-      .then(response => response.json())
-      .then(data => {
-        if (data.length >= 5) {
-          setPortfolioData(data);
-        } else if (data.length) {
-          const cloneData = [];
-          const mult = Math.ceil(5 / data.length);
-          for (let i = 0; mult > i; i++) {
-            data.forEach(item => {
-              cloneData.push(item);
-            });
-          }
-          setPortfolioData(cloneData);
-        }
-      })
-      .catch(error => console.log(error));
-  }, []);
 
   // Swipe event for project carousel
   useEffect(() => {
