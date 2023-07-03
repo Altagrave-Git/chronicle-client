@@ -381,20 +381,50 @@ class BaseMailAPI {
         "Authorization": `Bearer ${token}`
       }
     })
-      .then(res => { return res.json() })
+      .then(res => {return res.json()})
       .then(data => { return data })
       .catch(err => console.log(err));
     return response;
   }
 
   post = async (form) => {
-    const response = await fetch(this.baseUrl, {
+    const response = await fetch(this.baseUrl + "send/", {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(form)
+    })
+      .then(res => {return res.json()})
+      .then(data => {return data})
+      .catch(err => console.log(err));
+    return response;
+  }
+
+  check = async (token) => {
+    const response = await fetch(this.baseUrl + "check/", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    })
+      .then(res => {return res.json()})
+      .then(data => {return data})
+      .catch(err => console.log(err));
+    return response;
+  }
+
+  read = async (token, id) => {
+    const response = await fetch(this.baseUrl + `${id}/`, {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
     })
       .then(res => {return res.json()})
       .then(data => {return data})
