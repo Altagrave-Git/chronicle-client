@@ -1,8 +1,9 @@
 import './forms.scss';
 import { useState, useEffect } from 'react';
+import { MailAPI } from '../api/api';
 
 
-const MessageForm = () => {
+const MessageForm = ({token, setNewMail, admin}) => {
   const [sender, setSender] = useState('');
   const [contact, setContact] = useState('');
   const [content, setContent] = useState('');
@@ -46,6 +47,11 @@ const MessageForm = () => {
         return response.json();
       })
       .then(data => {
+        if (admin) {
+          MailAPI.check(token)
+            .then(data => setNewMail(data))
+            .catch(error => console.log(error));
+        }
         return data;
       })
       .catch(error => {
@@ -67,12 +73,12 @@ const MessageForm = () => {
         <h2>Contact Form</h2>
 
         <div className="contact-form-info">
-          <input className="form-text" type="text" name="name" id="name" value={sender} onChange={e => setSender(e.target.value)} placeholder="Enter your name" />
+          <input className="form-text" type="text" name="name" id="name" autoComplete={"name"} value={sender} onChange={e => setSender(e.target.value)} placeholder="Enter your name" />
 
           { messageType === "email" ?
-          <input className="form-text" type="email" name="contact" id="email" value={contact} onChange={e => setContact(e.target.value)} placeholder="Enter your e-mail" />
+          <input className="form-text" type="email" name="contact" id="email" autoComplete={"email"} value={contact} onChange={e => setContact(e.target.value)} placeholder="Enter your e-mail" />
           :
-          <input className="form-text" type="tel" name="contact" id="phone" value={contact} onChange={e => setContact(e.target.value)} placeholder="Enter phone number" />
+          <input className="form-text" type="tel" name="contact" id="phone" autoComplete={"tel"} value={contact} onChange={e => setContact(e.target.value)} placeholder="Enter phone number" />
           }
         </div>
 
