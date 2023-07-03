@@ -9,7 +9,7 @@ import { ReactComponent as Github } from '../../icons/github.svg';
 import { Link } from "react-router-dom";
 import { useEffect, useCallback } from "react";
 
-const HomeView = ({token, gitData}) => {
+const HomeView = ({token, gitData, setNewMail, admin}) => {
 
   useEffect(() => {
 
@@ -93,7 +93,7 @@ const HomeView = ({token, gitData}) => {
     </main>
 
     <footer className="home-footer">
-      <MessageForm />
+      <MessageForm token={token} setNewMail={setNewMail} admin={admin} />
     </footer>
   </>
   )
