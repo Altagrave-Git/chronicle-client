@@ -32,7 +32,7 @@ const Skills = () => {
             <li>Responsive Design</li>
             <li>CRUD / AJAX</li>
             <li>Client-side Routing</li>
-            <li>Dynamic Rendering</li>
+            <li>JavaScript Animation</li>
             <li>State Management</li>
             <li>API Integration</li>
             <li>Component-based Arch.</li>
