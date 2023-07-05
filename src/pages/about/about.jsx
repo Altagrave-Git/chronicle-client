@@ -3,10 +3,9 @@ import hibernation1A from "../../images/hibernation-1a.png";
 import hibernation2A from "../../images/hibernation-2a.png";
 import hibernation3A from "../../images/hibernation-3a.png";
 import hibernation4A from "../../images/hibernation-4a.png";
-import selfie from "../../images/self.jpg";
 import { useState, useEffect } from "react";
 
-const AboutView = ({bgslide}) => {
+const AboutView = ({bgslide, selfie}) => {
   const [gameImage, setGameImage] = useState(0);
 
   useEffect(() => {
@@ -25,11 +24,11 @@ const AboutView = ({bgslide}) => {
       <h2>Hey, I'm Damon.</h2>
 
       <p>
-        &nbsp;My journey into the world of tech started when I came across Harvard University's online programming course, <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank">CS50x</a>. I'd been considering a career in tech for a while, the course sounded great, enrollment as an auditor was free and the world was on pause for a pandemic, so... it was time to dive in.
+        &nbsp;My journey into the world of tech started when I came across Harvard University's <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank">CS50x</a> programming course. I'd been considering a career in tech for a while, the course sounded great, enrollment as an auditor was free and the world was on pause for a pandemic, so it was time to dive in.
       </p>
 
       <p>
-        &nbsp;Before I knew it, my first project was complete. Using MIT's Scratch software, I developed a game called <a href="https://scratch.mit.edu/projects/669990762" target="_blank">Hibernation</a>.
+        &nbsp;Before long, my first project was complete. I developed a game called <a href="https://scratch.mit.edu/projects/669990762" target="_blank">Hibernation</a>, using MIT's Scratch software.
       </p>
 
       <div className="slider-component">
@@ -60,27 +59,19 @@ const AboutView = ({bgslide}) => {
       </p>
 
       <p>
-        &nbsp;After some research, I'd decided to focus on Python, while using <a href="https://www.theodinproject.com/" target="_blank">The Odin Project</a> as a general curriculum guide. They don't offer a Python pathway, but I found their methodology and techniques very useful. Following their recommendations, I installed a Linux distribution - Fedora OS - booted it up, and got to work. 
+        &nbsp;I spent the next couple of months learning the ins and outs of the Python programming language, with the guidance of the University of Michigan's <a href="https://www.si.umich.edu/people/charles-severance" target="_blank">Dr. Charles Severance</a>, and his course, <a href="https://online.umich.edu/series/python-for-everybody/" target="_blank">PY4E</a>. Writing regular expressions, running web scrapers, manipulating data, interacting with APIs, building SQL databases. It was cool, but the results were always plain text values in the terminal.
       </p>
 
       <p>
-        &nbsp;I spent the next couple of months learning the ins and outs of the Python programming language, with the guidance of the University of Michigan's <a href="https://www.si.umich.edu/people/charles-severance" target="_blank">Dr. Charles Severance</a>, and his course, <a href="https://online.umich.edu/series/python-for-everybody/" target="_blank">PY4E</a>.
-      </p>
-
-      <p>
-        &nbsp;I was soon writing regular expressions, running web scrapers, interacting with APIs, configuring web sockets, building SQL databases. It was pretty cool, but the results were always plain text values in the terminal. This wouldn't do.
-      </p>
-
-      <p>
-        &nbsp;I needed a front end, and <a href="https://www.udemy.com/user/coltsteele/" target="_blank">Colt Steele</a> did an incredible job providing it, with his famous <a href="https://www.udemy.com/course/the-web-developer-bootcamp/" target="_blank">Web Development Bootcamp</a>. Within a few months, I was using HTML, CSS and Javascript to make animations, render data from APIs and build interactive web pages.
+        &nbsp;I needed a front end, which <a href="https://www.udemy.com/user/coltsteele/" target="_blank">Colt Steele</a> did an excellent job providing with his famous <a href="https://www.udemy.com/course/the-web-developer-bootcamp/" target="_blank">Web Development Bootcamp</a>. Soon enough, using HTML, CSS and Javascript to make animations, render data from APIs and build interactive web pages became second nature, and made it possible to see the results of my code culminate visually. That made programming a whole lot more satisfying.
       </p>
       
       <p>
-        &nbsp;Once the front end modules of the bootcamp were complete, something was still missing. I could build websites, I could manipulate data, but I couldn't put these skills together, and the rest of the bootcamp was Node.js. It was time to move back to Python. Or, more specifically, Django, with <a href="https://www.udemy.com/user/joseportilla/" target="_blank">Jose Portilla</a> and his course, <a href="https://www.udemy.com/course/django-and-python-full-stack-developer-masterclass/" target="_blank">Django and Python Masterclass</a>.
+        Something was still missing though. I could build websites, I could manipulate data, but I couldn't put these skills together effectively. It was time to move back to Python. Or more specifically, Django, with <a href="https://www.udemy.com/user/joseportilla/" target="_blank">Jose Portilla</a> and his course, <a href="https://www.udemy.com/course/django-and-python-full-stack-developer-masterclass/" target="_blank">Django and Python Masterclass</a>.
       </p>
 
       <p>
-        &nbsp;After another few months of work, everything was finally coming together. I had finally developed a mental model of how to build out applications, end-to-end - excluding IT operations, which would come later, during the headache of deployment - and was equipped with the tools necessary to build them, render them, and intregrate them into a system.
+        &nbsp;With that, everything was finally coming together. API development was the missing piece of the mental model necessary for building applications, end-to-end - excluding IT operations, which would come later, during the headache of deployment.
       </p>
 
       <h2>I had finally made it!</h2>
