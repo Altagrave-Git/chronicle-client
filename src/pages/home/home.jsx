@@ -44,7 +44,7 @@ const HomeView = ({token, gitData, setNewMail, admin}) => {
           <div className="bio-top">
             <h1 className="title">Damon Turcotte</h1>
             <p>
-              Self-taught <span className="job">web developer</span> deploying full-stack web applications out of Lethbridge, Alberta. I love developing custom software from the ground up.
+              Self-taught <span className="job">web developer</span> deploying full-stack applications out of Lethbridge, Alberta. I have a knack for - and love of - developing custom software and systems from the ground up.
             </p>
             <p>
               Everything here - <Link to="/portfolio" className="link-red">portfolio</Link> included - was built with custom code and is part of an integrated network of applications I'm working to expand.
@@ -55,11 +55,9 @@ const HomeView = ({token, gitData, setNewMail, admin}) => {
             <div className="bio-spacer">
 
             </div>
-            <div>
+            <div className="bio-navigator">
               <h4>1 - - - Skills</h4>
-              <br/>
               <h4>2 - - - Activity</h4>
-              <br/>
               <h4>3 - - - Contact</h4>
             </div>
           </div>
@@ -70,15 +68,18 @@ const HomeView = ({token, gitData, setNewMail, admin}) => {
               <a href="mailto:damon.j.turcotte@gmail.com">damon.j.turcotte@gmail.com</a>
             </div>
             <div className="bio-links">
-            <a className="social-link" href="https://github.com/Altagrave-Git">
-                <Github />
-              </a>
-              <a className="social-link" href="https://www.linkedin.com/in/damon-turcotte-457b1a269">
-                <Linkedin />
-              </a>
-              <a className="social-link" href="#">
-                <Twitter />
-              </a>
+              <div>
+                <a className="social-link" href="https://github.com/Altagrave-Git">
+                  <Github />
+                </a>
+                <a className="social-link" href="https://www.linkedin.com/in/damon-turcotte-457b1a269">
+                  <Linkedin />
+                </a>
+                <a className="social-link" href="https://twitter.com/damon_turcotte">
+                  <Twitter />
+                </a>
+              </div>
+              <input type="button" value="Resume" />
             </div>
           </div>
         </div>
