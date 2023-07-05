@@ -6,7 +6,9 @@ import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), webfontDownload(), svgr()],
+  plugins: [react({
+    include: "**/*.jsx"
+  }), webfontDownload(), svgr()],
   resolve: {
     alias: {
       'node-fetch': 'isomorphic-fetch',
