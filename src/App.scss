@@ -86,15 +86,14 @@ html {
   }
 
   overflow-wrap: break-word;
+  color: $white;
+  background-color: #0f0f0f;
 }
 
 body {
   font-family: $font-family;
   line-height: 1.5;
   font-weight: normal;
-
-  color: $white;
-  background-color: #0f0f0f;
 }
 
 main {
