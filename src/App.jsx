@@ -12,6 +12,8 @@ import UserPanel from './components/userpanel/userpanel';
 import AboutView from './pages/about/about';
 import InboxView from './pages/inbox/inbox';
 import bgslide from "./images/bgslide.png";
+import selfie from "./images/self.jpg";
+import turcotte from "./images/turcotte.png";
 
 const apiToken = import.meta.env.GITHUB_TOKEN;
 const octokit = new Octokit({ auth: apiToken }, { userAgent: 'Altagrave-Git' });
@@ -83,6 +85,7 @@ const App = () => {
   useEffect(() => {
     const head = document.querySelector("head");
     head.innerHTML += `<link rel="prefetch" href="${bgslide}" />`;
+    head.innerHTML += `<link rel="prefetch" href="${selfie}" />`;
   }, [])
 
   useEffect(() => {
@@ -101,8 +104,6 @@ const App = () => {
     }
   }, [portfolioData])
 
-  console.log(portfolioData);
-
   return (
     <BrowserRouter>
       <Header token={token} admin={admin} newMail={newMail} />
@@ -110,7 +111,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomeView token={token} gitData={gitData} setNewMail={setNewMail} admin={admin} />} />
         <Route path="/portfolio" element={<PortfolioView token={token} admin={admin} portfolioData={portfolioData} />} />
-        <Route path="/about" element={<AboutView bgslide={bgslide} />} />
+        <Route path="/about" element={<AboutView bgslide={bgslide} selfie={selfie} />} />
         <Route path="/inbox" element={<InboxView token={token} admin={admin} setNewMail={setNewMail} />} />
         <Route path="/login" element={<LoginView token={token} setUser={setUser} setAdmin={setAdmin} setToken={setToken} />} />
       </Routes>
