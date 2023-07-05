@@ -3,22 +3,26 @@
 .home {
   .bio {
     height: calc(100lvh - 4rem);
+    display: flex;
 
     @include tablet {
       height: calc(100lvh - 8rem);
+      align-items: center;
+    }
+
+    @include mobile {
+      @media (min-width: 475px) and (min-height: 600px) {
+        padding: 0 3rem;
+      }
     }
     
     .bio-container {
       display: flex;
       flex-direction: column;
       height: calc(100svh - 4rem);
-      padding: 2rem 0 3rem;
+      padding: 3rem 0 3rem;
       justify-content: space-between;
-
-      @include tablet {
-        height: calc(100svh - 8rem);
-        padding: 2rem 0;
-      }
+      max-height: 900px;
     }
 
     .bio-middle {
@@ -27,11 +31,21 @@
       font-size: 1rem;
       color: $white2;
 
+      @include tablet {
+        @media (min-height: 800px) {
+          font-size: 1.1rem;
+        }
+      }
+
       .bio-spacer {
         width: 0.5rem;
         background-color: $red2;
         border-radius: 0.5rem;
         margin-right: 2rem;
+      }
+
+      .bio-navigator > *:nth-of-type(2) {
+        margin: 1rem 0;
       }
     }
 
@@ -54,7 +68,28 @@
 
       .bio-links {
         display: flex;
-        margin: 2rem 0 0;
+        margin: 1rem 0 0;
+        justify-content: space-between;
+
+        > div {
+          display: flex;
+        }
+
+        > input {
+          background-color: #de2f4ccc;
+          border-radius: 50px;
+          border: none;
+          color: #fff;
+          font-weight: 600;
+          font-size: 0.9rem;
+          height: 2.25rem;
+          padding: 0 1.5rem;
+
+          &:hover {
+            background-color: #de4f3caa;
+            cursor: pointer;
+          }
+        }
 
         .social-link {
           margin: 0 1.5rem 0 0;
@@ -79,7 +114,7 @@
 
     .title {
       color: #e1e1e1;
-      font-weight: 600;
+      font-weight: 500;
       font-size: 2.2rem;
 
       @include mobile {
@@ -88,7 +123,7 @@
     }
 
     .job {
-      color: $red2;
+      color: $red;
     }
 
     .link-red {
@@ -136,7 +171,7 @@ p {
 
 .home-footer {
   width: calc(100% - 3rem);
-  background-color: #ffffff0a;
+  background-color: #ffffff11;
   border-radius: 20px 20px 0 0;
   max-width: calc(1440px - 3rem);
   margin: auto;
@@ -187,5 +222,17 @@ p {
 
   @include tablet {
     grid-template-columns:auto;
+  }
+}
+
+.bio-top {
+  > p {
+    margin-top: 0.5rem;
+    
+    @include tablet {
+      @media (min-height: 800px) {
+        font-size: 1.2rem;
+      }
+    }
   }
 }
