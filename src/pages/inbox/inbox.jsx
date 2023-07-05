@@ -62,12 +62,12 @@ const InboxView = ({token, admin, setNewMail}) => {
           <>
             <div className="message-head">
               <div>
-                <p>From: {messages[activeIndex].sender}</p>
-                <p>{messages[activeIndex].time}</p>
+                <p>From: <span className="message-head-sender">{messages[activeIndex].sender}</span></p>
+                <p className="message-head-time">{messages[activeIndex].time}</p>
               </div>
               <div>
-                <p>Contact: {messages[activeIndex].contact}</p>
-                <p>{messages[activeIndex].date}</p>
+                <p>Contact: <span className="message-head-contact">{messages[activeIndex].contact}</span></p>
+                <p className="message-head-date">{messages[activeIndex].date}</p>
               </div>
             </div>
             <div className="message-body">
