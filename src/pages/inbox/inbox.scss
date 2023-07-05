@@ -53,6 +53,14 @@
     padding: 1rem 1.5rem 0.2rem;
     background-color: #fff1;
 
+    &-sender {
+      color: $yellow;
+    }
+
+    &-contact {
+      color: $yellow2;
+    }
+
     div {
       display: flex;
       justify-content: space-between;
