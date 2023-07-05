@@ -41,7 +41,7 @@
     color: $white2;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    background-color: #ffffff0a;
+    background-color: #ffffff11;
     padding: 0.3rem 1.5rem;
     border-radius: 10px;
 
@@ -51,13 +51,13 @@
 
     &:hover {
       opacity: 1;
-      background-color: #ffffff15;
+      background-color: #ffffff22;
     }
 
     > .name {
       font-weight: 600;
       color: $yellow2;
-      text-shadow: 0px 0px 5px #ff000088;
+      text-shadow: 0px 0px 0px #ff000088;
     }
   }
 }
