@@ -6,7 +6,7 @@
   "description": "Create React App for Vite",
   "main": "vite.config.js",
   "scripts": {
-    "start": "vite --host 127.0.0.1 --port 3000 --open",
+    "start": "vite --host 127.0.0.1 --port 3000",
     "dev": "vite --host 127..0.0.1 --port 3000",
     "build": "vite build",
     "serve": "vite preview --host 127.0.0.1 --port 3000"
