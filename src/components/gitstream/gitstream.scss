@@ -2,6 +2,7 @@
 
 .gitstream {
   border-radius: 15px;
+  margin-top: 2rem;
 
   .git-title {
     font-size: 2rem;
@@ -15,6 +16,13 @@
     color: $white2;
     padding-left: 1rem;
     padding-right: 1rem;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+      height: 1.2rem;
+    }
   }
 
   .git-user {
