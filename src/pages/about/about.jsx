@@ -71,14 +71,10 @@ const AboutView = ({bgslide, selfie}) => {
       </p>
 
       <p>
-        &nbsp;With that, everything was finally coming together. API development was the missing piece of the mental model necessary for building applications, end-to-end - excluding IT operations, which would come later, during the headache of deployment.
+        &nbsp;With that, everything was finally coming together. Learning all about Django's many functionalities filled in the missing pieces of the mental model necessary for building applications end-to-end - excluding IT operations, which would come later during the initial headache of deployment.
       </p>
 
-      <h2>I had finally made it!</h2>
-
-      <h3>And so I began building Echo Social Network!</h3>
-
-      <h3>(Yep. That's what I started with 😅)</h3>
+      <h2>And so I started building!</h2>
     </div>
   )
 }
