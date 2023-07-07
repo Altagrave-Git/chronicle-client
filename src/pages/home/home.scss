@@ -3,11 +3,9 @@
 .home {
   .bio {
     height: calc(100lvh - 4rem);
-    display: flex;
 
     @include tablet {
       height: calc(100lvh - 8rem);
-      align-items: center;
     }
 
     @include mobile {
@@ -20,9 +18,12 @@
       display: flex;
       flex-direction: column;
       height: calc(100svh - 4rem);
-      padding: 3rem 0 3rem;
+      padding: 2rem 0 2rem;
       justify-content: space-between;
-      max-height: 900px;
+
+      @include tablet {
+        height: calc(100svh - 8rem);
+      }
     }
 
     .bio-middle {
@@ -75,7 +76,7 @@
           display: flex;
         }
 
-        > input {
+        input {
           background-color: #de2f4ccc;
           border-radius: 50px;
           border: none;
@@ -113,21 +114,17 @@
     }
 
     .title {
-      color: #e1e1e1;
+      color: $white;
       font-weight: 500;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
 
       @include mobile {
         font-size: 2rem;
       }
     }
 
-    .job {
-      color: $red;
-    }
-
     .link-red {
-      color: $yellow2;
+      color: $yellow;
     }
 
     .social-link {
@@ -148,15 +145,18 @@
 }
 
 aside.home {
-  padding: 2rem 1.5rem 3rem;
+  padding: 2rem 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   @include tablet {
-    padding: 0.5rem 1.5rem 0;
+    padding: 0.5rem 1rem 0;
   }
 }
 
 p {
-  color: #e1e1e1cc;
+  color: #e1e1e1;
   font-weight: 500;
   font-size: 1.1rem;
 
@@ -178,9 +178,9 @@ p {
   padding: 0 1.5rem;
 
   @include tablet {
-    max-width: calc(600px - 3rem);
-    width: calc(100% - 3rem);
-    padding: 0rem 1.5rem 5rem;
+    max-width: calc(600px - 2rem);
+    width: calc(100% - 2rem);
+    padding: 0rem 1rem 5rem;
   }
 
   input,
