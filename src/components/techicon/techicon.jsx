@@ -30,6 +30,7 @@ const TechIcon = ({ tech }) => {
     { name: "HTML", icon: <HtmlLogo /> },
     { name: "CSS", icon: <CssLogo /> },
     { name: "SASS", icon: <SassLogo /> },
+    { name: "SCSS", icon: <SassLogo /> },
     { name: "Javascript", icon: <JavascriptLogo /> },
     { name: "jQuery", icon: <JqueryLogo /> },
     { name: "Bootstrap", icon: <BootstrapLogo /> },
