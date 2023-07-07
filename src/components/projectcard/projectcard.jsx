@@ -1,14 +1,14 @@
 import './projectcard.scss'
-import FormButton from '../formbutton/formbutton';
+import TechIcon from '../techicon/techicon';
 
-const ProjectCard = ({ project, ordering, click, handleActive=null, setFormModal, admin }) => {
-  const { name, category, description, site, repo, image, images } = project;
+const ProjectCard = ({ project, ordering, click, handleActive=() => {return}, page="portfolio" }) => {
+  const { name, category, description, site, repo, image, images, tech, logo } = project;
   const baseUrl = import.meta.env.VITE_CHRONICLE_URL;
   const defaultImage = import.meta.env.VITE_DEFAULT_IMG;
 
   return (
     <>
-    { project && project.id &&
+    { project && project.id && page == "portfolio" ?
       <div onClick={ordering === 'active-card' ? () => {
         click(project);
         handleActive();
@@ -23,6 +23,19 @@ const ProjectCard = ({ project, ordering, click, handleActive=null, setFormModal
         <div className="project-card__header">
           <h2 className="project-card__title">{name}</h2>
           <h3 className="project-card__category">{category}</h3>
+        </div>
+      </div>
+      :
+      <div className="home-card">
+        <div className="home-card-main">
+          <div className='home-card-img'>
+              <img src={baseUrl + logo} alt="logo" />
+          </div>
+
+          <div className="home-card-header">
+            <h2 className="home-card-title">{name}</h2>
+            <h3 className="home-card-category">{category}</h3>
+          </div>
         </div>
       </div>
     }
