@@ -109,7 +109,7 @@ const App = () => {
       <Header token={token} admin={admin} newMail={newMail} />
       <UserPanel user={user} />
       <Routes>
-        <Route path="/" element={<HomeView token={token} gitData={gitData} setNewMail={setNewMail} admin={admin} />} />
+        <Route path="/" element={<HomeView token={token} gitData={gitData} setNewMail={setNewMail} admin={admin} portfolioData={portfolioData} />} />
         <Route path="/portfolio" element={<PortfolioView token={token} admin={admin} portfolioData={portfolioData} />} />
         <Route path="/about" element={<AboutView bgslide={bgslide} selfie={selfie} />} />
         <Route path="/inbox" element={<InboxView token={token} admin={admin} setNewMail={setNewMail} />} />
