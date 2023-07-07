@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" style="background-color: #0f0f0f;">
   <head>
+    <title>Damon Turcotte</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Damon Turcotte" />
     <meta name="keywords" content="Damon Turcotte Portfolio Developer Application Web&nbsp;Design Web&nbsp;Development Freelance Personal Lethbridge Alberta" />
+    <link rel="icon" type="image/svg+xml" href="/src/icons/power.svg" />
     <meta property="og:title" content="Damon Turcotte | Web Developer" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://turcotte.tech" />
@@ -19,11 +21,13 @@
     <meta name="twitter:title" content="Web Developer | Web Applications & Software">
     <meta name="twitter:description" content="Full-stack web developer with experience in building end-to-end web applications and integrating them into networks.">
     <meta name="twitter:image" content="https://turcotte.tech/assets/turcotte-f315e15f.png">
-    <title>Damon Turcotte</title>
-    <link rel="icon" type="image/svg+xml" href="/src/icons/power.svg" />
+    <style>svg { height: 0; }</style>
   </head>
-  <body style="display: none;" onload="document.body.style.display='block'">
+  <body style="display: none;">
     <div id="root"></div>
     <script type="module" src="/src/index.jsx"></script>
+    <script>
+      window.onload=document.body.style.display="block";
+    </script>
   </body>
 </html>
