@@ -26,7 +26,7 @@ const ProjectCard = ({ project, ordering, click, handleActive=() => {return}, pa
         </div>
       </div>
       :
-      <div className="home-card">
+      <div onClick={click} className="home-card">
         <div className="home-card-main">
           <div className='home-card-img'>
               <img src={baseUrl + logo} alt="logo" />
