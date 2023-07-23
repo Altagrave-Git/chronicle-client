@@ -14,6 +14,7 @@ import InboxView from './pages/inbox/inbox';
 import bgslide from "./images/bgslide.png";
 import selfie from "./images/self.jpg";
 import turcotte from "./images/turcotte.png";
+import BlogView from './pages/blog/blog';
 
 const apiToken = import.meta.env.GITHUB_TOKEN;
 const octokit = new Octokit({ auth: apiToken }, { userAgent: 'Altagrave-Git' });
@@ -25,6 +26,7 @@ const App = () => {
   const [token, setToken] = useState();
   const [portfolioData, setPortfolioData] = useState([]);
   const [newMail, setNewMail] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   // NOTE: Octokit + Vite requires isomorphic fetch
   useEffect(() => {
@@ -109,9 +111,9 @@ const App = () => {
       <Header token={token} admin={admin} newMail={newMail} />
       <UserPanel user={user} />
       <Routes>
-        <Route path="/" element={<HomeView token={token} gitData={gitData} setNewMail={setNewMail} admin={admin} portfolioData={portfolioData} />} />
-        <Route path="/portfolio" element={<PortfolioView token={token} admin={admin} portfolioData={portfolioData} />} />
-        <Route path="/about" element={<AboutView bgslide={bgslide} selfie={selfie} />} />
+        <Route path="/" element={<HomeView token={token} gitData={gitData} setNewMail={setNewMail} admin={admin} portfolioData={portfolioData} setActiveIndex={setActiveIndex} />} />
+        <Route path="/portfolio" element={<PortfolioView token={token} admin={admin} portfolioData={portfolioData} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />} />
+        <Route path="/blog" element={<BlogView admin={admin} token={token} />} />
         <Route path="/inbox" element={<InboxView token={token} admin={admin} setNewMail={setNewMail} />} />
         <Route path="/login" element={<LoginView token={token} setUser={setUser} setAdmin={setAdmin} setToken={setToken} />} />
       </Routes>
