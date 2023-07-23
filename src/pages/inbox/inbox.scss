@@ -14,7 +14,7 @@
       justify-content: space-between;
       padding: 0.5rem 0.5rem;
       margin: 0.3rem 0;
-      background-color: #fff1;
+      background-color: $container;
       border-radius: 10px;
       white-space: pre;
       text-overflow: ellipse;
@@ -22,7 +22,7 @@
 
       &:hover {
         cursor: pointer;
-        background-color: #fff2;
+        filter: brightness(0.8);
       }
     }
   }
@@ -41,24 +41,25 @@
   position: fixed;
   width: 95%;
   max-width: 100%;
-  background-color: #fff1;
+  background-color: $subcontainer;
   border-radius: 1rem;
-  border: 1px solid #fff2;
+  border: 2px solid $border;
   padding: 0;
   height: 90vh;
+  overflow: hidden;
   z-index: -1;
 
   .message-head {
-    border-bottom: 1px solid #fff2;
+    border-bottom: 2px solid $border;
     padding: 1rem 1.5rem 0.2rem;
-    background-color: #fff1;
+    background-color: $subcontainer;
 
     &-sender {
-      color: $yellow;
+      color: $secondary;
     }
 
     &-contact {
-      color: $yellow2;
+      color: $secondary;
     }
 
     div {
@@ -73,10 +74,10 @@
 }
 
 .mail-list-entry.new {
-  background-color: #fff4;
+  background-color: $border;
 }
 
 .mail-list-entry.active {
   transform: translateX(1rem);
-  border-left: 5px solid #fff4;
+  border-left: 5px solid $border;
 }

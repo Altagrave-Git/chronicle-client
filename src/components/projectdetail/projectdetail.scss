@@ -24,7 +24,7 @@
   }
 
   &-background {
-    background-color: #0f0f0ff0;
+    filter: brightness(0.25);
     background-repeat: no-repeat;
     background-position: center;
     background-blend-mode: overlay;
@@ -66,13 +66,13 @@
       height: 4rem;
       width: 2rem;
       cursor: pointer;
-      fill: #ff5555;
-      filter: drop-shadow(0 0 1px #ff5555);
+      fill: $primary;
+      filter: drop-shadow(0 0 1px $primary);
     }
 
     div {
       font-weight: 700;
-      color: #e1e1e1;
+      color: $text;
 
       @include mobile {
         display: none;
@@ -99,6 +99,7 @@
     justify-content: space-between;
     margin-bottom: 0.5rem;
     padding: 0.5rem 0;
+    filter: $drop-shadow;
 
     @include mobile {
       flex-direction: column;
@@ -113,8 +114,7 @@
       font-weight: 600;
       padding: 0.3rem 0.8rem 0.3rem 0.5rem;
       border-radius: 20px;
-      color: #fff;
-      border: 1px outset #0004;
+      color: $text;
 
       div {
         display: flex;
@@ -123,7 +123,7 @@
 
       &.website {
         margin-bottom: 1rem;
-        background-color: #c61926;
+        background-color: $primary;
 
         @include mobile {
           margin-right: 1rem;
@@ -143,7 +143,7 @@
         height: 1.5rem;
         width: 1.5rem;
         cursor: pointer;
-        fill: #fff;
+        fill: $text;
       }
 
       svg {
@@ -153,38 +153,29 @@
       &:hover {
         &.github,
         &.website {
-          color: #ccc;
-        }
-
-        &.github {
-          background-color: #5a6268;
-        }
-
-        &.website {
-          background-color: #a60916;
-        }
-
-        svg,
-        g {
-          fill: #ccc;
+          filter: brightness(0.8);
         }
       }
     }
+  }
+
+  &__body {
+    filter: $drop-shadow;
   }
 
   &__title {
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: $white;
+    color: $text;
     width: 100%;
   }
 
   &__category {
     font-size: 1.3rem;
-    font-weight: 600;
-    color: $yellow2;
-    text-shadow: 0 0 1px $red;
+    font-weight: 500;
+    color: $secondary;
+    text-shadow: 0 0 1px $primary;
     width: fit-content;
 
     @include mobile {
@@ -200,9 +191,9 @@
     justify-content: space-between;
 
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 1rem;
-    color: $white2;
+    color: $text;
     width: 100%;
   }
 
@@ -225,8 +216,8 @@
 
     p {
       font-size: 1.1rem;
-      font-weight: 500;
-      color: $white2;
+      font-weight: 400;
+      color: $text;
     }
 
     ul {
@@ -235,10 +226,10 @@
 
       li {
         font-size: 1.1rem;
-        font-weight: 500;
+        font-weight: 400;
         margin-bottom: 0.3rem;
         list-style-type: disc;
-        color: #f0f0f0dd;
+        color: $text;
       }
     }
   }
@@ -258,6 +249,7 @@
       font-size: 1rem;
       font-weight: 500;
       margin: 0 0.3rem;
+      filter: drop-shadow(2px 4px 6px #000);
 
       transform: scale(0.75);
 
@@ -268,7 +260,7 @@
           width: max-content;
           font-size: 1.2rem;
           font-weight: 700;
-          color: $yellow;
+          color: $secondary;
           background-color: #990033;
           padding: 0.3rem 0.5rem;
           transform: translateY(-125%);
@@ -307,7 +299,7 @@
     align-items: center;
     font-size: 1.3rem;
     font-weight: 600;
-    color: #e1e1e1;
+    color: $text;
     margin-bottom: 0.75rem;
     margin-top: 1.5rem;
     background-color: #ffffff18;
@@ -354,9 +346,9 @@
     border-radius: 10px;
     font-size: 1.1rem;
     background-color: #223;
-    color: #fff;
+    color: $text;
     font-weight: 600;
-    border-color: #e1e1e1;
+    border-color: $text;
   }
 }
 

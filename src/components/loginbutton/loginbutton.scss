@@ -19,7 +19,7 @@
     font-size: 1rem;
     font-weight: 600;
     font-family: 'Roboto', sans-serif;
-    color: #fffe;
+    color: $text;
     border-radius: 0.4rem;
     border: none;
     padding: 0.5rem 1rem;
@@ -29,7 +29,7 @@
     transform: scale(1.05);
 
     span {
-      color: #fff;
+      color: $text;
     }
   }
 }

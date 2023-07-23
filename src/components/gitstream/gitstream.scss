@@ -7,13 +7,13 @@
   .git-title {
     font-size: 2rem;
     font-weight: 600;
-    color: $white;
+    color: $text;
     text-align: center;
   }
 
   .git-subtitle {
     font-weight: 500;
-    color: $white2;
+    color: $text;
     padding-left: 1rem;
     padding-right: 1rem;
 
@@ -25,33 +25,16 @@
     }
   }
 
-  .git-user {
-    @include flex(center, center);
-    color: $yellow;
-    padding: 0.5rem 1rem;
-    text-shadow: 0px 0px 5px #ffe15088;
-
-    &:hover {
-      background-color: #ffffff15;
-    }
-
-    img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 1rem;
-    }
-  }
-
   .git-repo {
     @include flex(unset, center);
     flex-direction: column;
-    color: $white2;
+    color: $text;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    background-color: #ffffff11;
+    background-color: $container;
     padding: 0.3rem 1.5rem;
     border-radius: 10px;
+    filter: $drop-shadow;
 
     &:last-child {
       margin-bottom: 0;
@@ -59,13 +42,12 @@
 
     &:hover {
       opacity: 1;
-      background-color: #ffffff22;
+      background-color: $subcontainer;
     }
 
     > .name {
       font-weight: 600;
-      color: $yellow2;
-      text-shadow: 0px 0px 0px #ff000088;
+      color: $secondary;
     }
   }
 }

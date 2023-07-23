@@ -37,7 +37,6 @@ section.portfolio.fixed {
     flex-direction: column;
     justify-content: center;
     max-height: 100%;
-    overflow: hidden;
   }
 }
 
@@ -70,8 +69,8 @@ aside.portfolio {
   width: 2.5rem;
   transform: translate(-50%, 0);
   transition: transform 0.1s linear 0s;
-  background-color: #2228;
-  border: 1px solid #333;
+  background-color: $container;
+  border: 1px solid $border;
   border-radius: 10px 10px 0 0;
   border-bottom-width: 0;
   padding: 0 30px;
@@ -91,11 +90,11 @@ aside.portfolio {
     background-color: transparent;
     border-style: solid;
   
-    border-color: #ffe150aa transparent transparent transparent;
+    border-color: $secondary transparent transparent transparent;
     border-width: 16px 16px 0 16px;
 
     @include tablet {
-      border-color: transparent #ffe150aa transparent transparent;
+      border-color: transparent $secondary transparent transparent;
       border-width: 16px 16px 16px 0;
     }
   }
@@ -108,11 +107,11 @@ aside.portfolio {
     }
 
     .admin-button {
-      border-color: transparent transparent #ffe150aa transparent;
+      border-color: transparent transparent $secondary transparent;
       border-width: 0 16px 16px 16px;
 
       @include tablet {
-        border-color: transparent transparent transparent #ffe150aa;
+        border-color: transparent transparent transparent $secondary;
         border-width: 16px 0 16px 16px;       
       }
     }
@@ -129,8 +128,8 @@ aside.portfolio {
   justify-content: space-between;
   width: 100%;
   max-width: 1440px;
-  background-color: #2225;
-  border: 1px solid #333;
+  background-color: $container;
+  border: 1px solid $border;
   height: 4rem;
   padding: 0 15px;
   border-radius: 10px 10px 0 0;
@@ -171,8 +170,10 @@ aside.portfolio {
       margin: 0.5rem;
       padding: 0.3rem 0.5rem;
       border-radius: 10px;
-      background-color: #ffe150aa;
-      border-color: #ffe150aa;
+      background-color: $secondary;
+      border-color: $secondary;
+      color: $container;
+      font-weight: 600;
       height: fit-content;
       font-size: 1rem;
       width: 6rem;

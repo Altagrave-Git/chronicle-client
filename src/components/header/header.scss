@@ -3,7 +3,7 @@
 .header {
   position: fixed;
   width: 100%;
-  background-color: $black;
+  background-color: $background;
   box-shadow: $box-shadow;
   z-index: 1000;
 
@@ -15,28 +15,22 @@
     @include flex(center, space-between);
 
     #logo-home-link > svg {
-      height: 3rem;
-      fill: $white;
-      stroke: $white;
+      height: 2.75rem;
+      fill: $text;
+      stroke: $text;
 
       @include desktop {
         padding-left: 1.5rem;
 
-        &:hover {
-          fill: $red;
-          stroke: $red;
+        &:hover * {
+          fill: $primary;
+          stroke: $primary;
         }
-      }
-
-      img {
-        color: red;
-        fill: red;
-        stroke: red;
       }
     }
 
     a {
-      color: $white;
+      color: $text;
       font-size: 1.1rem;
     }
 
@@ -52,7 +46,7 @@
       @include flex(center, space-around);
       font-weight: 600;
       height: 4rem;
-      background-color: $black;
+      background-color: $background;
 
       @include tablet {
         margin-right: 0;
@@ -76,11 +70,11 @@
           width: 0;
           transition: width .5s ease;
           height: 2px;
-          background-color: $red;
+          background-color: $primary;
         }
 
         &.active > a {
-          color: $red;
+          color: $primary;
         }
 
         @include desktop {
@@ -96,7 +90,7 @@
         left: 0;
         right: 0;
         top: unset;
-        background-color: $black;
+        background-color: $background;
         box-shadow: $box-shadow;
       }
     }
@@ -123,13 +117,14 @@
     }
 
     &-bullet {
-      background-color: #ce3f2c;
+      background-color: $primary;
       height: 8px;
       width: 8px;
       border-radius: 50%;
 
       &.new {
-        background-color: #88e150;
+        background-color: $tertiary;
+        filter: contrast(2);
       }
     }
 
@@ -137,11 +132,7 @@
       cursor: pointer;
 
       .header-menu-btn-bullet {
-        background-color: #a93150;
-
-        &.new {
-          background-color: #55b140;
-        }
+        filter: brightness(0.8) contrast(2);
       }
     }
   }
@@ -166,10 +157,10 @@
   &-menu {
     position: fixed;
     top: 4rem;
-    background-color: #151515;
+    background-color: $background;
     width: fit-content;
     padding: 0.5rem 1rem;
-    border: 2px solid #232323;
+    border: 2px solid $subcontainer;
     border-top-width: 0;
     border-radius: 0 0 15px 15px;
     transition: transform 0.15s linear;
@@ -188,11 +179,11 @@
       padding: 0.8rem 0;
       margin: 0 0 0.5rem;
       border-radius: 10px;
-      color: $white;
+      color: $text;
 
       &:hover {
         cursor: pointer;
-        background-color: #fff2;
+        background-color: $highlight;
       }
     }
   }

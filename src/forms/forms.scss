@@ -7,7 +7,7 @@
   bottom: 4rem;
   left: 0;
   right: 0;
-  background-color: #0f0f0fdd;
+  background-color: $overlay;
 
   @include desktop {
     bottom: 0;
@@ -34,9 +34,9 @@
       font-size: 2rem;
       font-weight: 900;
       border-radius: 4rem;
-      background-color: #0000;
+      background-color: transparent;
       border: none;
-      color: red;
+      color: $primary;
 
       &:hover {
         cursor: pointer;
@@ -50,7 +50,7 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  background-color: #000b;
+  background-color: $overlay;
   z-index: 2000;
   top: 0;
   bottom: 0;
@@ -59,7 +59,7 @@
 
   .verify-delete {
     padding: 40px;
-    background-color: #fff2;
+    background-color: $highlight;
     border-radius: 20px;
 
     .verify-delete-btns {
@@ -74,11 +74,11 @@
         font-size: 16px;
 
         &.verify-delete-yes {
-          background-color: #88e150;
+          background-color: $tertiary;
         }
 
         &.verify-delete-no {
-          background-color: #cc0000;
+          background-color: $primary;
         }
       }
     }
@@ -115,15 +115,15 @@ div.tech-options {
 
     &.tech-used-container {
       button {
-        background-color: crimson;
-        border-color: crimson;
+        background-color: $primary;
+        border-color: $primary;
       }
     }
 
     &.tech-unused-container {
       button {
-        background-color:yellowgreen;
-        border-color: yellowgreen;
+        background-color:$tertiary;
+        border-color: $tertiary;
       }
     }
   }
@@ -148,7 +148,7 @@ div.tech-options {
     border-radius: 1rem 0 0 1rem;
     border-width: 2px;
     width: 200px;
-    border-color: #000;
+    border-color: transparent;
   }
 
   button {
@@ -156,8 +156,8 @@ div.tech-options {
     width: 2.5rem;
     border-radius: 0 1rem 1rem 0;
     border-width: 2px;
-    background-color: yellowgreen;
-    border-color: #000;
+    background-color: $tertiary;
+    border-color: transparent;
     margin-left: 3px;
   }
 }
@@ -202,7 +202,7 @@ form {
     input {
       height: 1.2rem;
       width: 1.2rem;
-      accent-color: #c52a4a;
+      accent-color: $primary;
     }
   }
 
@@ -214,8 +214,8 @@ form {
       border-style: solid;
       height: 30px;
       width: 30px;
-      background-color: #00000000;
-      color: #00000000;
+      background-color: transparent;
+      color: transparent;
       padding: 0;
       margin: 0 5px;
 
@@ -226,12 +226,12 @@ form {
     }
 
     input#form-right {
-      border-color: transparent transparent transparent gold;
+      border-color: transparent transparent transparent $secondary;
       border-width: 1.1rem 0 1.1rem 1.1rem;
     }
 
     input#form-left {
-      border-color: transparent gold transparent transparent;
+      border-color: transparent $secondary transparent transparent;
       border-width: 1.1rem 1.1rem 1.1rem 0;
     }
 
@@ -263,8 +263,8 @@ form {
     border-radius: 1rem;
 
     &#delete {
-      background-color: #cc0000;
-      border-color: #cc0000;
+      background-color: $primary;
+      border-color: $primary;
       margin-right: 2rem;
     }
   }
@@ -289,11 +289,10 @@ form {
     }
 
     h2 {
-      color: $yellow2;
-      text-shadow: 0 0 0 $red2;
+      color: $secondary;
       font-weight: 600;
       margin-bottom: 0.5rem;
-      background-color: #ffffff11;
+      background-color: $subcontainer;
       border-radius: 10px;
       width: 100%;
       text-align: center;
@@ -345,16 +344,23 @@ form {
     }
 
     .form-submit {
-      border: 2px outset #fff5;
-      background-color: #006400;
+      border: none;
+      background: $primary-gradient;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      height: 2.25rem;
+      width: 6.5rem;
+      text-align: center;
 
       &:hover {
         cursor: pointer;
+        filter: brightness(0.8);
       }
 
       &:active {
         border-style: inset;
-        background-color: #005400;
+        filter: brightness(0.8);
       }
     }
   }
@@ -383,7 +389,7 @@ form {
   right: 0;
   left: 0;
   z-index: 2000;
-  background-color: #000b;
+  background-color: $overlay;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -397,22 +403,23 @@ form {
     flex-direction: column;
     width: fit-content;
     align-items: center;
-    background-color: #444a;
+    background-color: $container;
     padding: 2rem 3rem;
     border-radius: 10px;
 
     h3 {
-      color: $yellow2;
+      color: $secondary;
       margin-bottom: 1rem;
     }
 
     input {
-      background-color: #c52a4a;
+      background-color: $primary;
       width: fit-content;
       padding: 0.5rem 2rem;
       border-radius: 10px;
-      border-color: #fffa;
+      border-color: $primary;
       font-weight: 700;
+      color: $text;
     }
   }
 }
