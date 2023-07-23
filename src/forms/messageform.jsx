@@ -19,6 +19,11 @@ const MessageForm = ({token, setNewMail, admin}) => {
     }
   }, [success])
 
+  useEffect(() => {
+    const overlay = document.querySelector(".message-success-overlay")
+    document.querySelector("main").before(overlay);
+  }, [])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = import.meta.env.VITE_CHRONICLE_URL + '/messages/send/';
