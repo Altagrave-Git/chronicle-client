@@ -5,9 +5,8 @@ import './portfolio.scss';
 import FormButton from '../../components/formbutton/formbutton';
 import FormModal from '../../forms/formmodal';
 
-const PortfolioView = ({ admin, token, portfolioData }) => {
+const PortfolioView = ({ admin, token, portfolioData, activeIndex, setActiveIndex }) => {
   const [projectDetail, setProjectDetail] = useState({});
-  const [activeIndex, setActiveIndex] = useState(0);
   const [formModal, setFormModal] = useState();
 
   // Swipe event for project carousel
@@ -153,11 +152,11 @@ const PortfolioView = ({ admin, token, portfolioData }) => {
             <FormButton setFormModal={setFormModal} formType={"project"} portfolioData={portfolioData} />
           </div>
           <div className="admin-button-list">
+            <FormButton setFormModal={setFormModal} formType={"section"} portfolioData={portfolioData} />
+            <FormButton setFormModal={setFormModal} formType={"tech"} portfolioData={portfolioData} />
+            <FormButton setFormModal={setFormModal} formType={"snippet"} portfolioData={portfolioData} />
             <FormButton setFormModal={setFormModal} formType={"image"} portfolioData={portfolioData} />
             <FormButton setFormModal={setFormModal} formType={"video"} portfolioData={portfolioData} />
-            <FormButton setFormModal={setFormModal} formType={"tech"} portfolioData={portfolioData} />
-            <FormButton setFormModal={setFormModal} formType={"section"} portfolioData={portfolioData} />
-            <FormButton setFormModal={setFormModal} formType={"snippet"} portfolioData={portfolioData} />
           </div>
         </div>
       </>
