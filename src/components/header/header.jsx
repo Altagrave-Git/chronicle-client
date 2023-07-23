@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ReactComponent as Logo } from '../../icons/name.svg';
+import { ReactComponent as Logo } from '../../icons/chron-logo.svg';
 import './header.scss';
 import AuthAPI from "../../api/api";
 import LoginButton from "../loginbutton/loginbutton";
@@ -15,8 +15,8 @@ const headerNav = [
     path: "/portfolio"
   },
   {
-    label: "About",
-    path: "/about"
+    label: "Blog",
+    path: "/blog"
   },
 ];
 
