@@ -15,12 +15,13 @@ const LoginView = ({ token, setUser, setAdmin, setToken }) => {
         .then((data) => {
           setUser({data});
           setAdmin(data.is_superuser);
+        })
+        .then(() => {
           navigate("/");
         })
         .catch((err) => {
           console.log(err);
-        }
-      );
+        });
     } else {
       if (token) {
 
