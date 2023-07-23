@@ -1,4 +1,4 @@
-@use '../../App.scss' as *;
+@use "../../App.scss" as *;
 
 .home {
   .bio {
@@ -6,6 +6,10 @@
 
     @include tablet {
       height: calc(100lvh - 8rem);
+
+      @media (min-height: 992px) or (max-height: 568px) {
+        height: fit-content;
+      }
     }
 
     @include mobile {
@@ -13,16 +17,82 @@
         padding: 0 3rem;
       }
     }
-    
+
     .bio-container {
       display: flex;
       flex-direction: column;
       height: calc(100svh - 4rem);
       padding: 2rem 0 2rem;
       justify-content: space-between;
+      filter: $drop-shadow;
 
       @include tablet {
         height: calc(100svh - 8rem);
+
+        @media (min-height: 992px) or (max-height: 568px) {
+          height: fit-content;
+        }
+      }
+    }
+
+    .bio-top {
+      line-height: 1;
+      color: $text;
+      container-type: inline-size;
+      filter: $drop-shadow;
+
+      .bio-img {
+        display: flex;
+        justify-content: center;
+        margin: 0rem 0 2rem;
+      }
+
+      img {
+        height: 8rem;
+        width: 8rem;
+        border-radius: 50%;
+        justify-self: center;
+        filter: grayscale(1);
+      }
+
+      .bio-title {
+        color: $text;
+        font-size: 9.7cqw;
+        margin-bottom: 0.5rem;
+
+        span {
+          color: $primary;
+        }
+      }
+
+      .bio-title-2 {
+        font-size: 12cqw;
+        color: $primary;
+        font-family: $font-family-2;
+        font-weight: 700;
+
+        span {
+          color: $text;
+        }
+      }
+
+      h2 {
+        font-weight: 600;
+        text-align: center;
+      }
+
+      > p {
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: $text2;
+        margin: 2rem 0;
+
+        @include tablet {
+          @media (min-height: 800px) {
+            font-size: 1.2rem;
+          }
+        }
       }
     }
 
@@ -30,7 +100,7 @@
       display: flex;
       font-family: monospace;
       font-size: 1rem;
-      color: $white2;
+      color: $text;
 
       @include tablet {
         @media (min-height: 800px) {
@@ -40,7 +110,7 @@
 
       .bio-spacer {
         width: 0.5rem;
-        background-color: $red2;
+        background-color: $primary;
         border-radius: 0.5rem;
         margin-right: 2rem;
       }
@@ -53,15 +123,16 @@
     .bio-bottom {
       display: flex;
       flex-direction: column;
+      margin-top: 1rem;
 
       .bio-contact {
         display: flex;
         flex-direction: column;
         font-size: 1.1rem;
         font-weight: 500;
-        
+
         a {
-          color: $yellow2;
+          color: $secondary;
           margin: 0.25rem 0;
           width: fit-content;
         }
@@ -69,7 +140,6 @@
 
       .bio-links {
         display: flex;
-        margin: 1rem 0 0;
         justify-content: space-between;
 
         > div {
@@ -77,17 +147,17 @@
         }
 
         input {
-          background-color: #de2f4ccc;
+          background: $primary-gradient;
           border-radius: 50px;
           border: none;
-          color: #fff;
+          color: $text;
           font-weight: 600;
           font-size: 0.9rem;
           height: 2.25rem;
           padding: 0 1.5rem;
 
           &:hover {
-            background-color: #de4f3caa;
+            filter: brightness(0.8);
             cursor: pointer;
           }
         }
@@ -98,11 +168,11 @@
           svg {
             height: 2.25rem;
             width: 2.25rem;
-  
+
             .fill-path {
               fill: #e1e1e1;
             }
-  
+
             &:hover {
               .fill-path {
                 fill: #c0c0c0;
@@ -114,7 +184,7 @@
     }
 
     .title {
-      color: $white;
+      color: $text;
       font-weight: 500;
       font-size: 2.4rem;
 
@@ -123,12 +193,7 @@
       }
     }
 
-    .link-red {
-      color: $yellow;
-    }
-
     .social-link {
-      color: $yellow2;
       border-radius: 50%;
       font-size: 1.2rem;
       font-weight: 600;
@@ -156,8 +221,8 @@ aside.home {
 }
 
 p {
-  color: #e1e1e1;
-  font-weight: 500;
+  color: $text;
+  font-weight: 400;
   font-size: 1.1rem;
 
   &:not(:last-child) {
@@ -166,16 +231,17 @@ p {
 }
 
 ::placeholder {
-  color: #aaa;
+  color: $placeholder;
 }
 
 .home-footer {
   width: calc(100% - 3rem);
-  background-color: #ffffff11;
+  background-color: $container;
   border-radius: 20px 20px 0 0;
   max-width: calc(1440px - 3rem);
   margin: auto;
   padding: 0 1.5rem;
+  filter: $drop-shadow;
 
   @include tablet {
     max-width: calc(600px - 2rem);
@@ -185,22 +251,22 @@ p {
 
   input,
   textarea {
-    background-color: #444;
+    background-color: $input;
     border: none;
-    color: #e1e1e1;
+    color: $text;
     font-weight: 500;
 
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,
     &:-webkit-autofill:active {
-      -webkit-box-shadow: 0 0 0 30px #444 inset !important;
-      -webkit-text-fill-color: #e1e1e1 !important;
+      -webkit-box-shadow: 0 0 0 30px $input inset !important;
+      -webkit-text-fill-color: $text !important;
     }
   }
 
   > div {
-    width:100%;
+    width: 100%;
     max-width: 800px;
     margin: 0 auto;
     padding: 0 1.5rem;
@@ -221,18 +287,6 @@ p {
   }
 
   @include tablet {
-    grid-template-columns:auto;
-  }
-}
-
-.bio-top {
-  > p {
-    margin-top: 0.5rem;
-    
-    @include tablet {
-      @media (min-height: 800px) {
-        font-size: 1.2rem;
-      }
-    }
+    grid-template-columns: auto;
   }
 }
