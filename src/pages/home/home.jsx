@@ -10,9 +10,13 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import resume from "../../images/DamonTurcotteCV.pdf";
 import ProjectCard from "../../components/projectcard/projectcard";
+import { useNavigate } from "react-router-dom";
+import selfie from "../../images/selfie.jpg"
 
-const HomeView = ({token, gitData, setNewMail, admin, portfolioData}) => {
+const HomeView = ({token, gitData, setNewMail, admin, portfolioData, setActiveIndex}) => {
   const [projects, setProjects] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -50,7 +54,10 @@ const HomeView = ({token, gitData, setNewMail, admin, portfolioData}) => {
     setProjects(projectList);
   }, [portfolioData])
 
-  console.log(projects);
+  const click = (key) => {
+    setActiveIndex(key);
+    navigate("/portfolio");
+  }
 
   return (
     <>
@@ -59,12 +66,17 @@ const HomeView = ({token, gitData, setNewMail, admin, portfolioData}) => {
       <section className="bio fixed">
         <div className="bio-container">
           <div className="bio-top">
-            <h1 className="title">Damon Turcotte</h1>
+            <div className="bio-img">
+              <img src={selfie} alt="Damon Turcotte" />
+            </div>
+
+            <h2 className="bio-title">I'm Damon Turcotte<span>,</span></h2>
+            <h2 className="bio-title-2">Web Developer<span>.</span></h2>
             <p>
-              Full stack <span className="job">web developer</span> deploying applications and software out of Lethbridge, Alberta.
+              I'm a full stack web developer in Lethbridge, Alberta. I design and build client and server side web applications, and configure the cloud servers they live on.
             </p>
             <p>
-              I love building custom software and systems from the ground up, which is why everything on-site - <Link to="/portfolio" className="link-red">portfolio</Link> projects included - was built with custom code and is part of an integrated network of applications I'm working to expand.
+              Check out the rest of the site to see what I do!
             </p>
           </div>
 
@@ -81,8 +93,8 @@ const HomeView = ({token, gitData, setNewMail, admin, portfolioData}) => {
     
           <div className="bio-bottom">
             <div className="bio-contact">
-              <a href="tel:18254374025">1-825-437-4025</a>
-              <a href="mailto:damon.j.turcotte@gmail.com">damon.j.turcotte@gmail.com</a>
+              {/* <a href="tel:18254374025">1-825-437-4025</a>
+              <a href="mailto:damon.j.turcotte@gmail.com">damon.j.turcotte@gmail.com</a> */}
             </div>
             <div className="bio-links">
               <div>
@@ -114,7 +126,7 @@ const HomeView = ({token, gitData, setNewMail, admin, portfolioData}) => {
             </h3>
             {projects.map((project, index) => {
               return (
-                <ProjectCard key={index} project={project} page={"home"} />
+                <ProjectCard key={index} project={project} page={"home"} click={() => click(index)} />
               )
             })}
           </div>
