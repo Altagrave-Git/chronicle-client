@@ -6,7 +6,7 @@ import TechIcon from '../techicon/techicon';
 import { useState } from 'react';
 import ImageReel from '../imagereel/imagereel';
 
-const ProjectDetail = ({ project, handleActive, admin, setFormModal }) => {
+const ProjectDetail = ({ project, handleActive }) => {
   const [viewImages, setViewImages] = useState(0);
 
   const baseUrl = import.meta.env.VITE_CHRONICLE_URL;
@@ -26,7 +26,7 @@ const ProjectDetail = ({ project, handleActive, admin, setFormModal }) => {
       </div>
       <div className="project-detail">
         <div className="btn-back" onClick={() => handleActive()}>
-          <svg viewBox="6 5 10 15" fill="none"><g strokeWidth="0"></g><g strokeLinecap="round" strokeLinejoin="round"></g><g> <path d="M8 12L16 12" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M11 9L8.08704 11.913V11.913C8.03897 11.961 8.03897 12.039 8.08704 12.087V12.087L11 15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
+          <svg viewBox="6 4.5 10 15" fill="none"><g strokeWidth="0"></g><g strokeLinecap="round" strokeLinejoin="round"></g><g> <path d="M8 12L16 12" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M11 9L8.08704 11.913V11.913C8.03897 11.961 8.03897 12.039 8.08704 12.087V12.087L11 15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
           <div>Back</div>
         </div>
         <div className="project-detail__header">
@@ -129,9 +129,8 @@ const ProjectDetail = ({ project, handleActive, admin, setFormModal }) => {
                     {
                       project.videos.map((item, index) => {
                         return (
-                          <div className="video-card" key={index}>
-                            <video controls>
-                              <source src={baseUrl + item.video} type="video/mp4" />
+                          <div key={index} className="video-card">
+                            <video src={baseUrl + item.video} type="video/mp4" controls>
                               Your browser does not support the video tag.
                             </video>
 
