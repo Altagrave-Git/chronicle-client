@@ -27,7 +27,7 @@ const Header = ({token, admin, newMail}) => {
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
-    const path = location.pathname;
+    const path = '/' + location.pathname.split('/')[1];
     const index = headerNav.findIndex(nav => nav.path === path);
     setActive(index);
 
