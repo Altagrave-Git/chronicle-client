@@ -1,6 +1,6 @@
 import './forms.scss';
 import { useState, useEffect } from 'react';
-import { ContentAPI } from '../api/api';
+import { ContentAPI } from '../../api/api';
 
 const ProjectForm = ({token, portfolioData, activeIndex}) => {
   const [name, setName] = useState('');

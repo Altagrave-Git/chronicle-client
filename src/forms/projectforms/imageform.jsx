@@ -1,6 +1,6 @@
 import './forms.scss';
 import { useState } from 'react';
-import { ContentAPI } from '../api/api';
+import { ContentAPI } from '../../api/api';
 
 const ImageForm = ({token, portfolioData, activeIndex}) => {
   const [project, setProject] = useState(portfolioData[activeIndex].id);

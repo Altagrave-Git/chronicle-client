@@ -1,6 +1,6 @@
 import './forms.scss';
 import { useState, useEffect } from 'react';
-import { MailAPI } from '../api/api';
+import { MailAPI } from '../../api/api';
 
 
 const MessageForm = ({token, setNewMail, admin}) => {

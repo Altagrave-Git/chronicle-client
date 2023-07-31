@@ -1,6 +1,6 @@
 import './forms.scss';
 import { useState } from 'react';
-import { ContentAPI } from '../api/api';
+import { ContentAPI } from '../../api/api';
 
 const VideoForm = ({token, portfolioData, activeIndex}) => {
   const [title, setTitle] = useState('');

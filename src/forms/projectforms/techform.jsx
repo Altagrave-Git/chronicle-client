@@ -1,6 +1,6 @@
 import './forms.scss';
 import { useEffect, useState } from 'react';
-import { ContentAPI } from '../api/api';
+import { ContentAPI } from '../../api/api';
 
 const TechForm = ({ token, portfolioData, activeIndex }) => {
   const [projectTech, setProjectTech] = useState({used: [], unused: []});
