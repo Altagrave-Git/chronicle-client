@@ -1,0 +1,15 @@
+@use '../../App.scss' as *;
+
+.blogform {
+  width: 100%;
+  height: auto;
+  align-items: center;
+  background-color: $subcontainer;
+  padding: 1rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+
+  #blog-post-image {
+    background-color: grey;
+  }
+}
