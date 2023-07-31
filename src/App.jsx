@@ -6,8 +6,8 @@ import PortfolioView from './pages/portfolio/portfolio';
 import LoginView from './pages/login/login';
 import { useState, useEffect } from 'react';
 import { Octokit } from "@octokit/core";
-import AuthAPI from './api/api';
-import { MailAPI } from './api/api';
+import AuthAPI, { BlogAPI } from './api/api';
+import { MailAPI, ContentAPI } from './api/api';
 import UserPanel from './components/userpanel/userpanel';
 import AboutView from './pages/about/about';
 import InboxView from './pages/inbox/inbox';
@@ -15,6 +15,7 @@ import bgslide from "./images/bgslide.png";
 import selfie from "./images/self.jpg";
 import turcotte from "./images/turcotte.png";
 import BlogView from './pages/blog/blog';
+
 
 const apiToken = import.meta.env.GITHUB_TOKEN;
 const octokit = new Octokit({ auth: apiToken }, { userAgent: 'Altagrave-Git' });
@@ -27,6 +28,7 @@ const App = () => {
   const [portfolioData, setPortfolioData] = useState([]);
   const [newMail, setNewMail] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [categories, setCategories] = useState([]);
 
   // NOTE: Octokit + Vite requires isomorphic fetch
   useEffect(() => {
@@ -64,9 +66,7 @@ const App = () => {
 
   // Retrieve and set project data from Chronicle API
   useEffect(() => {
-    const url = import.meta.env.VITE_CHRONICLE_URL;
-    fetch(url + '/projects/')
-      .then(response => response.json())
+    ContentAPI.projects()
       .then(data => {
         if (data.length >= 5) {
           setPortfolioData(data);
@@ -85,12 +85,6 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const head = document.querySelector("head");
-    head.innerHTML += `<link rel="prefetch" href="${bgslide}" />`;
-    head.innerHTML += `<link rel="prefetch" href="${selfie}" />`;
-  }, [])
-
-  useEffect(() => {
     if (portfolioData.length > 0) {
       const url = import.meta.env.VITE_CHRONICLE_URL;
       const head = document.querySelector("head");
@@ -106,6 +100,20 @@ const App = () => {
     }
   }, [portfolioData])
 
+  useEffect(() => {
+    BlogAPI.getCategories()
+      .then(data => {
+        setCategories(data);
+      })
+      .catch(error => console.log(error));
+  }, [])
+
+  useEffect(() => {
+    const head = document.querySelector("head");
+    head.innerHTML += `<link rel="prefetch" href="${bgslide}" />`;
+    head.innerHTML += `<link rel="prefetch" href="${selfie}" />`;
+  }, [])
+
   return (
     <BrowserRouter>
       <Header token={token} admin={admin} newMail={newMail} />
@@ -113,7 +121,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomeView token={token} gitData={gitData} setNewMail={setNewMail} admin={admin} portfolioData={portfolioData} setActiveIndex={setActiveIndex} />} />
         <Route path="/portfolio" element={<PortfolioView token={token} admin={admin} portfolioData={portfolioData} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />} />
-        <Route path="/blog" element={<BlogView admin={admin} token={token} />} />
+        <Route path="/blog" element={<BlogView admin={admin} token={token} categories={categories} setCategories={setCategories} />} />
+        <Route path="/blog/:category" element={<BlogView admin={admin} token={token} categories={categories} setCategories={setCategories} />} />
+        <Route path="/blog/:category/:slug" element={<BlogView admin={admin} token={token} categories={categories} setCategories={setCategories} />}/>
         <Route path="/inbox" element={<InboxView token={token} admin={admin} setNewMail={setNewMail} />} />
         <Route path="/login" element={<LoginView token={token} setUser={setUser} setAdmin={setAdmin} setToken={setToken} />} />
       </Routes>
