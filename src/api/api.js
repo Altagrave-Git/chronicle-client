@@ -36,13 +36,7 @@ class BaseAuthAPI {
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        return data;
-      })
-      .catch(error => {
-        console.log(error);
-      }
-    );
+      .catch(error => console.log(error));
     return response;
   }
 
@@ -59,13 +53,7 @@ class BaseAuthAPI {
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        return data;
-      })
-      .catch(error => {
-        console.log(error);
-      }
-    );
+      .catch(error => console.log(error));
     return response;
   }
 
@@ -80,13 +68,7 @@ class BaseAuthAPI {
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        return data;
-      })
-      .catch(error => {
-        console.log(error);
-      }
-    );
+      .catch(error => console.log(error));
     return response;
   }
 
@@ -102,13 +84,7 @@ class BaseAuthAPI {
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        return data;
-      })
-      .catch(error => {
-        console.log(error);
-      }
-    );
+      .catch(error => console.log(error));
     return response;
   }
 }
@@ -116,6 +92,21 @@ class BaseAuthAPI {
 class BaseContentAPI {
   constructor() {
     this.baseUrl = import.meta.env.VITE_CHRONICLE_URL + '/projects/';
+  }
+
+  projects = async () => {
+    const response = await fetch(this.baseUrl, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        return response.json()
+      })
+      .catch(error => console.log(error));
+    return response;
   }
 
   project = async (token, form) => {
@@ -130,13 +121,7 @@ class BaseContentAPI {
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        return data;
-      })
-      .catch(error => {
-        console.log(error);
-      }
-    );
+      .catch(error => console.log(error));
     return response;
   }
 
@@ -152,13 +137,7 @@ class BaseContentAPI {
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        return data;
-      })
-      .catch(error => {
-        console.log(error);
-      }
-    );
+      .catch(error => console.log(error));
     return response;
   }
 
@@ -174,13 +153,7 @@ class BaseContentAPI {
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        return data;
-      })
-      .catch(error => {
-        console.log(error);
-      }
-    );
+      .catch(error => console.log(error));
     return response;
   }
 
@@ -196,9 +169,6 @@ class BaseContentAPI {
     })
       .then(response => {
         return response.json();
-      })
-      .then(data => {
-        return data;
       })
       .catch(error => console.log(error));
     return response;
@@ -217,9 +187,6 @@ class BaseContentAPI {
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        return data;
-      })
       .catch(error => console.log(error));
     return response;
   }
@@ -235,9 +202,6 @@ class BaseContentAPI {
     })
       .then(response => {
         return response.json();
-      })
-      .then(data => {
-        return data;
       })
       .catch(error => console.log(error));
     return response;
@@ -255,13 +219,7 @@ class BaseContentAPI {
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        return data;
-      })
-      .catch(error => {
-        console.log(error);
-      }
-    );
+      .catch(error => console.log(error));
     return response;
   }
 
@@ -277,13 +235,7 @@ class BaseContentAPI {
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        return data;
-      })
-      .catch(error => {
-        console.log(error);
-      }
-    );
+      .catch(error => console.log(error));
     return response;
   }
 
@@ -299,9 +251,6 @@ class BaseContentAPI {
     })
       .then(response => {
         return response.json();
-      })
-      .then(data => {
-        return data;
       })
       .catch(error => console.log(error));
     return response;
@@ -320,9 +269,6 @@ class BaseContentAPI {
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        return data;
-      })
       .catch(error => console.log(error));
     return response;
   }
@@ -340,9 +286,6 @@ class BaseContentAPI {
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        return data;
-      })
       .catch(error => console.log(error));
     return response;
   }
@@ -358,9 +301,6 @@ class BaseContentAPI {
     })
       .then(response => {
         return response.json();
-      })
-      .then(data => {
-        return data;
       })
       .catch(error => console.log(error));
     return response;
@@ -381,8 +321,9 @@ class BaseMailAPI {
         "Authorization": `Bearer ${token}`
       }
     })
-      .then(res => {return res.json()})
-      .then(data => { return data })
+      .then(res => {
+        return res.json()
+      })
       .catch(err => console.log(err));
     return response;
   }
@@ -396,8 +337,9 @@ class BaseMailAPI {
       },
       body: JSON.stringify(form)
     })
-      .then(res => {return res.json()})
-      .then(data => {return data})
+      .then(res => {
+        return res.json()
+      })
       .catch(err => console.log(err));
     return response;
   }
@@ -411,8 +353,9 @@ class BaseMailAPI {
         "Authorization": `Bearer ${token}`
       }
     })
-      .then(res => {return res.json()})
-      .then(data => {return data})
+      .then(res => {
+        return res.json()
+      })
       .catch(err => console.log(err));
     return response;
   }
@@ -426,17 +369,171 @@ class BaseMailAPI {
         "Authorization": `Bearer ${token}`
       }
     })
-      .then(res => {return res.json()})
-      .then(data => {return data})
+      .then(res => {
+        return res.json()
+      })
       .catch(err => console.log(err));
     return response;
   }
 }
+
+class BaseBlogAPI {
+  constructor() {
+    this.baseUrl = import.meta.env.VITE_CHRONICLE_URL + '/blog/';
+  }
+
+  getCategories = async () => {
+    const response = await fetch(this.baseUrl, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        return response.json()
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  postCategory = async(token, form) => {
+    const response = await fetch(this.baseUrl, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(form)
+    })
+      .then(response => {
+        return response.json()
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  deleteCategory = async(token, form) => {
+    const response = await fetch(this.baseUrl, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(form)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  getPosts = async (category='all') => {
+    const response = await fetch(this.baseUrl + `${category}/`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        return response.json()
+      });
+    return response;
+  }
+
+  postPost = async (token, form, category) => {
+    const response = await fetch(this.baseUrl + `${category}/`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: form
+    })
+      .then(response => {
+        return response.json();
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  deletePost = async (token, category, slug) => {
+    const response = await fetch(this.baseUrl + `${category}/`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(form)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  getContent = async (category, slug) => {
+    const response = await fetch(this.baseUrl + `${category}/${slug}/`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        return response.json()
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  postContent = async (token, form, category, slug) => {
+    const response = await fetch(this.baseUrl + `${category}/${slug}/`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: form
+    })
+      .then(response => {
+        return response.json();
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  deleteContent = async (token, category, slug) => {
+    const response = await fetch(this.baseUrl + `${category}/`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(form)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+}
+
 
 const AuthAPI = new BaseAuthAPI();
 
 export const ContentAPI = new BaseContentAPI();
 
 export const MailAPI = new BaseMailAPI();
+
+export const BlogAPI = new BaseBlogAPI();
 
 export default AuthAPI;
