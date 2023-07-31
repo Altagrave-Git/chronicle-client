@@ -2,7 +2,7 @@ import React from "react";
 import './home.scss';
 import GitStream from "../../components/gitstream/gitstream";
 import Skills from "../../components/skills/skills";
-import MessageForm from "../../forms/messageform";
+import MessageForm from "../../forms/projectforms/messageform";
 import { ReactComponent as Linkedin } from '../../icons/linkedin.svg';
 import { ReactComponent as Twitter } from '../../icons/twitter.svg';
 import { ReactComponent as Github } from '../../icons/github.svg';

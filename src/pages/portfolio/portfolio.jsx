@@ -3,7 +3,7 @@ import ProjectCard from "../../components/projectcard/projectcard";
 import ProjectDetail from "../../components/projectdetail/projectdetail";
 import './portfolio.scss';
 import FormButton from '../../components/formbutton/formbutton';
-import FormModal from '../../forms/formmodal';
+import FormModal from '../../forms/projectforms/formmodal';
 
 const PortfolioView = ({ admin, token, portfolioData, activeIndex, setActiveIndex }) => {
   const [projectDetail, setProjectDetail] = useState({});
