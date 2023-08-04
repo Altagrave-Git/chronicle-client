@@ -11,14 +11,33 @@
   margin-bottom: 2rem;
   padding: 0.3rem;
 
+  &-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &-col {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
   input,
   select,
-  option,
-  textarea {
+  option {
     padding: 0.3rem 0.5rem;
     font-size: 1rem;
     margin: 0.2rem;
-    border-radius: 50px;
+    border-radius: 30px;
+  }
+
+  textarea {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin: 0.2rem;
+    border-radius: 30px;
+    resize: none;
   }
 
   .blog-input-main {
@@ -32,8 +51,16 @@
     background-color: grey;
   }
 
-  .blog-save-btn,
-  .blog-cancel-btn {
+  .blog-input-image {
+    max-width: 100%;
+    padding: 0;
+    margin: 0.2rem 0.2rem 1rem;
+    max-height: 500px;
+  }
+
+  .blog-btn-save,
+  .blog-btn-cancel,
+  .blog-btn-delete {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,25 +69,36 @@
     border: none;
     border-radius: 50%;
     margin: 0.5rem;
+    padding: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
-  .blog-save-btn {
+  .blog-btn-save {
     background-color: $tertiary;
     fill: $background;
 
     &:hover {
       fill: $secondary;
-      cursor: pointer;
     }
   }
 
-  .blog-cancel-btn {
+  .blog-btn-cancel {
     background-color: $primary;
     fill: $background;
 
     &:hover {
       fill: $secondary;
-      cursor: pointer;
+    }
+  }
+
+  .blog-btn-delete {
+    background-color: $secondary;
+
+    &:hover {
+      fill: $primary;
     }
   }
 
