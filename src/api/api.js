@@ -397,7 +397,7 @@ class BaseBlogAPI {
     return response;
   }
 
-  postCategory = async(token, form) => {
+  createCategory = async(token, form) => {
     const response = await fetch(this.baseUrl, {
       method: 'POST',
       credentials: 'include',
@@ -414,9 +414,9 @@ class BaseBlogAPI {
     return response;
   }
 
-  deleteCategory = async(token, form) => {
-    const response = await fetch(this.baseUrl, {
-      method: 'DELETE',
+  updateCategory = async(token, form, category) => {
+    const response = await fetch(this.baseUrl + `${category}/`, {
+      method: 'POST',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
@@ -425,6 +425,21 @@ class BaseBlogAPI {
       body: JSON.stringify(form)
     })
       .then(response => {
+        return response.json()
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  deleteCategory = async(token, category) => {
+    const response = await fetch(this.baseUrl + `${category}/`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }})
+      .then(response => {
         return response.json();
       })
       .catch(error => console.log(error));
@@ -432,7 +447,7 @@ class BaseBlogAPI {
   }
 
   getPosts = async (category='all') => {
-    const response = await fetch(this.baseUrl + `${category}/`, {
+    const response = await fetch(this.baseUrl + `${category}/posts/`, {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -445,9 +460,25 @@ class BaseBlogAPI {
     return response;
   }
 
-  postPost = async (token, form, category) => {
-    const response = await fetch(this.baseUrl + `${category}/`, {
+  createPost = async (token, form, category) => {
+    const response = await fetch(this.baseUrl + `${category}/posts/`, {
       method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: form
+    })
+      .then(response => {
+        return response.json();
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  updatePost = async (token, form, category, slug) => {
+    const response = await fetch(this.baseUrl + `${category}/posts/${slug}/`, {
+      method: 'PUT',
       credentials: 'include',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -462,15 +493,13 @@ class BaseBlogAPI {
   }
 
   deletePost = async (token, category, slug) => {
-    const response = await fetch(this.baseUrl + `${category}/`, {
+    const response = await fetch(this.baseUrl + `${category}/posts/${slug}/`, {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(form)
-    })
+      }})
       .then(response => {
         return response.json();
       })
@@ -479,7 +508,7 @@ class BaseBlogAPI {
   }
 
   getContent = async (category, slug) => {
-    const response = await fetch(this.baseUrl + `${category}/${slug}/`, {
+    const response = await fetch(this.baseUrl + `${category}/posts/${slug}/`, {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -493,8 +522,8 @@ class BaseBlogAPI {
     return response;
   }
 
-  postContent = async (token, form, category, slug) => {
-    const response = await fetch(this.baseUrl + `${category}/${slug}/`, {
+  createContent = async (token, form, category, slug, type) => {
+    const response = await fetch(this.baseUrl + `${category}/posts/${slug}/${type}/`, {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -509,16 +538,30 @@ class BaseBlogAPI {
     return response;
   }
 
-  deleteContent = async (token, category, slug) => {
-    const response = await fetch(this.baseUrl + `${category}/`, {
-      method: 'POST',
+  updateContent = async (token, form, category, slug, type, id) => {
+    const response = await fetch(this.baseUrl + `${category}/posts/${slug}/${type}/${id}/`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: form
+    })
+      .then(response => {
+        return response.json();
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  deleteContent = async (token, category, slug, type, id) => {
+    const response = await fetch(this.baseUrl + `${category}/posts/${slug}/${type}/${id}/`, {
+      method: 'DELETE',
       credentials: 'include',
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(form)
-    })
+      }})
       .then(response => {
         return response.json();
       })
