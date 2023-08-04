@@ -14,7 +14,7 @@ const BlogDetail = ({ slug, category, categories, admin, token }) => {
   const [edit, setEdit] = useState(-1);
   const [count, setCount] = useState(0);
   const [addTypes, setAddTypes] = useState(false);
-  const [formType, setFormType] = useState(false);
+  const [formType, setFormType] = useState('');
   const [apiCall, setApiCall] = useState(true);
 
   const baseUrl = import.meta.env.VITE_CHRONICLE_URL;
@@ -31,9 +31,18 @@ const BlogDetail = ({ slug, category, categories, admin, token }) => {
           setCount(contentData.length);
         })
         .catch(error => console.log(error));
+        setEdit(-1);
+        setFormType('');
         setApiCall(false);
     }
   }, [apiCall])
+
+  useEffect(() => {
+    if (formType.length > 0) {
+      const addContainer = document.querySelector(".blog-detail-body-add");
+      window.scrollTo(0, addContainer.offsetTop);
+    }
+  }, [formType])
 
   console.log(post);
   console.log(content);
@@ -57,9 +66,10 @@ const BlogDetail = ({ slug, category, categories, admin, token }) => {
           {
             content.map((item, index) => {
               return (
-                <div key={index} onClick={ admin && edit ? () => {
+                <div key={index} onClick={ admin && edit != item.order ? () => {
+                  setFormType('');
                   setEdit(item.order);
-                }:null}>
+                }:() => {return}}>
                 { item.type == 'title' &&
                   <>
                   { item.order === edit ?
@@ -72,7 +82,7 @@ const BlogDetail = ({ slug, category, categories, admin, token }) => {
                 { item.type == 'paragraph' &&
                   <>
                   { item.order === edit ?
-                    <BlogParagraphForm post={post} token={token} order={item.order} category={post.category} slug={post.slug} setApiCall={setApiCall} edit={edit} setEdit={setEdit} id={item.id} />
+                    <BlogParagraphForm post={post} token={token} order={item.order} category={post.category} slug={post.slug} setApiCall={setApiCall} edit={edit} setEdit={setEdit} id={item.id} text={item.text} />
                     :
                     item.text.split('\n').map((pg, index) => {
                       return <p key={index}>{pg}</p>
@@ -83,7 +93,7 @@ const BlogDetail = ({ slug, category, categories, admin, token }) => {
                 { item.type == 'snippet' &&
                   <>
                   { item.order === edit ?
-                    <BlogSnippetForm post={post} token={token} order={item.order} category={post.category} slug={post.slug} setApiCall={setApiCall} edit={edit} setEdit={setEdit} id={item.id} />
+                    <BlogSnippetForm post={post} token={token} order={item.order} category={post.category} slug={post.slug} setApiCall={setApiCall} edit={edit} setEdit={setEdit} id={item.id} text={item.text} title={item.title} language={item.language} style={item.style} />
                     :
                     <div className='blog-detail-body-snippet' dangerouslySetInnerHTML={{__html: item.code}} />
                   }
@@ -92,7 +102,7 @@ const BlogDetail = ({ slug, category, categories, admin, token }) => {
                 { item.type == 'image' &&
                   <>
                   { item.order === edit ?
-                    <BlogImageForm post={post} token={token} order={item.order} category={post.category} slug={post.slug} setApiCall={setApiCall} edit={edit} setEdit={setEdit} id={item.id} />
+                    <BlogImageForm post={post} token={token} order={item.order} category={post.category} slug={post.slug} setApiCall={setApiCall} edit={edit} setEdit={setEdit} id={item.id} aspect={item.aspect} wMax={item.max_width} currentImage={baseUrl + item.image} />
                     :
                     <img src={baseUrl + item.image} alt="blog image item" />
                   }
@@ -135,33 +145,12 @@ const BlogDetail = ({ slug, category, categories, admin, token }) => {
               </>
               :
               <>
-              { addTypes ?
-                <>
-                <button onClick={() => {
-                  setFormType('title');
-                  setAddTypes(false);
-              }}>Title</button>
-                <button onClick={() => {
-                  setFormType('paragraph')
-                  setAddTypes(false);
-                }}>Text</button>
-                <button onClick={() => {
-                  setFormType('snippet')
-                  setAddTypes(false);
-                }}>Code</button>
-                <button onClick={() => {
-                  setFormType('image')
-                  setAddTypes(false);
-                }}>Image</button>
-                <button onClick={() => {
-                  setFormType('video')
-                  setAddTypes(false);
-                }}>Video</button>
-                </>
-                :
-                <button onClick={() => setAddTypes(true)}>Add</button>
-              }
-            </>
+                <button onClick={() => {setFormType('title')}}>Title</button>
+                <button onClick={() => {setFormType('paragraph')}}>Text</button>
+                <button onClick={() => {setFormType('snippet')}}>Code</button>
+                <button onClick={() => {setFormType('image')}}>Image</button>
+                <button onClick={() => {setFormType('video')}}>Video</button>
+              </>
             }
           </div>
           }
