@@ -20,11 +20,11 @@ const PostForm = ({categories, token}) => {
     formData.append("image", image);
 
     if (addCategory) {
-      BlogAPI.postCategory(token, { name: newCategory })
+      BlogAPI.createCategory(token, { name: newCategory })
         .then(data => {
           console.log(data);
           formData.append("category", data.id);
-          BlogAPI.postPost(token, formData, data.slug)
+          BlogAPI.createPost(token, formData, data.slug)
             .then(data => {
               console.log(data);
             })
