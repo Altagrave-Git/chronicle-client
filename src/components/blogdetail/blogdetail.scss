@@ -66,13 +66,18 @@
 
       button {
         border: none;
-        padding: 0.3rem 1rem;
+        padding: 0.3rem 0;
         font-size: 1rem;
         font-weight: 600;
         color: $background;
         border-radius: 0.5rem;
         background-color: $tertiary;
         margin: 0 1rem;
+        width: 4rem;
+
+        @include mobile {
+          margin: 0 0.3rem;
+        }
 
         &:hover {
           color: $secondary;
