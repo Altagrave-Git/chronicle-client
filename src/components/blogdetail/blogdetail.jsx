@@ -111,7 +111,7 @@ const BlogDetail = ({ slug, category, categories, admin, token }) => {
                 { item.type == 'video' &&
                   <>
                   { item.order === edit ?
-                    <BlogVideoForm post={post} token={token} order={item.order} category={post.category} slug={post.slug} setApiCall={setApiCall} edit={edit} setEdit={setEdit} id={item.id} />
+                    <BlogVideoForm post={post} token={token} order={item.order} category={post.category} slug={post.slug} setApiCall={setApiCall} edit={edit} setEdit={setEdit} id={item.id} currentVideo={item.video} />
                     :
                     <video src={baseUrl + item.video} type="video/mp4" controls>
                       Your browser does not support the video tag.
