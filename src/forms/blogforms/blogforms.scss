@@ -11,33 +11,52 @@
   margin-bottom: 2rem;
   padding: 0.3rem;
 
+  ::placeholder {
+    color: $blend;
+    font-size: 0.9rem;
+  }
+
+  @include mobile {
+    flex-direction: column;
+  }
+
   &-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: space-evenly;
   }
 
   &-col {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    max-width: 100%;
   }
 
   input,
   select,
   option {
     padding: 0.3rem 0.5rem;
-    font-size: 1rem;
-    margin: 0.2rem;
+    font-size: 0.9rem;
     border-radius: 30px;
+    margin: 0.2rem 0;
+  }
+
+  select,
+  option,
+  input[type=number] {
+    max-width: 100%;
+    width: 300px;
   }
 
   textarea {
     padding: 0.5rem 1rem;
-    font-size: 1rem;
-    margin: 0.2rem;
-    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 0.2rem 0;
+    border-radius: 1rem;
     resize: none;
+    width: 100%;
   }
 
   .blog-input-main {
@@ -45,6 +64,8 @@
     flex-direction: column;
     flex-grow: 1;
     padding: 0.5rem;
+    max-width: 100%;
+    width: 100%;
   }
 
   #blog-post-image {
@@ -54,8 +75,25 @@
   .blog-input-image {
     max-width: 100%;
     padding: 0;
-    margin: 0.2rem 0.2rem 1rem;
+    margin: 0.2rem 0 1rem;
     max-height: 500px;
+    border-radius: 1rem;
+    filter: none;
+  }
+
+  .blog-input-video {
+    margin: 0.2rem 0.5rem 1rem;
+    padding: 0;
+    border-radius: 1rem;
+  }
+
+  .blog-input-save {
+    display: flex;
+    flex-direction: column;
+
+    @include mobile {
+      flex-direction: row;
+    }
   }
 
   .blog-btn-save,
