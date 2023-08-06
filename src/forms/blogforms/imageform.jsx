@@ -14,10 +14,6 @@ const BlogImageForm = ({ post, token, order, setApiCall, edit=-1, setEdit, formT
   const [maxWidth, setMaxWidth] = useState(wMax);
   const [aspectRatio, setAspectRatio] = useState(aspect);
 
-  useEffect(() => {
-
-  }, [])
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -73,20 +69,24 @@ const BlogImageForm = ({ post, token, order, setApiCall, edit=-1, setEdit, formT
 
         <textarea className={'blog-input-text'} type="text" name="text" id="text" rows={5} value={textData} onChange={e => setTextData(e.target.value)} placeholder="Image text... (optional)" />
 
-        <div className="blogform-col">
-          <label htmlFor="max_width">Max Width</label>
-          <input type="number" name="max_width" id="max_width" value={maxWidth} onChange={e => setMaxWidth(e.target.value)} />
-          <label htmlFor="aspect">Aspect Ratio</label>
-          <select className="blog-input-select" name="aspect" id="aspect" value={aspectRatio} onChange={e => setAspectRatio(e.target.value)}>
-            <option value={0} defaultValue={true}>--- Aspect Ratio(w:h) ---</option>
-            <option value={2/1}>2:1</option>
-            <option value={16/9}>16:9</option>
-            <option value={4/3}>4:3</option>
-            <option value={1}>1:1</option>
-            <option value={0.75}>3:4</option>
-            <option value={9/16}>9:16</option>
-            <option value={0.5}>1:2</option>
-          </select>
+        <div className="blogform-row">
+          <div className="blogform-col">
+            <label htmlFor="max_width">Max Width</label>
+            <input type="number" name="max_width" id="max_width" value={maxWidth} onChange={e => setMaxWidth(e.target.value)} />
+          </div>
+          <div className="blogform-col">
+            <label htmlFor="aspect">Aspect Ratio</label>
+            <select className="blog-input-select" name="aspect" id="aspect" value={aspectRatio} onChange={e => setAspectRatio(e.target.value)}>
+              <option value={0} defaultValue={true}>--- Aspect Ratio(w:h) ---</option>
+              <option value={2/1}>2:1</option>
+              <option value={16/9}>16:9</option>
+              <option value={4/3}>4:3</option>
+              <option value={1}>1:1</option>
+              <option value={0.75}>3:4</option>
+              <option value={9/16}>9:16</option>
+              <option value={0.5}>1:2</option>
+            </select>
+          </div>
         </div>
       </div>
 
