@@ -49,6 +49,17 @@ const BlogView = ({ admin, token, categories, setCategories }) => {
                   )
                 })
               }
+              <select className='blog-sidebar-link tablet' onChange={e => navigate(`/blog/${e.target.value}`)}>
+                { categoryLinks && categoryLinks.length > 0 &&
+                  categoryLinks.map((item, index) => {
+                    return (
+                      <option className='blog-sidebar-link tablet' type="button" key={index} value={item.slug}>
+                        ⁍ {item.name} ({item.count})
+                      </option>
+                    )
+                  })
+                }
+              </select>
             </div>
           </div>
         </nav>
