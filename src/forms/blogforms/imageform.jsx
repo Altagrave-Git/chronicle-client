@@ -98,7 +98,9 @@ const BlogImageForm = ({ post, token, order, setApiCall, edit=-1, setEdit, formT
           e.preventDefault();
           setEdit(-1);
           }}><Cancel /></button>
-        <button type="button" className="blog-btn-delete" onClick={() => setDeleteModal(true)}><Delete /></button>
+        { edit >= 0 &&
+          <button type="button" className="blog-btn-delete" onClick={() => setDeleteModal(true)}><Delete /></button>
+        }
         <button type="submit" className="blog-btn-save"><Accept /></button>
       </div>
     </form>

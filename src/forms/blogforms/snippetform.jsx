@@ -23,7 +23,7 @@ const BlogSnippetForm = ({ post, token, order, setApiCall, edit=-1, setEdit, for
     formData.append('post', post.id);
     formData.append('text', textData);
     formData.append('style', styleData);
-    formData.append('language', language);
+    formData.append('language', languageData);
 
     if (titleData.length > 0) {
       formData.append('title', titleData);
@@ -32,7 +32,9 @@ const BlogSnippetForm = ({ post, token, order, setApiCall, edit=-1, setEdit, for
     if (id) {
       formData.append('id', id);
       BlogAPI.updateContent(token, formData, category, slug, 'snippet', id)
-        .then(() => setApiCall(true))
+        .then((data) => {
+          setApiCall(true);
+        })
         .catch(error => console.log(error));
 
     } else {
@@ -55,9 +57,9 @@ const BlogSnippetForm = ({ post, token, order, setApiCall, edit=-1, setEdit, for
     <div className=""></div>
     <form className="blogform" onSubmit={handleSubmit}>
       <div className="blog-input-main">
-        <input className={`blog-input-text`} type="text" name="title" id="title" value={titleData} onChange={e => setTitleData(e.target.value)} placeholder="Title" />
+        <input className="blog-input-text" type="text" name="title" id="title" value={titleData} onChange={e => setTitleData(e.target.value)} placeholder="Title" />
 
-        <textarea className={'blog-input-text'} type="text" name="text" id="text" rows={5} value={textData} onChange={e => setTextData(e.target.value)} placeholder="Start writing..." />
+        <textarea className="blog-input-text" type="text" name="text" id="text" rows={5} value={textData} onChange={e => setTextData(e.target.value)} placeholder="Start writing..." />
 
         <div className="blogform-row">
           <select className="blog-input-select" name="language" id="language" defaultValue={language} onChange={e => setLanguageData(e.target.value)}>
@@ -88,7 +90,9 @@ const BlogSnippetForm = ({ post, token, order, setApiCall, edit=-1, setEdit, for
           e.preventDefault();
           setEdit(-1);
           }}><Cancel /></button>
-        <button type="button" className="blog-btn-delete" onClick={() => setDeleteModal(true)}><Delete /></button>
+        { edit >= 0 &&
+          <button type="button" className="blog-btn-delete" onClick={() => setDeleteModal(true)}><Delete /></button>
+        }
         <button type="submit" className="blog-btn-save"><Accept /></button>
       </div>
     </form>

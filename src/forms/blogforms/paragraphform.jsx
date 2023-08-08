@@ -24,13 +24,11 @@ const BlogParagraphForm = ({ post, token, order, setApiCall, edit=-1, setEdit, f
       formData.append('id', id);
       BlogAPI.updateContent(token, formData, category, slug, 'paragraph', id)
       .then(data => {
-        console.log(data);
         setApiCall(true);
       })
     } else {
       BlogAPI.createContent(token, formData, category, slug, 'paragraph')
         .then(data => {
-          console.log(data);
           setApiCall(true);
         })
         .catch(error => console.log(error));
@@ -63,7 +61,9 @@ const BlogParagraphForm = ({ post, token, order, setApiCall, edit=-1, setEdit, f
           e.preventDefault();
           setEdit(-1);
           }}><Cancel /></button>
-        <button type="button" className="blog-btn-delete" onClick={() => setDeleteModal(true)}><Delete /></button>
+        { edit >= 0 &&
+          <button type="button" className="blog-btn-delete" onClick={() => setDeleteModal(true)}><Delete /></button>
+        }
         <button type="submit" className="blog-btn-save"><Accept /></button>
       </div>
     </form>
