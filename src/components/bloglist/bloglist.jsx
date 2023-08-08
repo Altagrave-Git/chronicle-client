@@ -53,7 +53,7 @@ const BlogList = ({admin, token, categories, setCategories, writePost}) => {
       { admin && draft && draft.length > 0 &&
         draft.map((item, index) => {
           return (
-            <Link key={index} to={baseUrl + `/blog/${item.category_name.replace(' ', '-')}/${item.slug}`}>
+            <Link key={index} to={baseUrl + `/blog/${item.category_name.toLowerCase().replace(' ', '-')}/${item.slug}`}>
             <article className="blog-main-card">
               <div className='blog-main-thumbnail-container'>
                 { item.image != null ?
@@ -75,7 +75,7 @@ const BlogList = ({admin, token, categories, setCategories, writePost}) => {
       { published && published.length > 0 &&
         published.map((item, index) => {
           return (
-            <Link key={index} to={baseUrl + `/blog/${item.category_name.replace(' ', '-')}/${item.slug}`}>
+            <Link key={index} to={baseUrl + `/blog/${item.category_name.toLowerCase().replace(' ', '-')}/${item.slug}`}>
               <article className="blog-main-card">
                 <div className='blog-main-thumbnail-container'>
                   { item.image != null ?
