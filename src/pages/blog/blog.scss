@@ -148,14 +148,15 @@
       }
     }
 
-    &-makepost {
+    &-makepost,
+    &-publish,
+    &-unpublish {
       border: none;
-      font-size: 1.2rem;
-      width: 14rem;
+      font-size: 1.1rem;
+      width: 12.5rem;
       height: 3rem;
       margin: 0.5rem 0 1rem;
       border-radius: 50px;
-      background: linear-gradient(210deg, rgba(205, 60, 60, 0.8) 10%, #d24d4b 90%);
       font-weight: 700;
       text-align: center;
       color: $text;
@@ -170,6 +171,18 @@
         display: flex;
         justify-content: start;
       }
+    }
+
+    &-makepost {
+      background: $primary-gradient;
+    }
+
+    &-publish {
+      background: $tertiary-gradient;
+    }
+
+    &-unpublish {
+      background: $secondary-gradient;
     }
 
     &.fixed {
