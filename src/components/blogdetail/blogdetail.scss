@@ -96,4 +96,55 @@
   video {
     max-width: 100%;
   }
+
+  .add-content-directions {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    max-width: 1440px;
+    height: 100%;
+
+    &-container {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      right: 0;
+      bottom: 50%;
+      display: flex;
+      justify-content: center;
+      z-index: 0;
+    }
+
+    .add-content-up,
+    .add-content-down {
+      z-index: 1000;
+      position: fixed;
+      background-color: transparent;
+      border-style: solid;
+    }
+
+    .add-content-up {
+      transform: translateY(-2rem);
+      border-width: 0 20px 20px;
+      border-color: transparent transparent goldenrod transparent;
+      
+      &:hover {
+        border-color: transparent transparent gold transparent;
+        cursor: pointer;
+      }
+    }
+  
+    .add-content-down {
+      transform: translateY(2rem);
+      border-width: 20px 20px 0;
+      border-color: goldenrod transparent transparent transparent;
+
+      &:hover {
+        border-color: gold transparent transparent transparent;
+        cursor: pointer;
+      }
+    }
+  }
+
 }
