@@ -8,19 +8,26 @@ import BlogSnippetForm from '../../forms/blogforms/snippetform';
 import BlogImageForm from '../../forms/blogforms/imageform';
 import BlogVideoForm from '../../forms/blogforms/videoform';
 
-const BlogDetail = ({ slug, category, categories, admin, token }) => {
-  const [post, setPost] = useState({});
+const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, apiCall, setApiCall, position }) => {
   const [content, setContent] = useState([]);
   const [edit, setEdit] = useState(-1);
   const [count, setCount] = useState(0);
   const [addTypes, setAddTypes] = useState(false);
   const [formType, setFormType] = useState('');
-  const [apiCall, setApiCall] = useState(true);
 
   const baseUrl = import.meta.env.VITE_CHRONICLE_URL;
 
   useEffect(() => {
+    setApiCall(true);
+  }, [slug])
+
+  useEffect(() => {
     if (apiCall) {
+      setPost({});
+      setContent([]);
+      setEdit(-1);
+      setFormType('');
+      setCount(0);
       BlogAPI.getContent(category, slug)
         .then((data) => {
           const { titles, paragraphs, snippets, images, videos, ...postData } = data;
@@ -31,9 +38,7 @@ const BlogDetail = ({ slug, category, categories, admin, token }) => {
           setCount(contentData.length);
         })
         .catch(error => console.log(error));
-        setEdit(-1);
-        setFormType('');
-        setApiCall(false);
+      setApiCall(false);
     }
   }, [apiCall])
 
@@ -44,10 +49,29 @@ const BlogDetail = ({ slug, category, categories, admin, token }) => {
     }
   }, [formType])
 
+  const addContentUp = () => {
+    if (count > 0) {
+      setCount(count - 1);
+      const editor = document.querySelector(".blog-detail-body-add");
+      const previousItem = editor.previousElementSibling;
+      previousItem.before(editor);
+    }
+  }
+
+  const addContentDown = () => {
+    if (count < document.querySelectorAll(".blog-detail-body-item").length) {
+      setCount(count + 1);
+      const editor = document.querySelector(".blog-detail-body-add");
+      const nextItem = editor.nextElementSibling;
+      nextItem.after(editor);
+    }
+  }
+
   console.log(post);
   console.log(content);
   console.log(formType);
   console.log(edit);
+  console.log(count);
 
   return (
     <div className="blog-detail">
@@ -66,7 +90,7 @@ const BlogDetail = ({ slug, category, categories, admin, token }) => {
           {
             content.map((item, index) => {
               return (
-                <div key={index} onClick={ admin && edit != item.order ? () => {
+                <div className="blog-detail-body-item" key={index} onClick={ admin && !post.published && edit != item.order ? () => {
                   setFormType('');
                   setEdit(item.order);
                 }:() => {return}}>
@@ -123,7 +147,7 @@ const BlogDetail = ({ slug, category, categories, admin, token }) => {
               )
             })
           }
-          { admin &&
+          { admin && !post.published &&
           <div className='blog-detail-body-add'>
             { formType ?
               <>
@@ -145,18 +169,88 @@ const BlogDetail = ({ slug, category, categories, admin, token }) => {
               </>
               :
               <>
-                <button onClick={() => {setFormType('title')}}>Title</button>
-                <button onClick={() => {setFormType('paragraph')}}>Text</button>
-                <button onClick={() => {setFormType('snippet')}}>Code</button>
-                <button onClick={() => {setFormType('image')}}>Image</button>
-                <button onClick={() => {setFormType('video')}}>Video</button>
+                <button onClick={() => {
+                  setFormType('title');
+                  setEdit(-1);
+                }}>Title</button>
+                <button onClick={() => {
+                  setFormType('paragraph');
+                  setEdit(-1);
+                }}>Text</button>
+                <button onClick={() => {
+                  setFormType('snippet');
+                  setEdit(-1);
+                }}>Code</button>
+                <button onClick={() => {
+                  setFormType('image');
+                  setEdit(-1);
+                }}>Image</button>
+                <button onClick={() => {
+                  setFormType('video');
+                  setEdit(-1);
+                }}>Video</button>
               </>
             }
           </div>
           }
         </div>
         :
-        <></>
+        <>
+          { Object.keys(post) > 0 && admin && !post.published &&
+          <div className='blog-detail-body-add'>
+            { formType ?
+              <>
+              { formType === 'title' &&
+                <BlogTitleForm post={post} token={token} order={count + 1} slug={post.slug} category={post.category} setApiCall={setApiCall} formType={formType} setFormType={setFormType} />
+              }
+              { formType === 'paragraph' &&
+                <BlogParagraphForm post={post} token={token} order={count + 1} slug={post.slug} category={post.category} setApiCall={setApiCall} formType={formType} setFormType={setFormType} />
+              }
+              { formType === 'snippet' &&
+                <BlogSnippetForm post={post} token={token} order={count + 1} slug={post.slug} category={post.category} setApiCall={setApiCall} formType={formType} setFormType={setFormType} />
+              }
+              { formType === 'image' &&
+                <BlogImageForm post={post} token={token} order={count + 1} slug={post.slug} category={post.category} setApiCall={setApiCall} formType={formType} setFormType={setFormType} />
+              }
+              { formType === 'video' &&
+                <BlogVideoForm post={post} token={token} order={count + 1} slug={post.slug} category={post.category} setApiCall={setApiCall} formType={formType} setFormType={setFormType} />
+              }
+              </>
+              :
+              <>
+                <button onClick={() => {
+                  setFormType('title');
+                  setEdit(-1);
+                }}>Title</button>
+                <button onClick={() => {
+                  setFormType('paragraph');
+                  setEdit(-1);
+                }}>Text</button>
+                <button onClick={() => {
+                  setFormType('snippet');
+                  setEdit(-1);
+                }}>Code</button>
+                <button onClick={() => {
+                  setFormType('image');
+                  setEdit(-1);
+                }}>Image</button>
+                <button onClick={() => {
+                  setFormType('video');
+                  setEdit(-1);
+                }}>Video</button>
+              </>
+            }
+          </div>
+          }
+        </>
+      }
+      { admin && !post.published && content.length > 0 &&
+        <div className='add-content-directions-container'>
+          <div className='add-content-directions'>
+            <button className='add-content-up' type='button' onClick={addContentUp}></button>
+            <button className='add-content-down' type='button' onClick={addContentDown}></button>
+          </div>
+        </div>
       }
     </div>
   )
