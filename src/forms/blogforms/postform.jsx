@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./blogforms.scss"
 import { BlogAPI } from "../../api/api";
+import { ReactComponent as Accept } from "../../icons/check.svg";
+import { ReactComponent as Cancel } from "../../icons/xmark.svg";
+import { ReactComponent as Delete } from "../../icons/trash.svg";
 
 const PostForm = ({categories, token}) => {
   const [category, setCategory] = useState(0);
@@ -34,7 +37,7 @@ const PostForm = ({categories, token}) => {
 
     } else {
       formData.append("category", category)
-      BlogAPI.postPost(token, formData, categorySlug)
+      BlogAPI.createPost(token, formData, categorySlug)
         .then(data => console.log(data))
         .catch(error => console.log(error));
     }
@@ -42,14 +45,14 @@ const PostForm = ({categories, token}) => {
 
   return (
     <form className="blogform" onSubmit={handleSubmit}>
-      <div style={{margin: 'auto', width: 'min-content'}}>
+      <div className="blog-input-main" style={{margin: "0.5rem 1rem"}}>
         <input type="file" accept="image/*" name="image" className="blog-image-input" onChange={(e) => setImage(e.target.files[0])} />
-        <input type="text" name="title" className="form-text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <textarea name="description" className="form-text" cols="30" rows="5" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+        <input type="text" name="title" className="blog-input-text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <textarea name="description" className="blog-input-text" cols="30" rows="5" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
         { addCategory ?
           <input type="text" name="category" placeholder="Category" className="form-text" value={newCategory} onChange={e => setNewCategory(e.target.value)} />
         :
-          <select className="form-text" name="category" onChange={e => {
+          <select className="blog-input-select" name="category" onChange={e => {
             setCategory(e.target.value.split(" ")[0]);
             setCategorySlug(e.target.value.split(" ")[1]);
           }}>
@@ -69,7 +72,12 @@ const PostForm = ({categories, token}) => {
           <input type="radio" onClick={() => setAddCategory(true)} style={{marginRight: '1rem'}} name="category-type" id="cat-new" />
           <label htmlFor="cat-new">New Category</label>
         </div>
-        <input type="submit" className="form-submit" value="Create" />
+      </div>
+      
+      <div className="blog-input-save">
+        <button type='button' className="blog-btn-cancel"><Cancel /></button>
+        <button type="button" className="blog-btn-delete" onClick={() => setDeleteModal(true)}><Delete /></button>
+        <button type="submit" className="blog-btn-save"><Accept /></button>
       </div>
     </form>
   )
