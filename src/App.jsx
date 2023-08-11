@@ -29,6 +29,7 @@ const App = () => {
   const [newMail, setNewMail] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [categories, setCategories] = useState([]);
+  const [retrieveCategories, setRetrieveCategories] = useState(true);
 
   // NOTE: Octokit + Vite requires isomorphic fetch
   useEffect(() => {
@@ -101,12 +102,15 @@ const App = () => {
   }, [portfolioData])
 
   useEffect(() => {
-    BlogAPI.getCategories()
-      .then(data => {
-        setCategories(data);
-      })
-      .catch(error => console.log(error));
-  }, [])
+    if (retrieveCategories) {
+      BlogAPI.getCategories()
+        .then(data => {
+          setCategories(data);
+          setRetrieveCategories(false);
+        })
+        .catch(error => console.log(error));
+    }
+  }, [retrieveCategories])
 
   useEffect(() => {
     const head = document.querySelector("head");
@@ -121,9 +125,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomeView token={token} gitData={gitData} setNewMail={setNewMail} admin={admin} portfolioData={portfolioData} setActiveIndex={setActiveIndex} />} />
         <Route path="/portfolio" element={<PortfolioView token={token} admin={admin} portfolioData={portfolioData} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />} />
-        <Route path="/blog" element={<BlogView admin={admin} token={token} categories={categories} setCategories={setCategories} />} />
-        <Route path="/blog/:category" element={<BlogView admin={admin} token={token} categories={categories} setCategories={setCategories} />} />
-        <Route path="/blog/:category/:slug" element={<BlogView admin={admin} token={token} categories={categories} setCategories={setCategories} />}/>
+        <Route path="/blog" element={<BlogView admin={admin} token={token} categories={categories} setCategories={setCategories} setRetrieveCategories={setRetrieveCategories} />} />
+        <Route path="/blog/:category" element={<BlogView admin={admin} token={token} categories={categories} setCategories={setCategories} setRetrieveCategories={setRetrieveCategories} />} />
+        <Route path="/blog/:category/:slug" element={<BlogView admin={admin} token={token} categories={categories} setCategories={setCategories} setRetrieveCategories={setRetrieveCategories} />}/>
         <Route path="/inbox" element={<InboxView token={token} admin={admin} setNewMail={setNewMail} />} />
         <Route path="/login" element={<LoginView token={token} setUser={setUser} setAdmin={setAdmin} setToken={setToken} />} />
       </Routes>
