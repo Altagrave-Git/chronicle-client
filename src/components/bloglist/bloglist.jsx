@@ -1,13 +1,15 @@
 import PostForm from '../../forms/blogforms/postform'
 import { useState, useEffect } from 'react'
 import { BlogAPI } from '../../api/api'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
-const BlogList = ({admin, token, categories, setCategories, writePost}) => {
+const BlogList = ({admin, token, categories, setCategories, writePost, setWritePost, setRetrieveCategories, setPost}) => {
   const { category='all' } = useParams();
   const [draft, setDraft] = useState([]);
   const [published, setPublished] = useState([]);
+  const [retrievePosts, setRetrievePosts] = useState(false);
 
+  const navigate = useNavigate();
   const baseUrl = import.meta.env.VITE_BASE_URL;
   
   useEffect(() => {
@@ -43,18 +45,19 @@ const BlogList = ({admin, token, categories, setCategories, writePost}) => {
           console.log(error);
         }
       })
+    setPost({});
   }, [category]);
 
   return (
     <>
       { admin && writePost == true &&
-        <PostForm categories={categories} token={token} />
+        <PostForm categories={categories} token={token} writePost={writePost} setWritePost={setWritePost} setRetrievePosts={setRetrievePosts} setRetrieveCategories={setRetrieveCategories} />
       }
       { admin && draft && draft.length > 0 &&
         draft.map((item, index) => {
           return (
             <Link key={index} to={baseUrl + `/blog/${item.category_name.toLowerCase().replace(' ', '-')}/${item.slug}`}>
-            <article className="blog-main-card">
+            <article className="blog-main-card unpublished">
               <div className='blog-main-thumbnail-container'>
                 { item.image != null ?
                   <img className='blog-main-thumbnail' src={import.meta.env.VITE_CHRONICLE_URL + item.image} alt="blog entry thumbnail" />
