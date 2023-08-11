@@ -147,4 +147,86 @@
     }
   }
 
+  &-footer {
+    margin: 1rem 0;
+
+    .blog-detail-related {
+      background-color: $subcontainer;
+      border-radius: 1rem;
+      padding: 0.5rem 1rem;
+      filter: $drop-shadow2;
+
+      @include mobile {
+        padding: 0.5rem 0.75rem;
+      }
+
+      &-title {
+        font-size: 1.4rem;
+        color: $text;
+      }
+
+      &-card {
+        display: flex;
+        padding: 1rem;
+        background-color: $border;
+        border-radius: 1.5rem;
+        margin: 0.5rem 0;
+
+        @include tablet {
+          flex-direction: column;
+        }
+
+        @include mobile {
+          padding: 0.75rem;
+        }
+
+        &-image {
+          width: 100%;
+          max-width: 300px;
+
+          @include tablet {
+            max-width: none;
+            padding: 0.25rem;
+          }
+
+          @include mobile {
+            padding: 0 0 0.25rem;
+          }
+
+          img {
+            width: 100%;
+            filter: inherit;
+          }
+        }
+
+        &-info {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          padding: 0 1rem;
+          flex-grow: 1;
+
+          @include tablet {
+            padding: 0 0.5rem;
+          }
+        }
+
+        &-text {
+          height: calc(100% - 1.5rem);
+          font-size: 1rem;
+        }
+
+        &-title {
+          font-size: 1.25rem;
+          color: $text;
+        }
+
+        &-meta {
+          font-size: 1rem;
+          color: $text2;
+          margin: 0;
+        }
+      }
+    }
+  }
 }
