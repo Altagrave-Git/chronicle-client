@@ -45,12 +45,19 @@
     &-card {
       max-width: 800px;
       max-width: 100%;
-      padding: 0.5rem;
+      padding: 1rem;
+      border-radius: 20px;
+      background-color: $container;
+      filter: drop-shadow(0 0 4px $container);
+
+      &.unpublished {
+        background-color: $background;
+        filter: none;
+      }
 
       &:hover {
         cursor: pointer;
-        background-color: $container;
-        border-radius: 20px;
+        background-color: $subcontainer;
       }
 
       h2 {
