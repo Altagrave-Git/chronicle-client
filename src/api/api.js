@@ -494,7 +494,7 @@ class BaseBlogAPI {
 
   deletePost = async (token, category, slug) => {
     const response = await fetch(this.baseUrl + `${category}/posts/${slug}/`, {
-      method: 'POST',
+      method: 'DELETE',
       credentials: 'include',
       headers: {
         'Authorization': `Bearer ${token}`,
