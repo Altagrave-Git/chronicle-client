@@ -1,21 +1,26 @@
 import './blogdetail.scss';
 import { BlogAPI } from "../../api/api";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import BlogTitleForm from '../../forms/blogforms/titleform';
 import BlogParagraphForm from '../../forms/blogforms/paragraphform';
 import BlogSnippetForm from '../../forms/blogforms/snippetform';
 import BlogImageForm from '../../forms/blogforms/imageform';
 import BlogVideoForm from '../../forms/blogforms/videoform';
+import PostForm from '../../forms/blogforms/postform';
+import { Link } from 'react-router-dom';
 
-const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, apiCall, setApiCall, position }) => {
+const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, apiCall, setApiCall, position, setRetrieveCategories }) => {
   const [content, setContent] = useState([]);
   const [edit, setEdit] = useState(-1);
   const [count, setCount] = useState(0);
   const [addTypes, setAddTypes] = useState(false);
   const [formType, setFormType] = useState('');
+  const [editMain, setEditMain] = useState(false);
+  const [relatedPosts, setRelatedPosts] = useState([]);
+  const [relatedDrafts, setRelatedDrafts] = useState([]);
 
-  const baseUrl = import.meta.env.VITE_CHRONICLE_URL;
+  const serverUrl = import.meta.env.VITE_CHRONICLE_URL;
+  const baseUrl = import.meta.env.VITE_BASE_URL
 
   useEffect(() => {
     setApiCall(true);
@@ -30,10 +35,21 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
       setCount(0);
       BlogAPI.getContent(category, slug)
         .then((data) => {
-          const { titles, paragraphs, snippets, images, videos, ...postData } = data;
+          const { titles, paragraphs, snippets, images, videos, related, ...postData } = data;
           const contentData = [...titles, ...paragraphs, ...snippets, ...images, ...videos];
           contentData.sort((a, b) => a.order - b.order);
           setContent(contentData);
+          const relatedPostsData = [];
+          const relatedDraftsData = [];
+          related.forEach(obj => {
+            if (obj.published) {
+              relatedPostsData.push(obj);
+            } else {
+              relatedDraftsData.push(obj);
+            }
+          })
+          setRelatedPosts(relatedPostsData);
+          setRelatedDrafts(relatedDraftsData);
           setPost(postData);
           setCount(contentData.length);
         })
@@ -69,19 +85,24 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
 
   console.log(post);
   console.log(content);
-  console.log(formType);
-  console.log(edit);
-  console.log(count);
+  console.log(relatedPosts);
+  console.log(relatedDrafts);
 
   return (
     <div className="blog-detail">
       { Object.keys(post).length > 0 ?
-        <div className="blog-detail-head">
-          <h2 className='blog-detail-head-category'>[ {post.category_name[0].toLowerCase() + post.category_name.slice(1)} ]</h2>
-          <h1 className='blog-detail-head-title'>{post.title}</h1>
-          <p>Published on {post.pub_date}</p>
-          <img src={baseUrl + post.image} alt="blog display image" />
-        </div>
+        <>
+          { editMain ?
+            <PostForm token={token} categories={categories} setEditMain={setEditMain} titleData={post.title} categoryData={categories.find(obj => obj.id === post.category)} descriptionData={post.description != null ? post.description : ''} slug={slug} setApiCall={setApiCall} setRetrieveCategories={setRetrieveCategories} />
+            :
+            <div className="blog-detail-head" onClick={() => setEditMain(true)}>
+              <h2 className='blog-detail-head-category'>[ {post.category_name[0].toLowerCase() + post.category_name.slice(1)} ]</h2>
+              <h1 className='blog-detail-head-title'>{post.title}</h1>
+              <p>Published on {post.pub_date}</p>
+              <img src={serverUrl + post.image} alt="blog display image" />
+            </div>
+          }
+        </>
         :
         <h1>Loading...</h1>
       }
@@ -126,9 +147,9 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
                 { item.type == 'image' &&
                   <>
                   { item.order === edit ?
-                    <BlogImageForm post={post} token={token} order={item.order} category={post.category} slug={post.slug} setApiCall={setApiCall} edit={edit} setEdit={setEdit} id={item.id} aspect={item.aspect} wMax={item.max_width} currentImage={baseUrl + item.image} />
+                    <BlogImageForm post={post} token={token} order={item.order} category={post.category} slug={post.slug} setApiCall={setApiCall} edit={edit} setEdit={setEdit} id={item.id} aspect={item.aspect} wMax={item.max_width} currentImage={serverUrl + item.image} />
                     :
-                    <img src={baseUrl + item.image} alt="blog image item" />
+                    <img src={serverUrl + item.image} alt="blog image item" />
                   }
                   </>
                 }
@@ -137,7 +158,7 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
                   { item.order === edit ?
                     <BlogVideoForm post={post} token={token} order={item.order} category={post.category} slug={post.slug} setApiCall={setApiCall} edit={edit} setEdit={setEdit} id={item.id} currentVideo={item.video} />
                     :
-                    <video src={baseUrl + item.video} type="video/mp4" controls>
+                    <video src={serverUrl + item.video} type="video/mp4" controls>
                       Your browser does not support the video tag.
                     </video>
                   }
@@ -196,7 +217,7 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
         </div>
         :
         <>
-          { Object.keys(post) > 0 && admin && !post.published &&
+          { admin && !post.published &&
           <div className='blog-detail-body-add'>
             { formType ?
               <>
@@ -244,6 +265,34 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
           }
         </>
       }
+      <div className='blog-detail-footer'>
+        { relatedPosts && relatedPosts.length > 0 ?
+          <div className='blog-detail-related'>
+            <>
+              <h3 className="blog-detail-related-title">Related Posts</h3>
+              { relatedPosts.map((item, index) => { return (
+                <Link className='blog-detail-related-card' key={index} to={`${baseUrl}/blog/${item.category_slug}/${item.slug}`}>
+                  <div className='blog-detail-related-card-image'>
+                    <img src={serverUrl + item.image} alt={`related post ${index}`} />
+                  </div>
+
+                  <div className='blog-detail-related-card-info'>
+                    <p className='blog-detail-related-card-meta'>{item.category_name} | {item.pub_date}</p>
+                    <div className='blog-detail-related-card-text'>
+                      <h5 className='blog-detail-related-card-title'>{item.title}</h5>
+                      <p>{item.description}</p>
+                    </div>
+                  </div>
+                </Link>
+              )})}
+            </>
+          </div>
+        :
+          <></>
+        }
+      </div>
+
+
       { admin && !post.published && content.length > 0 &&
         <div className='add-content-directions-container'>
           <div className='add-content-directions'>
