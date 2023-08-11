@@ -5,7 +5,7 @@ import BlogList from '../../components/bloglist/bloglist'
 import BlogDetail from '../../components/blogdetail/blogdetail'
 import { BlogAPI } from '../../api/api'
 
-const BlogView = ({ admin, token, categories, setCategories }) => {
+const BlogView = ({ admin, token, categories, setCategories, setRetrieveCategories }) => {
   const { category, slug } = useParams();
   const navigate = useNavigate();
   const [writePost, setWritePost] = useState(false);
@@ -95,9 +95,9 @@ const BlogView = ({ admin, token, categories, setCategories }) => {
       </div>
       <section className='blog-main'>
         { slug && slug.length > 0 ?
-          <BlogDetail slug={slug} category={category} categories={categories} admin={admin} token={token} post={post} setPost={setPost} apiCall={apiCall} setApiCall={setApiCall} />
+          <BlogDetail slug={slug} category={category} categories={categories} admin={admin} token={token} post={post} setPost={setPost} apiCall={apiCall} setApiCall={setApiCall} setRetrieveCategories={setRetrieveCategories} />
           :
-          <BlogList admin={admin} token={token} categories={categories} setCategories={setCategories} writePost={writePost} />
+          <BlogList admin={admin} token={token} categories={categories} setCategories={setCategories} writePost={writePost} setWritePost={setWritePost} setRetrieveCategories={setRetrieveCategories} setPost={setPost} />
         }
       </section>
     </main>
