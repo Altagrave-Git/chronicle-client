@@ -1,13 +1,15 @@
 import './blogdetail.scss';
 import { BlogAPI } from "../../api/api";
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+import PostForm from '../../forms/blogforms/postform';
 import BlogTitleForm from '../../forms/blogforms/titleform';
 import BlogParagraphForm from '../../forms/blogforms/paragraphform';
 import BlogSnippetForm from '../../forms/blogforms/snippetform';
 import BlogImageForm from '../../forms/blogforms/imageform';
 import BlogVideoForm from '../../forms/blogforms/videoform';
-import PostForm from '../../forms/blogforms/postform';
-import { Link } from 'react-router-dom';
+import BlogRelatedForm from '../../forms/blogforms/relatedform';
+import { ReactComponent as PlusIcon } from '../../icons/plus.svg';
 
 const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, apiCall, setApiCall, position, setRetrieveCategories }) => {
   const [content, setContent] = useState([]);
@@ -18,6 +20,7 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
   const [editMain, setEditMain] = useState(false);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [relatedDrafts, setRelatedDrafts] = useState([]);
+  const [addRelated, setAddRelated] = useState(false);
 
   const serverUrl = import.meta.env.VITE_CHRONICLE_URL;
   const baseUrl = import.meta.env.VITE_BASE_URL
@@ -41,13 +44,15 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
           setContent(contentData);
           const relatedPostsData = [];
           const relatedDraftsData = [];
-          related.forEach(obj => {
-            if (obj.published) {
-              relatedPostsData.push(obj);
-            } else {
-              relatedDraftsData.push(obj);
-            }
-          })
+          if (related != null) {
+            related.forEach(obj => {
+              if (obj.published) {
+                relatedPostsData.push(obj);
+              } else {
+                relatedDraftsData.push(obj);
+              }
+            })
+          }
           setRelatedPosts(relatedPostsData);
           setRelatedDrafts(relatedDraftsData);
           setPost(postData);
@@ -82,11 +87,6 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
       nextItem.after(editor);
     }
   }
-
-  console.log(post);
-  console.log(content);
-  console.log(relatedPosts);
-  console.log(relatedDrafts);
 
   return (
     <div className="blog-detail">
@@ -266,29 +266,63 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
         </>
       }
       <div className='blog-detail-footer'>
-        { relatedPosts && relatedPosts.length > 0 ?
+        { admin ?
+          <>
           <div className='blog-detail-related'>
-            <>
-              <h3 className="blog-detail-related-title">Related Posts</h3>
-              { relatedPosts.map((item, index) => { return (
-                <Link className='blog-detail-related-card' key={index} to={`${baseUrl}/blog/${item.category_slug}/${item.slug}`}>
-                  <div className='blog-detail-related-card-image'>
-                    <img src={serverUrl + item.image} alt={`related post ${index}`} />
-                  </div>
-
-                  <div className='blog-detail-related-card-info'>
-                    <p className='blog-detail-related-card-meta'>{item.category_name} | {item.pub_date}</p>
-                    <div className='blog-detail-related-card-text'>
-                      <h5 className='blog-detail-related-card-title'>{item.title}</h5>
-                      <p>{item.description}</p>
+            <h3 className="blog-detail-related-title">Related Posts</h3>
+            { relatedPosts && relatedPosts.length > 0 && !addRelated &&
+                <>
+                { relatedPosts.map((item, index) => { return (
+                  <Link className='blog-detail-related-card' key={index} to={`${baseUrl}/blog/${item.category_slug}/${item.slug}`}>
+                    <div className='blog-detail-related-card-image'>
+                      <img src={serverUrl + item.image} alt={`related post ${index}`} />
                     </div>
-                  </div>
-                </Link>
-              )})}
-            </>
+
+                    <div className='blog-detail-related-card-info'>
+                      <p className='blog-detail-related-card-meta'>{item.category_name} | {item.pub_date}</p>
+                      <div className='blog-detail-related-card-text'>
+                        <h5 className='blog-detail-related-card-title'>{item.title}</h5>
+                        <p>{item.description}</p>
+                      </div>
+                    </div>
+                  </Link>
+                )})}
+                </>
+            }
+            { addRelated ?
+              <BlogRelatedForm token={token} setAddRelated={setAddRelated} />
+              :
+              <div className='blog-detail-footer-row'>
+                <PlusIcon className="blog-detail-footer-plus" onClick={() => setAddRelated(true)} />
+              </div>
+            }
           </div>
-        :
-          <></>
+          </>
+          :
+          <>
+          { relatedPosts && relatedPosts.length > 0 &&
+            <div className='blog-detail-related'>
+              <>
+                <h3 className="blog-detail-related-title">Related Posts</h3>
+                { relatedPosts.map((item, index) => { return (
+                  <Link className='blog-detail-related-card' key={index} to={`${baseUrl}/blog/${item.category_slug}/${item.slug}`}>
+                    <div className='blog-detail-related-card-image'>
+                      <img src={serverUrl + item.image} alt={`related post ${index}`} />
+                    </div>
+
+                    <div className='blog-detail-related-card-info'>
+                      <p className='blog-detail-related-card-meta'>{item.category_name} | {item.pub_date}</p>
+                      <div className='blog-detail-related-card-text'>
+                        <h5 className='blog-detail-related-card-title'>{item.title}</h5>
+                        <p>{item.description}</p>
+                      </div>
+                    </div>
+                  </Link>
+                )})}
+              </>
+            </div>
+          }
+          </>
         }
       </div>
 
