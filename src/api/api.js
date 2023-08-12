@@ -568,6 +568,49 @@ class BaseBlogAPI {
       .catch(error => console.log(error));
     return response;
   }
+
+  getRelated = async (category, slug) => {
+    const response = await fetch(this.baseUrl + `${category}/posts/${slug}/related/`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }})
+      .then(response => {
+        return response.json()
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  addRelated = async (token, category, slug, id) => {
+    const response = await fetch(this.baseUrl + `${category}/posts/${slug}/related/${id}/`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }})
+      .then(response => {
+        return response.json()
+      })
+      .catch(error => console.log(error));
+    return response;
+  }
+
+  removeRelated = async (token, category, slug, id) => {
+    const response = await fetch(this.baseUrl + `${category}/posts/${slug}/related/${id}/`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }})
+      .then(response => {
+        return response.json();
+      })
+      .catch(error => console.log(error));
+  }
 }
 
 
