@@ -78,7 +78,7 @@ const BlogView = ({ admin, token, categories, setCategories, setRetrieveCategori
                   )
                 })
               }
-              <select className='blog-sidebar-link tablet' onChange={e => navigate(`/blog/${e.target.value}`)}>
+              <select id="category-select" className='blog-sidebar-link tablet' onChange={e => navigate(`/blog/${e.target.value}`)}>
                 { categoryLinks && categoryLinks.length > 0 &&
                   categoryLinks.map((item, index) => {
                     return (
