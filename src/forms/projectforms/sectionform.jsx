@@ -2,7 +2,7 @@ import './forms.scss';
 import { useState, useEffect } from 'react';
 import { ContentAPI } from '../../api/api';
 
-const SectionForm = ({token, portfolioData, activeIndex}) => {
+const SectionForm = ({token, portfolioData, activeIndex, setFormModal, setRetrievePortfolio}) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [type, setType] = useState('text');
@@ -65,7 +65,10 @@ const SectionForm = ({token, portfolioData, activeIndex}) => {
     }
 
     ContentAPI.section(token, id, form)
-      .then(res => console.log(res))
+      .then(res => {
+        setFormModal(null);
+        setRetrievePortfolio(true);
+      })
       .catch(error => console.log(error));
   }
 
@@ -86,7 +89,10 @@ const SectionForm = ({token, portfolioData, activeIndex}) => {
     }
 
     ContentAPI.editSection(token, pid, sid, form)
-      .then(res => console.log(res))
+      .then(res => {
+        setFormModal(null);
+        setRetrievePortfolio(true);
+      })
       .catch(error => console.log(error));
   }
 

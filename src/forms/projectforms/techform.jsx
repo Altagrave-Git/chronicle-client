@@ -2,7 +2,7 @@ import './forms.scss';
 import { useEffect, useState } from 'react';
 import { ContentAPI } from '../../api/api';
 
-const TechForm = ({ token, portfolioData, activeIndex }) => {
+const TechForm = ({ token, portfolioData, activeIndex, setFormModal, setRetrievePortfolio }) => {
   const [projectTech, setProjectTech] = useState({used: [], unused: []});
   const [techIter, setTechIter] = useState(0);
   const [newTech, setNewTech] = useState('');
@@ -73,7 +73,10 @@ const TechForm = ({ token, portfolioData, activeIndex }) => {
     }
 
     ContentAPI.tech(token, id, {tech: tech})
-      .then(data => console.log(data))
+      .then(data => {
+        setFormModal(null);
+        setRetrievePortfolio(true);
+      })
       .catch(error => console.log(error));
   }
 

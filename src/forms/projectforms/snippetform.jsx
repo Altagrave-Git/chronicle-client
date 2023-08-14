@@ -2,7 +2,7 @@ import './forms.scss';
 import { useState, useEffect } from 'react';
 import { ContentAPI } from '../../api/api';
 
-const SnippetForm = ({token, portfolioData, activeIndex}) => {
+const SnippetForm = ({token, portfolioData, activeIndex, setFormModal, setRetrievePortfolio}) => {
   const [section, setSection] = useState(0);
   const [title, setTitle] = useState('');
   const [code, setCode] = useState('');
@@ -31,12 +31,6 @@ const SnippetForm = ({token, portfolioData, activeIndex}) => {
     })
     .catch(err => console.log(err));
   }, [])
-
-  // const [section, setSection] = useState(0);
-  // const [title, setTitle] = useState('');
-  // const [code, setCode] = useState('');
-  // const [style, setStyle] = useState('');
-  // const [language, setLanguage] = useState('');
 
   useEffect(() => {
     const snippets = portfolioData[activeIndex].snippets;
@@ -91,7 +85,10 @@ const SnippetForm = ({token, portfolioData, activeIndex}) => {
     }
 
     ContentAPI.editSnippet(token, pid, sid, form)
-    .then(res => console.log(res))
+    .then(res => {
+      setFormModal(null);
+      setRetrievePortfolio(true);
+    })
     .catch(err => console.log(err));
   }
 
@@ -101,7 +98,10 @@ const SnippetForm = ({token, portfolioData, activeIndex}) => {
       const sid = portfolioData[activeIndex].snippets[mode - 1].id;
 
       ContentAPI.deleteSnippet(token, pid, sid)
-      .then(res => console.log(res))
+      .then(res => {
+        setFormModal(null);
+        setRetrievePortfolio(true);
+      })
       .catch(err => console.log(err));
     } else {
       setVerify(true);
@@ -123,7 +123,10 @@ const SnippetForm = ({token, portfolioData, activeIndex}) => {
     }
 
     ContentAPI.snippet(token, project, form)
-    .then(res => console.log(res))
+    .then(res => {
+      setFormModal(null);
+      setRetrievePortfolio(true);
+    })
     .catch(err => console.log(err));
   }
 

@@ -5,7 +5,7 @@ import './portfolio.scss';
 import FormButton from '../../components/formbutton/formbutton';
 import FormModal from '../../forms/projectforms/formmodal';
 
-const PortfolioView = ({ admin, token, portfolioData, activeIndex, setActiveIndex }) => {
+const PortfolioView = ({ admin, token, portfolioData, activeIndex, setActiveIndex, setRetrievePortfolio }) => {
   const [projectDetail, setProjectDetail] = useState({});
   const [formModal, setFormModal] = useState();
 
@@ -163,7 +163,7 @@ const PortfolioView = ({ admin, token, portfolioData, activeIndex, setActiveInde
       }
       <section className="portfolio fixed active">
         { formModal &&
-        <FormModal formModal={formModal} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} token={token} />
+        <FormModal formModal={formModal} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} token={token} setRetrievePortfolio={setRetrievePortfolio} />
         }
         <div className="portfolio">
           <div className='before-prev-container'></div>

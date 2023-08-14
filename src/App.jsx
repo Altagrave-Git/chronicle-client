@@ -30,6 +30,7 @@ const App = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [categories, setCategories] = useState([]);
   const [retrieveCategories, setRetrieveCategories] = useState(true);
+  const [retrievePortfolio, setRetrievePortfolio] = useState(true);
 
   // NOTE: Octokit + Vite requires isomorphic fetch
   useEffect(() => {
@@ -67,23 +68,26 @@ const App = () => {
 
   // Retrieve and set project data from Chronicle API
   useEffect(() => {
-    ContentAPI.projects()
-      .then(data => {
-        if (data.length >= 5) {
-          setPortfolioData(data);
-        } else if (data.length) {
-          const cloneData = [];
-          const mult = Math.ceil(5 / data.length);
-          for (let i = 0; mult > i; i++) {
-            data.forEach(item => {
-              cloneData.push(item);
-            });
+    if (retrievePortfolio) {
+      ContentAPI.projects()
+        .then(data => {
+          if (data.length >= 5) {
+            setPortfolioData(data);
+          } else if (data.length) {
+            const cloneData = [];
+            const mult = Math.ceil(5 / data.length);
+            for (let i = 0; mult > i; i++) {
+              data.forEach(item => {
+                cloneData.push(item);
+              });
+            }
+            setPortfolioData(cloneData);
           }
-          setPortfolioData(cloneData);
-        }
-      })
-      .catch(error => console.log(error));
-  }, []);
+          setRetrievePortfolio(false);
+        })
+        .catch(error => console.log(error));
+    }
+  }, [retrievePortfolio]);
 
   useEffect(() => {
     if (portfolioData.length > 0) {
@@ -124,7 +128,7 @@ const App = () => {
       <UserPanel user={user} />
       <Routes>
         <Route path="/" element={<HomeView token={token} gitData={gitData} setNewMail={setNewMail} admin={admin} portfolioData={portfolioData} setActiveIndex={setActiveIndex} />} />
-        <Route path="/portfolio" element={<PortfolioView token={token} admin={admin} portfolioData={portfolioData} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />} />
+        <Route path="/portfolio" element={<PortfolioView token={token} admin={admin} portfolioData={portfolioData} activeIndex={activeIndex} setActiveIndex={setActiveIndex} setRetrievePortfolio={setRetrievePortfolio} />} />
         <Route path="/blog" element={<BlogView admin={admin} token={token} categories={categories} setCategories={setCategories} setRetrieveCategories={setRetrieveCategories} />} />
         <Route path="/blog/:category" element={<BlogView admin={admin} token={token} categories={categories} setCategories={setCategories} setRetrieveCategories={setRetrieveCategories} />} />
         <Route path="/blog/:category/:slug" element={<BlogView admin={admin} token={token} categories={categories} setCategories={setCategories} setRetrieveCategories={setRetrieveCategories} />}/>

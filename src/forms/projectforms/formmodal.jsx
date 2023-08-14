@@ -6,7 +6,7 @@ import TechForm from './techform';
 import SectionForm from './sectionform';
 import SnippetForm from './snippetform';
 
-const FormModal = ({ formModal, setFormModal, portfolioData, activeIndex, token, project }) => {
+const FormModal = ({ formModal, setFormModal, portfolioData, activeIndex, token, project, setRetrievePortfolio }) => {
 
   return (
   <div className="form-modal-container">
@@ -16,24 +16,24 @@ const FormModal = ({ formModal, setFormModal, portfolioData, activeIndex, token,
       </div>
 
       { formModal == "project" &&
-        <ProjectForm token={token} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} />
+        <ProjectForm token={token} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} setRetrievePortfolio={setRetrievePortfolio} />
       }
       {
         formModal == "image" &&
-        <ImageForm token={token} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} />
+        <ImageForm token={token} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} setRetrievePortfolio={setRetrievePortfolio} />
       }
       {
         formModal == "video" &&
-        <VideoForm token={token} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} />
+        <VideoForm token={token} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} setRetrievePortfolio={setRetrievePortfolio} />
       }
       { formModal == "tech" &&
-        <TechForm token={token} portfolioData={portfolioData} activeIndex={activeIndex} />
+        <TechForm token={token} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} setRetrievePortfolio={setRetrievePortfolio} />
       }
       { formModal == "section" &&
-        <SectionForm token={token} portfolioData={portfolioData} activeIndex={activeIndex} />
+        <SectionForm token={token} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} setRetrievePortfolio={setRetrievePortfolio} />
       }
       { formModal == "snippet" &&
-        <SnippetForm token={token} portfolioData={portfolioData} activeIndex={activeIndex} />
+        <SnippetForm token={token} setFormModal={setFormModal} portfolioData={portfolioData} activeIndex={activeIndex} setRetrievePortfolio={setRetrievePortfolio} />
       }
     </div>
   </div>

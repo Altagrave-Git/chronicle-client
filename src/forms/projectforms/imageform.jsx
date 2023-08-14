@@ -2,7 +2,7 @@ import './forms.scss';
 import { useState } from 'react';
 import { ContentAPI } from '../../api/api';
 
-const ImageForm = ({token, portfolioData, activeIndex}) => {
+const ImageForm = ({token, portfolioData, activeIndex, setFormModal, setRetrievePortfolio}) => {
   const [project, setProject] = useState(portfolioData[activeIndex].id);
   const [image, setImage] = useState(null);
   const [type, setType] =  useState(null);
@@ -22,7 +22,10 @@ const ImageForm = ({token, portfolioData, activeIndex}) => {
     }
 
     ContentAPI.image(token, project, formData)
-      .then(res => console.log(res))
+      .then(res => {
+        setFormModal(null);
+        setRetrievePortfolio(true);
+      })
       .catch(error => console.log(error));
   }
 

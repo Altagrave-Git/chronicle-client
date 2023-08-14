@@ -2,7 +2,7 @@ import './forms.scss';
 import { useState, useEffect } from 'react';
 import { ContentAPI } from '../../api/api';
 
-const ProjectForm = ({token, portfolioData, activeIndex}) => {
+const ProjectForm = ({token, portfolioData, activeIndex, setFormModal, setRetrievePortfolio}) => {
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
@@ -55,7 +55,10 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
 
 
     ContentAPI.project(token, formData)
-      .then(res => console.log(res))
+      .then(res => {
+        setFormModal(null);
+        setRetrievePortfolio(true);
+      })
       .catch(error => console.log(error));
   }
 
@@ -78,7 +81,10 @@ const ProjectForm = ({token, portfolioData, activeIndex}) => {
     const id = portfolioData[activeIndex].id;
 
     ContentAPI.editProject(token, formData, id)
-      .then(res => console.log(res))
+      .then(res => {
+        setFormModal(null);
+        setRetrievePortfolio(true);
+      })
       .catch(error => console.log(error));
   }
 

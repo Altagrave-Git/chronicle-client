@@ -2,7 +2,7 @@ import './forms.scss';
 import { useState } from 'react';
 import { ContentAPI } from '../../api/api';
 
-const VideoForm = ({token, portfolioData, activeIndex}) => {
+const VideoForm = ({token, portfolioData, activeIndex, setFormModal, setRetrievePortfolio}) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [project, setProject] = useState(portfolioData[activeIndex].id);
@@ -24,7 +24,10 @@ const VideoForm = ({token, portfolioData, activeIndex}) => {
     }
 
     ContentAPI.video(token, project, formData)
-      .then(res => console.log(res))
+      .then(res => {
+        setFormModal(null);
+        setRetrievePortfolio(true);
+      })
       .catch(error => console.log(error));
   }
 
