@@ -24,10 +24,7 @@ const BlogSnippetForm = ({ post, token, order, setApiCall, edit=-1, setEdit, for
     formData.append('text', textData);
     formData.append('style', styleData);
     formData.append('language', languageData);
-
-    if (titleData.length > 0) {
-      formData.append('title', titleData);
-    }
+    formData.append('title', titleData);
 
     if (id) {
       formData.append('id', id);
