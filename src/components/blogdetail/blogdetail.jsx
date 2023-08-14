@@ -111,7 +111,7 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
           {
             content.map((item, index) => {
               return (
-                <div className="blog-detail-body-item" key={index} onClick={ admin && !post.published && edit != item.order ? () => {
+                <div className={`blog-detail-body-item type-${item.type}`} key={index} onClick={ admin && !post.published && edit != item.order ? () => {
                   setFormType('');
                   setEdit(item.order);
                 }:() => {return}}>
