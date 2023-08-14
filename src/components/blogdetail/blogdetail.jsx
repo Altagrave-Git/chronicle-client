@@ -140,7 +140,16 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
                   { item.order === edit ?
                     <BlogSnippetForm post={post} token={token} order={item.order} category={post.category} slug={post.slug} setApiCall={setApiCall} edit={edit} setEdit={setEdit} id={item.id} text={item.text} title={item.title} language={item.language} style={item.style} />
                     :
-                    <div className='blog-detail-body-snippet' dangerouslySetInnerHTML={{__html: item.code}} />
+                    <>
+                    { item.title == null ?
+                      <div className='blog-detail-body-snippet' dangerouslySetInnerHTML={{__html: item.code}} />
+                      :
+                      <>
+                        <h6 className='blog-detail-body-snippet-title'>{item.title}</h6>
+                        <div className='blog-detail-body-snippet titled' dangerouslySetInnerHTML={{__html: item.code}} />
+                      </>
+                    }
+                    </>
                   }
                   </>
                 }

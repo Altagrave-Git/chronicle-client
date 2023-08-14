@@ -57,6 +57,21 @@
       font-size: 0.95rem;
       overflow-x: scroll;
       border-radius: 0.5rem;
+
+      &.titled {
+        margin: 0 0 1.25rem;
+        border-radius: 0 0 0.5rem 0.5rem;;
+      }
+
+      &-title {
+        background-color: $border;
+        border-radius: 0.5rem 0.5rem 0 0;
+        text-align: center;
+        font-size: 1.25rem;
+        font-variant: all-small-caps;
+        line-height: 1.25rem;
+        padding: 0 0 0.3rem;
+      }
     }
 
     &-add {
