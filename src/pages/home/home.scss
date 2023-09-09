@@ -218,7 +218,24 @@ aside.home {
   @include tablet {
     padding: 0.5rem 1rem 0;
   }
+
+  > h3 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  > h3 svg {
+    height: 1.5rem;
+    fill: #f0f0f0;
+
+    * {
+      fill: #f0f0f0;
+    }
+  }
 }
+
 
 p {
   color: $text;
@@ -247,6 +264,20 @@ p {
     max-width: calc(600px - 2rem);
     width: calc(100% - 2rem);
     padding: 0rem 1rem 5rem;
+  }
+
+  h2 {
+    color: $secondary;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    background-color: $subcontainer;
+    border-radius: 0 0 10px 10px;
+    text-align: center;
+    font-size: 1.4rem;
+    border: 1px outset $border;
+    width: fit-content;
+    padding: 0 3rem;
+    margin: 0 auto 1rem;
   }
 
   input,
@@ -288,5 +319,121 @@ p {
 
   @include tablet {
     grid-template-columns: auto;
+  }
+}
+
+#skills-title-icon {
+  height: 1.25rem !important;
+}
+
+.home-posts-container {
+  margin-top: 2rem;
+
+  h3 {
+    padding-left: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .home-title-icon {
+    height: 1.2rem;
+    fill: $text;
+  }
+
+  .home-post {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: $container;
+    border-radius: 10px;
+    max-width: 100%;
+    padding: 0.5rem;
+    filter: $drop-shadow;
+    margin: 0.75rem 0;
+
+    &:first-of-type {
+      margin: 0.5rem 0 0.75rem;
+    }
+
+    &:hover {
+      background-color: $subcontainer;
+      cursor: pointer;
+    }
+
+    &-info {
+      padding: 0.25rem 0.5rem;
+      flex-basis: 60%;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .home-card-title {
+        font-weight: 600;
+        font-size: 1rem;
+      }
+
+      .home-card-category {
+        color: $text2;
+        font-size: 0.9rem;
+      }
+    }
+
+    &-image {
+      aspect-ratio: 16/9;
+      flex-basis: 9rem;
+      line-height: 0;
+      flex-grow: 1;
+      flex-shrink: 0;
+      padding: 0.25rem 0.5rem;
+      object-fit: cover;
+
+      img {
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.home-card-container {
+  margin-top: 0.5rem;
+}
+
+.home-about {
+  h3 {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  svg {
+    height: 1.2rem;
+    fill: $text;
+  }
+
+  &-card {
+    margin-top: 0.3rem;
+    background-color: $container;
+    border-radius: 10px;
+    filter: $drop-shadow;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  p {
+    border-radius: 10px;
+    padding: 0.3rem 1rem;
+  }
+
+  h4 {
+    color: $secondary;
+    filter: brightness(0.9);
+    text-align: center;
+    background-color: $subcontainer;
+    border-radius: 10px;
+    margin: 0.25rem 0;
+    font-size: 1.15rem;
   }
 }
