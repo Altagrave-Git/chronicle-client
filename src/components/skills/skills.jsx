@@ -9,7 +9,7 @@ import { ReactComponent as PythonLogo } from "../../icons/python.svg";
 import { ReactComponent as DjangoLogo } from "../../icons/django.svg";
 import { ReactComponent as RestLogo } from "../../icons/rest.svg";
 import { ReactComponent as PostgresLogo } from "../../icons/postgresql.svg";
-import { ReactComponent as AuthLogo } from "../../icons/auth.svg";
+import { ReactComponent as AuthLogo } from "../../icons/oauth2.svg";
 import { ReactComponent as GithubLogo } from "../../icons/github.svg";
 import { ReactComponent as NginxLogo } from "../../icons/nginx.svg";
 import { ReactComponent as GunicornLogo } from "../../icons/gunicorn.svg";
@@ -26,8 +26,8 @@ const Skills = () => {
         <div className="front-end">
           <h3>Front End</h3>
           <ul className="skills-list">
+            <li>Responsive Web Design</li>
             <li>DOM Manipulation</li>
-            <li>Responsive Design</li>
             <li>CRUD / AJAX</li>
             <li>Client-side Routing</li>
             <li>JavaScript Animation</li>
@@ -71,10 +71,10 @@ const Skills = () => {
             <li>Routing & Mapping</li>
             <li>Request Handling</li>
             <li>Serialization</li>
-            <li>Database Manipulation</li>
+            <li>Database Design</li>
+            <li>Data Manipulation</li>
             <li>API Development</li>
             <li>Server-side Rendering</li>
-            <li>Service-oriented Arch.</li>
           </ul>
           <div className="icon-container">
             <ul className="icon-list">
@@ -96,7 +96,7 @@ const Skills = () => {
               </li>
               <li className="icon">
                 <AuthLogo />
-                Auth0
+                OAuth 2.0
               </li>
               <li className="icon">
                 <OpenIDLogo />
@@ -106,12 +106,16 @@ const Skills = () => {
           </div>
         </div>
         <div className="dev-ops">
-          <h3>Dev Ops</h3>
+          <h3>Sys & Ops</h3>
           <ul className="skills-list">
+            <li>Linux Server Config.</li>
+            <li>Database Configuration</li>
             <li>Version Control</li>
             <li>CI/CD Pipelines</li>
             <li>Reverse Proxy Routing</li>
             <li>Environment Management</li>
+            <li>SSH Access & Tunneling</li>
+            <li>Distributed Systems</li>
           </ul>
           <div className="icon-container">
             <ul className="icon-list">
