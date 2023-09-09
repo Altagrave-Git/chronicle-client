@@ -161,6 +161,7 @@
 
   &__body {
     filter: $drop-shadow;
+    display: contents;
   }
 
   &__title {
