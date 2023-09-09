@@ -187,7 +187,7 @@
   }
 
   &-footer {
-    margin: 1rem 0;
+    margin: 3rem 0;
   
     .blog-detail-related {
       background-color: $subcontainer;
@@ -296,5 +296,9 @@
         filter: contrast(0.75);
       }
     }
+  }
+
+  p a {
+    color: $link;
   }
 }
