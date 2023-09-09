@@ -75,16 +75,6 @@ const MessageForm = ({token, setNewMail, admin}) => {
         </div>
       </div>
       <form className="message-form" onSubmit={handleSubmit}>
-        <div className="contact-form-info">
-          <input className="form-text" type="text" name="name" id="name" autoComplete={"name"} value={sender} onChange={e => setSender(e.target.value)} placeholder="Enter your name" />
-
-          { messageType === "email" ?
-          <input className="form-text" type="email" name="contact" id="email" autoComplete={"email"} value={contact} onChange={e => setContact(e.target.value)} placeholder="Enter your e-mail" />
-          :
-          <input className="form-text" type="tel" name="contact" id="phone" autoComplete={"tel"} value={contact} onChange={e => setContact(e.target.value)} placeholder="Enter phone number" />
-          }
-        </div>
-
         <div className="radio-container">
           <span className="radio-title">Preferred:</span>
           <div className="radio">
@@ -101,6 +91,16 @@ const MessageForm = ({token, setNewMail, admin}) => {
               setMessageType(e.target.value);
             }} />
           </div>
+        </div>
+
+        <div className="contact-form-info">
+          <input className="form-text" type="text" name="name" id="name" autoComplete={"name"} value={sender} onChange={e => setSender(e.target.value)} placeholder="Enter your name" />
+
+          { messageType === "email" ?
+          <input className="form-text" type="email" name="contact" id="email" autoComplete={"email"} value={contact} onChange={e => setContact(e.target.value)} placeholder="Enter your e-mail" />
+          :
+          <input className="form-text" type="tel" name="contact" id="phone" autoComplete={"tel"} value={contact} onChange={e => setContact(e.target.value)} placeholder="Enter phone number" />
+          }
         </div>
 
         <textarea className='form-text' name="content" id="" cols="30" rows="15" value={content} onChange={e => setContent(e.target.value)} maxLength={2000} placeholder="Enter your message here..."></textarea>
