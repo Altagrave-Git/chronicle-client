@@ -283,9 +283,10 @@ form {
 
   .message-form {
     width: 100%;
+    padding-top: 0;
 
     @include desktop {
-      padding: 1rem 1rem 1rem;
+      padding: 0 1rem;
     }
 
     h2 {
@@ -293,14 +294,16 @@ form {
       font-weight: 600;
       margin-bottom: 0.5rem;
       background-color: $subcontainer;
-      border-radius: 10px;
-      width: 100%;
+      border-radius: 0 0 10px 10px;
       text-align: center;
       font-size: 1.4rem;
+      border: 1px outset $border;
+      padding: 0 3rem;
     }
 
     .form-text {
       border-radius: 5px;
+      border: 1px inset $border;
 
       @include mobile {
         width: 100%;
