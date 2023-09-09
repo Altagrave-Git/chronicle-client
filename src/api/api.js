@@ -610,6 +610,16 @@ class BaseBlogAPI {
         return response.json();
       })
       .catch(error => console.log(error));
+    return response;
+  }
+
+  getRecent = async () => {
+    const response = await fetch(this.baseUrl + "recent/")
+      .then(response => {
+        return response.json();
+      })
+      .catch(error => console.log(error));
+    return response;
   }
 }
 
