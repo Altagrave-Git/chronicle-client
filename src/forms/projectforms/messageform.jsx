@@ -75,8 +75,6 @@ const MessageForm = ({token, setNewMail, admin}) => {
         </div>
       </div>
       <form className="message-form" onSubmit={handleSubmit}>
-        <h2>Contact Form</h2>
-
         <div className="contact-form-info">
           <input className="form-text" type="text" name="name" id="name" autoComplete={"name"} value={sender} onChange={e => setSender(e.target.value)} placeholder="Enter your name" />
 
@@ -105,7 +103,7 @@ const MessageForm = ({token, setNewMail, admin}) => {
           </div>
         </div>
 
-        <textarea className='form-text' name="content" id="" cols="30" rows="10" value={content} onChange={e => setContent(e.target.value)} maxLength={2000} placeholder="Enter your message here..."></textarea>
+        <textarea className='form-text' name="content" id="" cols="30" rows="15" value={content} onChange={e => setContent(e.target.value)} maxLength={2000} placeholder="Enter your message here..."></textarea>
 
         { sender.length > 0 && contact.length > 0 && content.length > 0 ?
         <input className="form-submit" type="submit" value="Send" />
