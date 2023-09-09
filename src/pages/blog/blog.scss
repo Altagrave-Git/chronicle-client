@@ -47,7 +47,7 @@
       max-width: 100%;
       padding: 1rem;
       border-radius: 20px;
-      background-color: $container;
+      background-color: $subcontainer;
       filter: drop-shadow(0 0 4px $container);
 
       &.unpublished {
@@ -57,7 +57,7 @@
 
       &:hover {
         cursor: pointer;
-        background-color: $subcontainer;
+        background-color: $input;
       }
 
       h2 {
