@@ -92,7 +92,7 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
     <div className="blog-detail">
       { Object.keys(post).length > 0 ?
         <>
-          { editMain ?
+          { admin && editMain ?
             <PostForm token={token} categories={categories} setEditMain={setEditMain} titleData={post.title} categoryData={categories.find(obj => obj.id === post.category)} descriptionData={post.description != null ? post.description : ''} slug={slug} setApiCall={setApiCall} setRetrieveCategories={setRetrieveCategories} />
             :
             <div className="blog-detail-head" onClick={() => setEditMain(true)}>
@@ -130,7 +130,11 @@ const BlogDetail = ({ slug, category, categories, admin, token, post, setPost, a
                     <BlogParagraphForm post={post} token={token} order={item.order} category={post.category} slug={post.slug} setApiCall={setApiCall} edit={edit} setEdit={setEdit} id={item.id} text={item.text} />
                     :
                     item.text.split('\n').map((pg, index) => {
-                      return <p key={index}>{pg}</p>
+                      const urlPattern = /https?:\/\/(?:[^\s.,!]+|[.,!](?![\s]))+/g;
+                      const linkedText = pg.replace(urlPattern, (url) => {
+                        return `<a href="${url}" target="_blank">${url}</a>`;
+                      });
+                      return <p key={index} dangerouslySetInnerHTML={{ __html: linkedText }}></p>
                     })
                   }
                   </>
