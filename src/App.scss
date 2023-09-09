@@ -11,6 +11,7 @@ $text3: #e1e1e1;
 $primary: #cd3c3c;
 $primary-gradient: linear-gradient(210deg, #cd3c3ccc 10%, #d24d4b 90%);
 $secondary: #e9bb18;
+$secondary-alt: #e9bb18cc;
 $secondary-gradient: linear-gradient(210deg, #d9aa08cc 10%, #e9aa08 90%);
 $tertiary: #40b153;
 $tertiary-gradient: linear-gradient(210deg, #2e8b57cc 10%, #6ea05a 90%);
@@ -22,9 +23,11 @@ $border: #555;
 $input: #444;
 $overlay: #000d;
 $blend: #777;
+$link: #8dacfc;
 
-$drop-shadow: drop-shadow(2px 4px 6px #0f0f0f);
-$drop-shadow2: drop-shadow(4px 6px 6px #000);
+$drop-shadow: drop-shadow(0 0 10px #0f0f0f);
+$drop-shadow2: drop-shadow(0 0 10px #000);
+$drop-shadow3: drop-shadow(0 0 10px #0f0f0faa);
 
 $mobile-width: 599.98px;
 $tablet-width: 991.98px;
@@ -94,6 +97,8 @@ html {
   font-size: 100%;
   overflow-y: scroll;
   text-rendering: geometricPrecision;
+  shape-rendering: geometricPrecision;
+  image-rendering: -webkit-optimize-contrast;
   font-kerning: normal;
 
   @include tablet {
