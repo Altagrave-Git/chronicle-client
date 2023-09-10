@@ -65,9 +65,12 @@
       margin-bottom: 0.5rem;
     }
 
+    .type-snippet {
+      filter: $drop-shadow2;
+    }
+
     &-snippet {
       margin: 1.25rem 0;
-      filter: $drop-shadow2;
       background-color: $subcontainer !important;
       padding: 1rem 1rem 0.5rem;
       font-size: 0.95rem;
