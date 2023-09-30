@@ -29,10 +29,10 @@ const Skills = () => {
             <li>Responsive Web Design</li>
             <li>DOM Manipulation</li>
             <li>CRUD / AJAX</li>
-            <li>Client-side Routing</li>
-            <li>JavaScript Animation</li>
+            <li>Event Scripting</li>
             <li>State Management</li>
             <li>API Integration</li>
+            <li>Client-side Routing</li>
             <li>Component-based Arch.</li>
           </ul>
           <div className="icon-container">
