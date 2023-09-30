@@ -4,7 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=block');
 
-$background: #1b1b1b;
+$background: #181818;
 $text: #f0f0f0;
 $text2: #c0c0c0;
 $text3: #e1e1e1;
@@ -25,14 +25,14 @@ $overlay: #000d;
 $blend: #777;
 $link: #8dacfc;
 
-$drop-shadow: drop-shadow(0 0 10px #0f0f0f);
-$drop-shadow2: drop-shadow(2px 4px 6px #000);
-$drop-shadow3: drop-shadow(0 0 10px #0f0f0faa);
+$drop-shadow: drop-shadow(0 0 5px #000);
+$drop-shadow2: drop-shadow(2px 4px 6px #0f0f0f);
+$drop-shadow3: drop-shadow(0 0 5px #0f0f0faa);
 
 $mobile-width: 599.98px;
 $tablet-width: 991.98px;
 $desktop-width: 992px;
-$box-shadow: 0 0 10px 0 #000;
+$box-shadow: 0 0 5px 0 #000;
 
 $font-family: "Readex Pro", sans-serif;
 $font-family-2: "Montserrat", sans-serif;
