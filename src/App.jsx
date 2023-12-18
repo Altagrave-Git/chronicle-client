@@ -9,11 +9,9 @@ import { Octokit } from "@octokit/core";
 import AuthAPI, { BlogAPI } from './api/api';
 import { MailAPI, ContentAPI } from './api/api';
 import UserPanel from './components/userpanel/userpanel';
-import AboutView from './pages/about/about';
 import InboxView from './pages/inbox/inbox';
 import bgslide from "./images/bgslide.png";
 import selfie from "./images/self.jpg";
-import turcotte from "./images/turcotte.png";
 import BlogView from './pages/blog/blog';
 
 
