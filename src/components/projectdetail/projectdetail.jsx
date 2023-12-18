@@ -94,11 +94,15 @@ const ProjectDetail = ({ project, handleActive }) => {
                     })
                     }
                     { section.type === 'list' &&
-                      <ul>
+                      <>
                         {section.description.split('\n').map((item, index) => {
-                          return <li key={index}>{item}</li>
+                          if (item[0] === "-") {
+                            return <ul key={index}><li>{item.slice(1)}</li></ul>
+                          } else if (item.length > 0) {
+                            return <p key={index}>{item}</p>
+                          }
                         })}
-                      </ul>
+                      </>
                     }
                     {section.snippets &&
                       section.snippets.map((snippet, index) => {
