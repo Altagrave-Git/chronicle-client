@@ -97,7 +97,7 @@ const ProjectDetail = ({ project, handleActive }) => {
                       <>
                         {section.description.split('\n').map((item, index) => {
                           if (item[0] === "-") {
-                            return <ul key={index}><li>{item.slice(1)}</li></ul>
+                            return <ul key={index}><li>{item.slice(1).trim()}</li></ul>
                           } else if (item.length > 0) {
                             return <p key={index}>{item}</p>
                           }
