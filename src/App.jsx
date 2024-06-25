@@ -10,8 +10,6 @@ import AuthAPI, { BlogAPI } from './api/api';
 import { MailAPI, ContentAPI } from './api/api';
 import UserPanel from './components/userpanel/userpanel';
 import InboxView from './pages/inbox/inbox';
-import bgslide from "./images/bgslide.png";
-import selfie from "./images/self.jpg";
 import BlogView from './pages/blog/blog';
 
 
@@ -97,7 +95,7 @@ const App = () => {
           break;
         } else {
           list.push(project.image);
-          head.innerHTML += `<link rel="prefetch" href="${url + project.image}" />`;
+          head.innerHTML += `<link rel="prefetch" href="${url + project.image}" as="image" />`;
         }
       }
     }
@@ -113,12 +111,6 @@ const App = () => {
         .catch(error => console.log(error));
     }
   }, [retrieveCategories])
-
-  useEffect(() => {
-    const head = document.querySelector("head");
-    head.innerHTML += `<link rel="prefetch" href="${bgslide}" />`;
-    head.innerHTML += `<link rel="prefetch" href="${selfie}" />`;
-  }, [])
 
   return (
     <BrowserRouter>
